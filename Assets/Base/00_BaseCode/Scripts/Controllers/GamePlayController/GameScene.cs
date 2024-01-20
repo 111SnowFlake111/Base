@@ -15,10 +15,7 @@ public class GameScene : BaseScene
     public Button btnBack;
     public void Init()
     {
-        ShowBanner();
-        btnShowInter.onClick.AddListener(delegate { OnClickShowInter(); });
-        btnShowReward.onClick.AddListener(delegate { OnClickShowReward(); });
-        btnBack.onClick.AddListener(delegate { OnClickBack(); });
+      
     }
     public void OnClickShowInter()
     {

@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1011640203704981892}
   - component: {fileID: 3836030762473040858}
+  - component: {fileID: -544489522053589013}
   m_Layer: 0
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +47,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posBullet: {fileID: 1011640203704981892}
+  spawner: {fileID: 0}
+--- !u!65 &-544489522053589013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378796922856964926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -0.12, y: 0.77, z: 0.14}
+  m_Center: {x: 0, y: 0.3626791, z: -0.0051541985}
 --- !u!1 &4642643959970503771
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 75e82a42618f61640ae846f4f4f4485c, type: 2}
+  - {fileID: 2100000, guid: 99dc4af2280e3c744960170d5d42370b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -186,7 +201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 351006630394022888, guid: e3f0deb94b5e7d84db44d12be4ee7f4b, type: 3}
+  - {fileID: 2100000, guid: 2cf9fc6d7ca5a9a448234818bb9280b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

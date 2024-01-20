@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BulletSpawnTiming : MonoBehaviour
 {
-    
-
     public void Shoot()
     {
         GamePlayController.Instance.playerContain.handController.HandleSpawnBullet();

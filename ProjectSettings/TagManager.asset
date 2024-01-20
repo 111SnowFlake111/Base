@@ -13,6 +13,11 @@ TagManager:
   - MASk
   - Fill
   - Broad
+  - Panel
+  - Bullet
+  - Cylinder
+  - BehindThePlayer
+  - Gate
   layers:
   - Default
   - TransparentFX

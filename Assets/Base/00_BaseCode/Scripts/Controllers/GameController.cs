@@ -46,9 +46,9 @@ public class GameController : MonoBehaviour
         ATTrackingStatusBinding.RequestAuthorizationTracking();
 
     }
-
+    r
 #endif
-
+        Debug.LogError("áddsfsd");
     }
 
     private void Start()
