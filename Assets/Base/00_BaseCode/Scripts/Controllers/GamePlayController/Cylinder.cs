@@ -22,16 +22,13 @@ public class Cylinder : MonoBehaviour
         }
         
     }
-
-
     private int hitCount = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
       
     }
 
-    // Update is called once per frame
     void Update()
     {
         gameObject.transform.position += new Vector3(0, 0, -40f) * Time.deltaTime;
@@ -61,20 +58,21 @@ public class Cylinder : MonoBehaviour
                         {
                             if (hitCount == 8)
                             {
-                                var temp2 = gameObject.transform.localPosition + new Vector3(-5, 0, 0);
-                                gameObject.transform.transform.DOLocalMoveX(temp2.x, 0.5f).OnComplete(() =>
+                                var moveToConveyor = new Vector3(-3.5f, -2.2f, 20f);
+                                gameObject.transform.transform.DOLocalMove(moveToConveyor, 0.5f).OnComplete(() =>
                                 {
-                                    var temp3 = gameObject.transform.localPosition + new Vector3(0, 0, 50);
-                                    gameObject.transform.transform.DOLocalMoveZ(temp3.z, 1f).OnComplete(() =>
+                                    Debug.Log("Moving");
+                                    gate.PointUpdate(hitCount);
+                                    hitCount = 0;
+                                    foreach (GameObject bullet in bulletFilled)
                                     {
-                                        gate.PointUpdate(hitCount);
-                                        hitCount = 0;
-                                        foreach (GameObject bullet in bulletFilled)
-                                        {
-                                            bullet.SetActive(false);
-                                        }
+                                        bullet.SetActive(false);
+                                    }
+
+                                    if (collider.gameObject.tag == "Gate" || collider.gameObject.tag == "LastGate")
+                                    {
                                         SimplePool2.Despawn(gameObject);
-                                    });
+                                    }
                                 }
                                 );
                             }
@@ -85,21 +83,21 @@ public class Cylinder : MonoBehaviour
 
         if (collider.tag == "BehindThePlayer")
         {
-            var moveToConveyor = gameObject.transform.localPosition + new Vector3(-5, 0, 0);
-            gameObject.transform.transform.DOLocalMoveX(moveToConveyor.x, 0.5f).OnComplete(() =>
+            var moveToConveyor = new Vector3(-3.5f, -2.2f, 20f);
+            gameObject.transform.transform.DOLocalMove(moveToConveyor, 0.5f).OnComplete(() =>
             {
-                var moveToDoorPusher = gameObject.transform.localPosition + new Vector3(0, 0, 30);
-                gameObject.transform.transform.DOLocalMoveZ(moveToConveyor.z, 1f).OnComplete(() =>
+                Debug.Log("Moving");
+                gate.PointUpdate(hitCount);
+                hitCount = 0;
+                foreach (GameObject bullet in bulletFilled)
                 {
-                    
-                    gate.PointUpdate(hitCount);
-                    hitCount = 0;
-                    foreach (GameObject bullet in bulletFilled)
-                    {
-                        bullet.SetActive(false);
-                    }
+                    bullet.SetActive(false);
+                }
+
+                if (collider.gameObject.tag == "Gate" || collider.gameObject.tag == "LastGate")
+                {
                     SimplePool2.Despawn(gameObject);
-                });
+                }
             });
         }
     }

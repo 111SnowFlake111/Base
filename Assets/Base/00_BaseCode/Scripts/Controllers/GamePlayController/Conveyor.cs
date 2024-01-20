@@ -20,7 +20,7 @@ public class Conveyor : MonoBehaviour
 
     public IEnumerator ConveyorDelayedDespawn()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.1f);
         SimplePool2.Despawn(gameObject);
     }
 

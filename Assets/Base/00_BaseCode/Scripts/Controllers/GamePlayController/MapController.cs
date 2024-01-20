@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
+    public HandController player;
+
     public GameObject conveyor;
     public GameObject roadSpawner;
     public GameObject conveyorSpawner;
     public GameObject spawner;
     public GameObject bonusPanel;
     public GameObject cylinder;
+    public GameObject gateBonus;
 
     //public LineRenderer conveyerLine;
 
@@ -24,6 +27,7 @@ public class MapController : MonoBehaviour
     private float timer2 = 0f;
     //private int posCount = 0;
     public Gate gate;
+    private bool gateSpawned = false;
     private void Start()
     {
 
@@ -66,16 +70,24 @@ public class MapController : MonoBehaviour
 
     void Update()
     {
-        if (timer2 <= 14f)
+        if (player.getStatus())
         {
-            timer += Time.deltaTime;
-            timer2 += Time.deltaTime;
-            if (timer >= 2f)
+            if (timer2 <= 14f)
             {
-                StartCoroutine(HandleSpawnCylinder());
-                StartCoroutine(HandleSpawnBonusPanel());
-                //HandleSpawnConveyor();
-                timer = 0f;
+                timer += Time.deltaTime;
+                timer2 += Time.deltaTime;
+                if (timer >= 2f)
+                {
+                    StartCoroutine(HandleSpawnCylinder());
+                    StartCoroutine(HandleSpawnBonusPanel());
+                    //HandleSpawnConveyor();
+                    timer = 0f;
+                }
+                if (timer2 >= 13f && !gateSpawned)
+                {
+                    HandleSpawnGate();
+                    gateSpawned = true;
+                }
             }
         }
     }
@@ -101,5 +113,11 @@ public class MapController : MonoBehaviour
         var con = SimplePool2.Spawn(conveyor, conveyorSpawner.transform.position, Quaternion.identity).GetComponent<Conveyor>();
         con.transform.localEulerAngles = new Vector3(0, 90, 0);
         StartCoroutine(con.ConveyorDestroyer());
+    }
+
+    public void HandleSpawnGate()
+    {
+        var gat = SimplePool2.Spawn(gate,spawner.transform.position, Quaternion.identity).GetComponent<Gate>();
+        StartCoroutine(gat.GateDestroyer());
     }
 }

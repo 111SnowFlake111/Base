@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4073259056119345025}
   m_Layer: 0
   m_Name: BulletGate
-  m_TagString: Untagged
+  m_TagString: BulletGate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

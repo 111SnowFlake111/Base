@@ -6,11 +6,11 @@ using TMPro;
 
 public class Gate : MonoBehaviour
 {
+
     public GameObject bulletGate;
-    public Transform roadPos;
     //public GameObject messageBox;
     //public TMP_Text message;
-    private List<GameObject> bulletGateObject;
+    static List<GameObject> bulletGateObject;
     static int limit = 1;
     static int currentPoint = 0;
     private bool doorActive = false;
@@ -25,12 +25,12 @@ public class Gate : MonoBehaviour
     {
         if (doorActive)
         {
-            foreach(GameObject obj in bulletGateObject)
+            foreach (GameObject obj in bulletGateObject)
             {
                 obj.transform.position = gameObject.transform.position;
             }
         }
-        
+
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -54,11 +54,17 @@ public class Gate : MonoBehaviour
             Debug.LogError("+" + (currentPoint).ToString() + " Points");
             limit = 0;
             currentPoint = 0;
-            foreach (GameObject obj in bulletGateObject)
-            {
-                SimplePool2.Despawn(obj);
-            }
+            //foreach (GameObject obj in bulletGateObject)
+            //{
+            //    SimplePool2.Despawn(obj);
+            //}
         }
+    }
+
+    public IEnumerator GateDestroyer()
+    {
+        yield return new WaitForSeconds(10);
+        SimplePool2.Despawn(gameObject);
     }
 
     public void PointUpdate(int number)

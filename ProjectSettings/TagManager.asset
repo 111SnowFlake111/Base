@@ -18,6 +18,9 @@ TagManager:
   - Cylinder
   - BehindThePlayer
   - Gate
+  - LastGate
+  - BulletGate
+  - RoadWithGate
   layers:
   - Default
   - TransparentFX
