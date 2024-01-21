@@ -15,7 +15,7 @@ public class Road : MonoBehaviour
 
     void Update()
     {
-        if(!GamePlayController.Instance.playerContain.isPlay)
+        if(GamePlayController.Instance.playerContain.isAlive)
         {
             roadPos.transform.position += new Vector3(0, 0, -50f) * Time.deltaTime;
         }

@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HandController : MonoBehaviour
-{
-    public GameObject handPlayer;
+{   
     public Bullet bullet;
+
+    public GameObject handPlayer;    
     public GameObject bulletSpawner;
+
     private Vector3 firstPost;
     private Vector3 secondPost;
+
     public Transform leftLimit;
     public Transform rightLimit;
+
     public Camera camera;
-    public bool isAlive = true;
+
 
     public void Start()
     {
@@ -23,7 +27,7 @@ public class HandController : MonoBehaviour
     }
     public void Update()
     {
-        if (isAlive)
+        if (GamePlayController.Instance.playerContain.isAlive)
         {
             if (Input.GetMouseButtonDown(0)) // khi bấm chuột trái vào màn hình lần đầu tiên
             {
@@ -58,22 +62,17 @@ public class HandController : MonoBehaviour
         StartCoroutine(temp.HandleDestoy_2());
     }
 
-    public bool getStatus()
-    {
-        return isAlive;
-    }
 
     public void OnTriggerEnter(Collider target)
     {
         if (target.tag == "Rock")
         {
             Debug.LogError("collided");
-            isAlive = false;
             var moveBackward = target.transform.position - new Vector3(0f, 0f, 5f);
-            target.transform.DOLocalMoveZ(moveBackward.z, 0.25f).OnComplete(() =>
+            handPlayer.transform.DOLocalMoveZ(moveBackward.z, 0.25f).OnComplete(() =>
             {
                 var die = target.transform.localEulerAngles + new Vector3(0, 0, 90);
-                target.transform.DOLocalRotate(die, 0.25f);
+                handPlayer.transform.DOLocalRotate(die, 0.25f);
             });
         }
     }

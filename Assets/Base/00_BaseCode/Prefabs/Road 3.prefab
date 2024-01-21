@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletGate: {fileID: 3732585976192742715, guid: f7459a2c17eee614cb5148868dd88e94, type: 3}
-  roadPos: {fileID: 8110867512205669576}
 --- !u!1 &7853514487313971339
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadPos: {fileID: 8110867512205669576}
+  player: {fileID: 0}
 --- !u!1001 &153775202505816829
 PrefabInstance:
   m_ObjectHideFlags: 0

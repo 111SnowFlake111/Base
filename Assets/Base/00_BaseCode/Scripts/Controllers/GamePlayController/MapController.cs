@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public HandController player;
-
     public GameObject conveyor;
     public GameObject roadSpawner;
     public GameObject conveyorSpawner;
@@ -70,7 +68,7 @@ public class MapController : MonoBehaviour
 
     void Update()
     {
-        if (player.getStatus())
+        if (GamePlayController.Instance.playerContain.isAlive)
         {
             if (timer2 <= 14f)
             {

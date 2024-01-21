@@ -6,7 +6,7 @@ public class PlayerContain : MonoBehaviour
 {
     public MapController mapController;
     public HandController handController;
-    public bool isPlay = true;
+    public bool isAlive = true;
     public void Init()
     {
 

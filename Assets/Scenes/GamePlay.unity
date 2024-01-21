@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapController: {fileID: 1916761123}
   handController: {fileID: 1070714554}
-  isPlay: 0
+  isAlive: 1
 --- !u!4 &39208333
 Transform:
   m_ObjectHideFlags: 0
@@ -1142,13 +1142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a023115b68fc23468943179597a6266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPlayer: {fileID: 1350124584}
   bullet: {fileID: 3836030762473040858, guid: 8c6418221633a554886439106ba344b0, type: 3}
+  handPlayer: {fileID: 1350124584}
   bulletSpawner: {fileID: 132812039}
   leftLimit: {fileID: 973456475}
   rightLimit: {fileID: 348521180}
   camera: {fileID: 732504000}
-  isAlive: 1
 --- !u!4 &1070714555
 Transform:
   m_ObjectHideFlags: 0
@@ -1799,7 +1798,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03931728e709a794aa9379afa6f25692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1070714554}
   conveyor: {fileID: 1921374187514902744, guid: 1b2133653af544c459e4e89a30dead4a, type: 3}
   roadSpawner: {fileID: 590375726}
   conveyorSpawner: {fileID: 1261032566}
@@ -1816,7 +1814,7 @@ MonoBehaviour:
   - {fileID: 9053975126247466244, guid: 03ebd49b8f2157c418e61055cc5bd7c4, type: 3}
   - {fileID: 9053975126247466244, guid: f29f90cc0858b8e418a4a4017da10bc5, type: 3}
   - {fileID: 9053975126247466244, guid: d9cf6d14020de1c4286d7e99b66b53a5, type: 3}
-  idLevel: 03000000000000000100000000000000010000000000000005000000010000000000000001000000000000000100000000000000
+  idLevel: 03000000000000000100000000000000010000000000000001000000000000000100000000000000010000000000000005000000
   gateIndex: 010000000a000000
   gate: {fileID: 7794029310244722963, guid: 8f01bb25ed4c1b8488028b779e2c594f, type: 3}
 --- !u!1 &1920856445
