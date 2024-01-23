@@ -21,6 +21,12 @@ TagManager:
   - LastGate
   - BulletGate
   - RoadWithGate
+  - DespawnBox
+  - Revolver
+  - BulletSmall
+  - BulletMedium
+  - BulletShotgun
+  - BulletBig
   layers:
   - Default
   - TransparentFX

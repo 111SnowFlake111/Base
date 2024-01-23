@@ -10,14 +10,14 @@ public class Road : MonoBehaviour
 
     private void Start()
     {
-    //    player = GameObject.FindGameObjectWithTag("Player").GetComponent<HandController>;
+        //    player = GameObject.FindGameObjectWithTag("Player").GetComponent<HandController>;
     }
 
     void Update()
     {
         if(GamePlayController.Instance.playerContain.isAlive)
         {
-            roadPos.transform.position += new Vector3(0, 0, -50f) * Time.deltaTime;
+            roadPos.transform.position += new Vector3(0, 0, -20f) * Time.deltaTime;
         }
     }
 
@@ -26,5 +26,13 @@ public class Road : MonoBehaviour
      
         yield return new WaitForSeconds(60);        
         SimplePool2.Despawn(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "DespawnBox")
+        {
+            SimplePool2.Despawn(gameObject);
+        }
     }
 }

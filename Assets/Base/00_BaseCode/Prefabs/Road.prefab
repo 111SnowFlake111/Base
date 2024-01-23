@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99dc4af2280e3c744960170d5d42370b, type: 2}
+  - {fileID: 2100000, guid: f16b195bd714b5144be7a109e13d9554, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadPos: {fileID: 8110867512205669576}
+  player: {fileID: 0}

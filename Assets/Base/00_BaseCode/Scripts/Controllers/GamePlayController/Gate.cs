@@ -6,18 +6,30 @@ using TMPro;
 
 public class Gate : MonoBehaviour
 {
-
-    public GameObject bulletGate;
     //public GameObject messageBox;
     //public TMP_Text message;
-    static List<GameObject> bulletGateObject;
+    public List<GameObject> bulletGateObject;
+    private GameObject GateBullet
+    {
+        get
+        {
+            foreach (GameObject obj in bulletGateObject)
+            {
+                if(!obj.activeSelf)
+                {
+                    return obj;
+                }
+            }
+            return null;
+        }
+    }    
     static int limit = 1;
     static int currentPoint = 0;
     private bool doorActive = false;
 
     void Start()
     {
-        SimplePool2.Preload(bulletGate, 10);
+        
     }
 
 
@@ -54,10 +66,10 @@ public class Gate : MonoBehaviour
             Debug.LogError("+" + (currentPoint).ToString() + " Points");
             limit = 0;
             currentPoint = 0;
-            //foreach (GameObject obj in bulletGateObject)
-            //{
-            //    SimplePool2.Despawn(obj);
-            //}
+            foreach (GameObject obj in bulletGateObject)
+            {
+                obj.SetActive(false);
+            }
         }
     }
 
@@ -93,10 +105,9 @@ public class Gate : MonoBehaviour
             {
                 break;
             }
-            var temp = SimplePool2.Spawn(bulletGate, gameObject.transform.position, Quaternion.identity);
-            bulletGateObject.Add(temp);
-            var newPosForBullet = temp.transform.localPosition + new Vector3(0.55f * (i + 1), 0, 0);
-            temp.transform.DOLocalMoveX(newPosForBullet.x, 0.25f);
+            GateBullet.SetActive(true);
+            //var newPosForBullet = gateBullet.transform.position + new Vector3(0.55f * (i + 1), 0, 0);
+            //gateBullet.transform.DOMoveX(newPosForBullet.x, 0.25f);
             currentPoint++;
         }
     }

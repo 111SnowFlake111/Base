@@ -157,8 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407fa33153eb0ca4181b5f61bfde3df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletGate: {fileID: 3732585976192742715, guid: f7459a2c17eee614cb5148868dd88e94, type: 3}
-  roadPos: {fileID: 0}
+  bulletGateObject: []
 --- !u!1 &7560107292070937063
 GameObject:
   m_ObjectHideFlags: 0

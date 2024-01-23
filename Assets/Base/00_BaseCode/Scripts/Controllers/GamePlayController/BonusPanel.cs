@@ -19,7 +19,7 @@ public class BonusPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += new Vector3(0, 0, -40f) * Time.deltaTime;
+        //gameObject.transform.position += new Vector3(0, 0, -40f) * Time.deltaTime;
         //if (road != null)
         //{
         //    gameObject.transform.position = road.transform.position;
@@ -34,7 +34,7 @@ public class BonusPanel : MonoBehaviour
 
     public void OnTriggerEnter(UnityEngine.Collider collider)
     {
-        if(collider.gameObject.tag == "Bullet")
+        if(collider.gameObject.tag.Contains("Bullet"))
         {
             SimplePool2.Despawn(collider.gameObject);
             count--;

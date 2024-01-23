@@ -445,8 +445,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tvCount: {fileID: 4612935358043049098}
-  leftLimit: {fileID: 0}
-  rightLimit: {fileID: 0}
 --- !u!54 &40993243977370140
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -474,5 +472,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0051537, y: 2.0288656, z: 10.561807}
-  m_Center: {x: -0.007481575, y: 1.0177516, z: -4.7809043}
+  m_Size: {x: 2.117578, y: 2.0288656, z: 10.561807}
+  m_Center: {x: -0.011152446, y: 1.0177516, z: -4.7809043}

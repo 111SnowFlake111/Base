@@ -11,6 +11,7 @@ public class MapController : MonoBehaviour
     public GameObject bonusPanel;
     public GameObject cylinder;
     public GameObject gateBonus;
+    public GameObject onConveyorPos;
 
     //public LineRenderer conveyerLine;
 
@@ -19,7 +20,7 @@ public class MapController : MonoBehaviour
 
     public List<GameObject> road;
     public List<int> idLevel;
-    public List<int> gateIndex;
+    //public List<int> gateIndex;
 
     private float timer = 0f;
     private float timer2 = 0f;
@@ -29,7 +30,7 @@ public class MapController : MonoBehaviour
     private void Start()
     {
 
-        SimplePool2.Preload(cylinder, 10);
+        SimplePool2.Preload(cylinder, 20);
         SimplePool2.Preload(bonusPanel, 10);
         SimplePool2.Preload(conveyor, 30);
 
@@ -42,27 +43,13 @@ public class MapController : MonoBehaviour
 
         for (int i = 0; i < idLevel.Count; i++)
         {
-            Debug.LogError("Road Spawned");
-            var obj1 = SimplePool2.Spawn(road[idLevel[i]], roadSpawner.transform.position + new Vector3(0, 0, (64.71f + 35.27198f) * i), Quaternion.identity).GetComponent<Road>();
-            StartCoroutine(obj1.RoadDestroyer());
-
-            //if (gateIndex.Contains(i))
-            //{
-            //    if (idLevel[i] != 0)
-            //    {
-            //        var temp = SimplePool2.Spawn(gate, obj1.transform.position, Quaternion.identity);
-            //        temp.transform.parent = obj1.transform;
-            //    }
-            //    Debug.LogError("poof");
-            //    conveyerLine.SetPosition(posCount, road[idLevel[i]].transform.position);
-            //    posCount++;
-            //}
+            var obj1 = SimplePool2.Spawn(road[idLevel[i]], roadSpawner.transform.position + new Vector3(0, 0, (64.71f + 35.27198f) * i), Quaternion.identity).GetComponent<Road>();     
         }
         for (int i = 0; i < 30; i++)
         {
             var con = SimplePool2.Spawn(conveyor, conveyorSpawner.transform.position + new Vector3(0, 0, (32.48f - 27.481f) * i), Quaternion.identity).GetComponent<Conveyor>();
             con.transform.localEulerAngles = new Vector3(0, 90, 0);
-            StartCoroutine(con.ConveyorDestroyer());
+            //StartCoroutine(con.ConveyorDestroyer());
         }
     }
 
@@ -76,16 +63,16 @@ public class MapController : MonoBehaviour
                 timer2 += Time.deltaTime;
                 if (timer >= 2f)
                 {
-                    StartCoroutine(HandleSpawnCylinder());
-                    StartCoroutine(HandleSpawnBonusPanel());
+                    //StartCoroutine(HandleSpawnCylinder());
+                    //StartCoroutine(HandleSpawnBonusPanel());
                     //HandleSpawnConveyor();
                     timer = 0f;
                 }
-                if (timer2 >= 13f && !gateSpawned)
-                {
-                    HandleSpawnGate();
-                    gateSpawned = true;
-                }
+                //if (timer2 >= 13f && !gateSpawned)
+                //{
+                //    HandleSpawnGate();
+                //    gateSpawned = true;
+                //}
             }
         }
     }

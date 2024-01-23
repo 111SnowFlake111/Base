@@ -6,7 +6,12 @@ using DG.Tweening;
 public class Cylinder : MonoBehaviour
 {
     public Gate gate;
+
     public List<GameObject> bulletFilled;
+
+    public Transform conveyorSpawner;
+
+    public GameObject body;
     public GameObject bulletHole
     {
         get
@@ -22,16 +27,29 @@ public class Cylinder : MonoBehaviour
         }
         
     }
+
     private int hitCount = 0;
+    private bool isOnConveyor = false;
+    private bool isHitAble = true;
+    private Tween move;
 
     void Start()
     {
-      
+        isOnConveyor = false;
+        conveyorSpawner = GamePlayController.Instance.playerContain.mapController.onConveyorPos.transform;
     }
 
     void Update()
     {
-        gameObject.transform.position += new Vector3(0, 0, -40f) * Time.deltaTime;
+        //if (isHitAble)
+        //{
+        //    gameObject.transform.position += new Vector3(0, 0, -20f) * Time.deltaTime;
+        //}
+        
+        if (isOnConveyor)
+        {
+            gameObject.transform.position += new Vector3(0, 0, 40f) * Time.deltaTime;
+        }
     }
 
     public IEnumerator CylinderDestroyer()
@@ -42,63 +60,141 @@ public class Cylinder : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.tag == "Bullet")
+        var moveToConveyor = gameObject.transform.position + new Vector3(-15f, 0, 0);
+
+        if (collider.gameObject.tag.Contains("Bullet") && isHitAble == true)
         {
-            if (hitCount < 8)
+            if (collider.gameObject.tag == "BulletSmall")
             {
-                SimplePool2.Despawn(collider.gameObject);
-                var temp = bulletHole;
-                if(temp != null)
+                if (hitCount < 8)
                 {
-                    bulletHole.SetActive(true);
-                    hitCount++;
-                    var temp1 = gameObject.transform.localEulerAngles + new Vector3(0, 0, 35);
-                    gameObject.transform.DOLocalRotate(temp1, 0.15f).OnComplete
+                    SimplePool2.Despawn(collider.gameObject);
+                    var temp = bulletHole;
+                    if (temp != null)
+                    {
+                        bulletHole.SetActive(true);
+                        hitCount++;
+                        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
+                        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+                            (() =>
+                            {
+                                if (hitCount >= 8)
+                                {
+                                    isHitAble = false;
+                                    move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                                    {
+                                        isOnConveyor = true;
+                                    });
+                                }
+                            });
+                    }
+                }
+            }
+
+            if (collider.gameObject.tag == "BulletMedium")
+            {
+                if (hitCount < 8)
+                {
+                    SimplePool2.Despawn(collider.gameObject);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var temp = bulletHole;
+                        bulletHole.SetActive (true);
+                    }
+                    hitCount += 2;
+                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 80);
+                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
                         (() =>
                         {
-                            if (hitCount == 8)
+                            if (hitCount >= 8)
                             {
-                                var moveToConveyor = new Vector3(-3.5f, -2.2f, 20f);
-                                gameObject.transform.transform.DOLocalMove(moveToConveyor, 0.5f).OnComplete(() =>
+                                hitCount = 8;
+                                isHitAble = false;
+                                move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
                                 {
-                                    Debug.Log("Moving");
-                                    gate.PointUpdate(hitCount);
-                                    hitCount = 0;
-                                    foreach (GameObject bullet in bulletFilled)
-                                    {
-                                        bullet.SetActive(false);
-                                    }
-
-                                    if (collider.gameObject.tag == "Gate" || collider.gameObject.tag == "LastGate")
-                                    {
-                                        SimplePool2.Despawn(gameObject);
-                                    }
-                                }
-                                );
+                                    isOnConveyor = true;
+                                });
                             }
-                        });
+                        }
+                        );
+                }
+            }
+
+            if (collider.gameObject.tag == "BulletShotgun")
+            {
+                if (hitCount < 8)
+                {
+                    SimplePool2.Despawn(collider.gameObject);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var temp = bulletHole;
+                        bulletHole.SetActive(true);
+                    }
+                    hitCount += 4;
+                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 160);
+                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+                        (() =>
+                        {
+                            if (hitCount >= 8)
+                            {
+                                hitCount = 8;
+                                isHitAble = false;
+                                move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                                {
+                                    isOnConveyor = true;
+                                });
+                            }
+                        }
+                        );
+                }
+            }
+
+            if (collider.gameObject.tag == "BulletBig")
+            {
+                if (hitCount < 8)
+                {
+                    SimplePool2.Despawn(collider.gameObject);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        var temp = bulletHole;
+                        bulletHole.SetActive(true);
+                    }
+                    hitCount = 8;
+                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 320);
+                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+                        (() =>
+                        {
+                            isHitAble = false;
+                            move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                            {
+                                isOnConveyor = true;
+                            });
+                        }
+                        );
                 }
             }
         }
 
         if (collider.tag == "BehindThePlayer")
         {
-            var moveToConveyor = new Vector3(-3.5f, -2.2f, 20f);
-            gameObject.transform.transform.DOLocalMove(moveToConveyor, 0.5f).OnComplete(() =>
+            isHitAble = false;
+            move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
             {
-                Debug.Log("Moving");
-                gate.PointUpdate(hitCount);
-                hitCount = 0;
-                foreach (GameObject bullet in bulletFilled)
-                {
-                    bullet.SetActive(false);
-                }
-
-                if (collider.gameObject.tag == "Gate" || collider.gameObject.tag == "LastGate")
-                {
-                    SimplePool2.Despawn(gameObject);
-                }
+                isOnConveyor = true;
             });
         }
+
+        if (collider.tag == "Gate" || collider.tag == "LastGate")
+        {
+            gate.PointUpdate(hitCount);
+            hitCount = 0;
+            foreach (GameObject bullet in bulletFilled)
+            {
+                bullet.SetActive(false);
+            }
+            isOnConveyor = false;
+            isHitAble = true;
+            SimplePool2.Despawn(gameObject);
+        }  
     }
 }
