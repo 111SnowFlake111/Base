@@ -9,27 +9,30 @@ public class Gate : MonoBehaviour
     //public GameObject messageBox;
     //public TMP_Text message;
     public List<GameObject> bulletGateObject;
-    private GameObject GateBullet
-    {
-        get
-        {
-            foreach (GameObject obj in bulletGateObject)
-            {
-                if(!obj.activeSelf)
-                {
-                    return obj;
-                }
-            }
-            return null;
-        }
-    }    
+    //private GameObject GateBullet
+    //{
+    //    get
+    //    {
+    //        foreach (GameObject obj in bulletGateObject)
+    //        {
+    //            if(!obj.activeSelf)
+    //            {
+    //                return obj;
+    //            }
+    //        }
+    //        return null;
+    //    }
+    //}    
     static int limit = 1;
     static int currentPoint = 0;
     private bool doorActive = false;
 
     void Start()
     {
-        
+        foreach (GameObject obj in bulletGateObject)
+        {
+            obj.SetActive(false);
+        }
     }
 
 
@@ -105,7 +108,8 @@ public class Gate : MonoBehaviour
             {
                 break;
             }
-            GateBullet.SetActive(true);
+            bulletGateObject[i].SetActive(true);
+            Debug.LogError(i);
             //var newPosForBullet = gateBullet.transform.position + new Vector3(0.55f * (i + 1), 0, 0);
             //gateBullet.transform.DOMoveX(newPosForBullet.x, 0.25f);
             currentPoint++;

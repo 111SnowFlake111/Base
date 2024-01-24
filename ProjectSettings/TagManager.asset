@@ -27,6 +27,11 @@ TagManager:
   - BulletMedium
   - BulletShotgun
   - BulletBig
+  - UpgradePistol
+  - UpgradeSMG
+  - UpgradeRifle
+  - UpgradeShotgun
+  - UpgradeSniper
   layers:
   - Default
   - TransparentFX

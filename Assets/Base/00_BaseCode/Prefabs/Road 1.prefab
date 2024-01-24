@@ -142,7 +142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadPos: {fileID: 8110867512205669576}
-  player: {fileID: 0}
 --- !u!1001 &6383086355574227963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,6 +149,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8110867512205669576}
     m_Modifications:
+    - target: {fileID: 4088502123614505301, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
+      propertyPath: m_text
+      value: Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502295578395392759, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
+      propertyPath: m_text
+      value: +5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612935358043049098, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name
       value: BonusPanel (1)
@@ -220,6 +231,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8110867512205669576}
     m_Modifications:
+    - target: {fileID: 4088502123614505301, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
+      propertyPath: m_text
+      value: Fire Rate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502295578395392759, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
+      propertyPath: m_text
+      value: +2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612935358043049098, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name
       value: BonusPanel

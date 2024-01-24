@@ -7,27 +7,42 @@ public class Bullet : MonoBehaviour
 {
     static float rangeBuff;
     public float inaccuracy = 0;
+    private bool spawnCheck = false;
 
     public Transform posBullet;
 
-    // Update is called once per frame
     void Update()
-    {   
-        if (GamePlayController.Instance.playerContain.handController.currentGun == 1)
+    {
+        if (!spawnCheck)
         {
-            inaccuracy = Random.Range(-10f, 10f);
-        }
-
-        if (GamePlayController.Instance.playerContain.handController.currentGun == 2)
-        {
-            inaccuracy = Random.Range(-5f, 5f);
-        }
-        posBullet.transform.position += new Vector3(inaccuracy, 0, 40f) * Time.deltaTime;
+            inaccuracy = RandomX();
+        }       
+        posBullet.transform.position += new Vector3(inaccuracy, 0, 50f) * Time.deltaTime;
     }
     public IEnumerator HandleDestoy(float baseRange)
     {
         //Sau này khi bonus panel hoàn thành thì có thể cộng thêm thời gian, nó sẽ tương đương việc tăng Range
-        yield return new WaitForSecondsRealtime(baseRange);
-        SimplePool2.Despawn(this.gameObject); 
+        yield return new WaitForSecondsRealtime(baseRange + GamePlayController.Instance.playerContain.bonusRange);
+        spawnCheck = false;
+        SimplePool2.Despawn(this.gameObject);
+    }
+
+    public float RandomX()
+    {
+        if (GamePlayController.Instance.playerContain.handController.currentGun == 1)
+        {
+            spawnCheck = true;
+            return Random.Range(-3f, 3f);
+        } 
+        else if (GamePlayController.Instance.playerContain.handController.currentGun == 2)
+        {
+            spawnCheck = true;
+            return Random.Range(-1.5f, 1.5f);
+        } 
+        else
+        {
+            spawnCheck = true;
+            return 0;
+        }
     }
 }

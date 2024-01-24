@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class HandController : MonoBehaviour
@@ -22,7 +23,7 @@ public class HandController : MonoBehaviour
     public Transform leftLimit;
     public Transform rightLimit;
 
-    public Animator gunSpeed;
+    //public Animator gunSpeed;
 
     public Camera camera;
     public float baseRange = 1;
@@ -40,16 +41,51 @@ public class HandController : MonoBehaviour
         //gun[0].SetActive(true);
         //bullet = bulletType[0];
 
-        gunSpeed = GetComponent<Animator>();
+        currentGun = 0;
+        //gunSpeed = GetComponent<Animator>();
 
-        currentGun = 1;
+        switch (currentGun)
+        {
+            case 0:
+                gun[0].SetActive(true);
+                bullet = bulletType[0];
+                baseRange = 1;
+                break;
+            case 1:
+                gun[1].SetActive(true);
+                bullet = bulletType[0];
+                baseRange = 1;
+                break;
+            case 2:
+                gun[2].SetActive(true);
+                bullet = bulletType[1];
+                baseRange = 1.25f;
+                break;
+            case 3:
+                gun[3].SetActive(true);
+                bullet = bulletType[2];
+                baseRange = 0.5f;
+                break;
+            case 4:
+                gun[4].SetActive(true);
+                bullet = bulletType[3];
+                baseRange = 1.75f;
+                break;
+            default:
+                gun[0].SetActive(true);
+                bullet = bulletType[0];
+                baseRange = 1;
+                break;
+        }
 
-        GunUpdate(currentGun);
-
+        //GunUpdate(currentGun);
+        bulletScript = bullet.GetComponent<Bullet>();
         HandleSpawnBullet();
     }
     public void Update()
     {
+        //gunSpeed.speed = 1f;
+
         if (GamePlayController.Instance.playerContain.isAlive)
         {
             if (Input.GetMouseButtonDown(0)) // khi bấm chuột trái vào màn hình lần đầu tiên
@@ -72,7 +108,6 @@ public class HandController : MonoBehaviour
                     {
                         handPlayer.transform.position = new Vector3(rightLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
                     }
-                    Debug.Log("inputed");
                 }
             }
         }
@@ -106,44 +141,42 @@ public class HandController : MonoBehaviour
         switch (ID)
         {
             case 0:
+                currentGun = 0;
                 gunID = 0;
                 bulletID = 0;
-                bulletScript.inaccuracy = 0;
                 baseRange = 1;
                 break;
             case 1:
+                currentGun = 1;
                 gunID = 1;
                 bulletID = 0;
-                bulletScript.inaccuracy = Random.Range(-10f, 10f);
                 baseRange = 1;
                 break;
             case 2:
+                currentGun = 2;
                 gunID = 2;
                 bulletID = 1;
-                bulletScript.inaccuracy = Random.Range(-5f, 5f);
                 baseRange = 1.25f;
                 break;
             case 3:
+                currentGun = 3;
                 gunID = 3;
                 bulletID = 2;
-                bulletScript.inaccuracy = 0;
                 baseRange = 0.5f;
                 break;
             case 4:
+                currentGun = 4;
                 gunID = 4;
                 bulletID = 3;
-                bulletScript.inaccuracy = 0;
                 baseRange = 1.75f;
                 break;
             default:
+                currentGun = 0;
                 gunID = 0;
                 bulletID = 0;
-                bulletScript.inaccuracy = 0;
                 baseRange = 1;
                 break;
         }
-        Debug.LogError(gunID);
-        Debug.LogError(bulletID);
 
         gun[gunID].SetActive(true);
         bullet = bulletType[bulletID];

@@ -5,15 +5,30 @@ using TMPro;
 
 public class BonusPanel : MonoBehaviour
 {
-    public TMP_Text tvCount;
+    public List<Transform> panelParts;
+    public List<Material> green;
+    public List<Material> red;
+
+    Renderer outter;
+    Renderer inner;
+
+    [SerializeField]
+    public TMP_Text bonusName;
+
+    [SerializeField]
+    public TMP_Text valueAdd;
+
+    [SerializeField]
+    public TMP_Text finalValue;
+
     private int count;
     
     //public Transform spawnPos;
     // Start is called before the first frame update
     void Start()
     {
-        count = 5;
-        tvCount.text = count.ToString();
+        outter = panelParts[0].GetComponent<Renderer>();
+        inner = panelParts[1].GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -24,6 +39,16 @@ public class BonusPanel : MonoBehaviour
         //{
         //    gameObject.transform.position = road.transform.position;
         //}
+        if (float.Parse(finalValue.text) <= 0)
+        {
+            outter.material = red[0];
+            inner.material = red[1];
+        } 
+        else
+        {
+            outter.material = green[0];
+            inner.material = green[1];           
+        }
     }
 
     public IEnumerator PanelDestroyer()
@@ -34,15 +59,25 @@ public class BonusPanel : MonoBehaviour
 
     public void OnTriggerEnter(UnityEngine.Collider collider)
     {
-        if(collider.gameObject.tag.Contains("Bullet"))
+        if (collider.tag.Contains("Bullet"))
         {
             SimplePool2.Despawn(collider.gameObject);
-            count--;
-            if (count == 0)
+            finalValue.text = (float.Parse(finalValue.text) + float.Parse(valueAdd.text)).ToString();
+        }
+
+        if (collider.tag == "Player")
+        {
+            if (bonusName.text.Contains("Rate"))
             {
-                SimplePool2.Despawn(gameObject);
+                GamePlayController.Instance.playerContain.bonusFireRate += (float.Parse(finalValue.text) / 100);
             }
-            tvCount.text = count.ToString();
+
+            if (bonusName.text.Contains("Range"))
+            {
+                GamePlayController.Instance.playerContain.bonusRange += (float.Parse(finalValue.text) / 100);
+            }
+
+            gameObject.SetActive(false);
         }
     }
   

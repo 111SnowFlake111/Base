@@ -6,7 +6,6 @@ using UnityEngine;
 public class Road : MonoBehaviour
 {
     public Transform roadPos;
-    public HandController player;
 
     private void Start()
     {
@@ -15,6 +14,11 @@ public class Road : MonoBehaviour
 
     void Update()
     {
+        //if (GamePlayController.Instance.playerContain.isHurt)
+        //{
+        //    roadPos.transform.position += new Vector3(0, 0, 30f);
+        //}
+
         if(GamePlayController.Instance.playerContain.isAlive)
         {
             roadPos.transform.position += new Vector3(0, 0, -20f) * Time.deltaTime;
