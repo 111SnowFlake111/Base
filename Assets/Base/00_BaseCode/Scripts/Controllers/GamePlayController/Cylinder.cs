@@ -28,7 +28,7 @@ public class Cylinder : MonoBehaviour
         
     }
 
-    private int hitCount = 0;
+    public int hitCount = 0;
     private bool isOnConveyor = false;
     private bool isHitAble = true;
     private Tween move;
@@ -98,10 +98,14 @@ public class Cylinder : MonoBehaviour
                     SimplePool2.Despawn(collider.gameObject);
                     for (int i = 0; i < 2; i++)
                     {
+                        if (hitCount >= 8)
+                        {
+                            break;
+                        }
                         var temp = bulletHole;
                         bulletHole.SetActive (true);
+                        hitCount++;
                     }
-                    hitCount += 2;
                     var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 80);
                     body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
                         (() =>
@@ -127,10 +131,14 @@ public class Cylinder : MonoBehaviour
                     SimplePool2.Despawn(collider.gameObject);
                     for (int i = 0; i < 4; i++)
                     {
+                        if (hitCount >= 8)
+                        {
+                            break;
+                        }
                         var temp = bulletHole;
                         bulletHole.SetActive(true);
+                        hitCount++;
                     }
-                    hitCount += 4;
                     var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 160);
                     body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
                         (() =>
@@ -156,10 +164,14 @@ public class Cylinder : MonoBehaviour
                     SimplePool2.Despawn(collider.gameObject);
                     for (int i = 0; i < 8; i++)
                     {
+                        if (hitCount >= 8)
+                        {
+                            break;
+                        }
                         var temp = bulletHole;
                         bulletHole.SetActive(true);
+                        hitCount++;
                     }
-                    hitCount = 8;
                     var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 320);
                     body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
                         (() =>
@@ -184,17 +196,17 @@ public class Cylinder : MonoBehaviour
             });
         }
 
-        if (collider.tag == "Gate" || collider.tag == "LastGate")
-        {
-            gate.PointUpdate(hitCount);
-            hitCount = 0;
-            foreach (GameObject bullet in bulletFilled)
-            {
-                bullet.SetActive(false);
-            }
-            isOnConveyor = false;
-            isHitAble = true;
-            SimplePool2.Despawn(gameObject);
-        }  
+        //if (collider.tag == "Gate" || collider.tag == "LastGate")
+        //{
+        //    gate.PointUpdate(hitCount);
+        //    hitCount = 0;
+        //    foreach (GameObject bullet in bulletFilled)
+        //    {
+        //        bullet.SetActive(false);
+        //    }
+        //    isOnConveyor = false;
+        //    isHitAble = true;
+        //    SimplePool2.Despawn(gameObject);
+        //}  
     }
 }

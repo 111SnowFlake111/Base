@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     public IEnumerator HandleDestoy(float baseRange)
     {
         //Sau này khi bonus panel hoàn thành thì có thể cộng thêm thời gian, nó sẽ tương đương việc tăng Range
-        yield return new WaitForSecondsRealtime(baseRange + GamePlayController.Instance.playerContain.bonusRange);
+        yield return new WaitForSecondsRealtime(baseRange + baseRange * GamePlayController.Instance.playerContain.bonusRange);
         spawnCheck = false;
         SimplePool2.Despawn(this.gameObject);
     }

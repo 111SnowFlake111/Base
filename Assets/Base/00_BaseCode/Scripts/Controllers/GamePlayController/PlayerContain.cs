@@ -7,6 +7,7 @@ public class PlayerContain : MonoBehaviour
     public MapController mapController;
     public HandController handController;
     public bool isAlive = true;
+    public bool isMoving = true;
     public bool isHurt = false;
 
     public float bonusFireRate = 0;

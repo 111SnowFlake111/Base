@@ -731,7 +731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348521179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.15, y: -2.1923265, z: 9.221337}
+  m_LocalPosition: {x: 2.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1060,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590375726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -3.539, z: 1.678}
+  m_LocalPosition: {x: 0, y: -3.539, z: 1.678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1455,7 +1455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973456474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: -2.1923265, z: 9.221337}
+  m_LocalPosition: {x: -2.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1877,7 +1877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261032566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.58, y: -2.6, z: 0}
+  m_LocalPosition: {x: -3.78, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1926,8 +1926,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.61450326, y: 1, z: 1}
-  m_Center: {x: 0.16220492, y: 0, z: 0}
+  m_Size: {x: 0.24972436, y: 1.4703143, z: 0.674448}
+  m_Center: {x: 0.187247, y: -0.23515713, z: 0.162776}
 --- !u!1 &1395710097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,6 +2739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03931728e709a794aa9379afa6f25692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  greyColorForRoad: {fileID: 2100000, guid: 64921d516df783d4a9138472429ee805, type: 2}
   conveyor: {fileID: 1921374187514902744, guid: 1b2133653af544c459e4e89a30dead4a, type: 3}
   roadSpawner: {fileID: 590375726}
   conveyorSpawner: {fileID: 1261032566}
@@ -2750,14 +2751,15 @@ MonoBehaviour:
   leftLimit: {fileID: 973456475}
   rightLimit: {fileID: 348521180}
   road:
-  - {fileID: 9053975126247466244, guid: 6a329eb88a1b4544db31cacc2be64b91, type: 3}
-  - {fileID: 9053975126247466244, guid: 127dc9177ae1f5640a60a0c1461af097, type: 3}
-  - {fileID: 9053975126247466244, guid: a307edc720285534283b0e7b1937f385, type: 3}
-  - {fileID: 9053975126247466244, guid: 03ebd49b8f2157c418e61055cc5bd7c4, type: 3}
-  - {fileID: 9053975126247466244, guid: f29f90cc0858b8e418a4a4017da10bc5, type: 3}
-  - {fileID: 9053975126247466244, guid: d9cf6d14020de1c4286d7e99b66b53a5, type: 3}
-  - {fileID: 9053975126247466244, guid: e5e145a5d33cce544be0d687a9216e08, type: 3}
-  idLevel: 030000000000000001000000060000000000000001000000000000000100000002000000010000000000000005000000
+  - {fileID: 1737549776664263070, guid: 1899ae2eb27e8a64abe8cf7063067cf1, type: 3}
+  - {fileID: 1737549776664263070, guid: e39902260dded7b4099d57c42402be4d, type: 3}
+  - {fileID: 1737549776664263070, guid: f624778fab822844d858211658fae6bc, type: 3}
+  - {fileID: 1737549776664263070, guid: 394e13fa2501b194fb2572143495f64f, type: 3}
+  - {fileID: 1737549776664263070, guid: 58cd32aff1dce534686fa84e67ed23bc, type: 3}
+  - {fileID: 1737549776664263070, guid: 3d9b820003c20cc4980cf23e82e6d582, type: 3}
+  - {fileID: 1737549776664263070, guid: 171730ef67b501046bd33216a92d883d, type: 3}
+  idLevel: 070000000700000007000000070000000700000007000000070000000700000007000000070000000700000007000000
+  roadCount: 0
   gate: {fileID: 7794029310244722963, guid: 8f01bb25ed4c1b8488028b779e2c594f, type: 3}
 --- !u!1 &1920856445
 GameObject:
@@ -3244,7 +3246,6 @@ GameObject:
   - component: {fileID: 709604390}
   - component: {fileID: 709604391}
   - component: {fileID: 919132148224345773}
-  - component: {fileID: 919132148224345774}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -3265,19 +3266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSpeed: {fileID: 709604389}
---- !u!114 &919132148224345774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148224345772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd14ced37d8e4e84f87be685976b1234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 709604389}
 --- !u!23 &4714646426189497475
 MeshRenderer:
   m_ObjectHideFlags: 0

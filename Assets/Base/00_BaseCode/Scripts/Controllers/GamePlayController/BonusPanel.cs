@@ -12,14 +12,14 @@ public class BonusPanel : MonoBehaviour
     Renderer outter;
     Renderer inner;
 
-    [SerializeField]
-    public TMP_Text bonusName;
-
-    [SerializeField]
+    
+    public TMP_Text bonusName;    
     public TMP_Text valueAdd;
-
-    [SerializeField]
     public TMP_Text finalValue;
+
+    public string name;
+    public float add;
+    public float total;
 
     private int count;
     
@@ -27,6 +27,10 @@ public class BonusPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bonusName.text = name;
+        valueAdd.text = add.ToString();
+        finalValue.text = total.ToString();
+
         outter = panelParts[0].GetComponent<Renderer>();
         inner = panelParts[1].GetComponent<Renderer>();
     }
