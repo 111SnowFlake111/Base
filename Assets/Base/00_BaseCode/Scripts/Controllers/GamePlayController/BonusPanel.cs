@@ -20,8 +20,6 @@ public class BonusPanel : MonoBehaviour
     public string name;
     public float add;
     public float total;
-
-    private int count;
     
     //public Transform spawnPos;
     // Start is called before the first frame update
@@ -81,7 +79,7 @@ public class BonusPanel : MonoBehaviour
                 GamePlayController.Instance.playerContain.bonusRange += (float.Parse(finalValue.text) / 100);
             }
 
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
   

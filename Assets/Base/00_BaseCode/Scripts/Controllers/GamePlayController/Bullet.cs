@@ -5,11 +5,11 @@ using UnityEngine.Animations;
 
 public class Bullet : MonoBehaviour
 {
-    static float rangeBuff;
     public float inaccuracy = 0;
     private bool spawnCheck = false;
 
     public Transform posBullet;
+    public ParticleSystem hitEffect;
 
     void Update()
     {
@@ -32,17 +32,40 @@ public class Bullet : MonoBehaviour
         if (GamePlayController.Instance.playerContain.handController.currentGun == 1)
         {
             spawnCheck = true;
-            return Random.Range(-3f, 3f);
+            return Random.Range(-2f, 2f);
         } 
         else if (GamePlayController.Instance.playerContain.handController.currentGun == 2)
         {
             spawnCheck = true;
-            return Random.Range(-1.5f, 1.5f);
+            return Random.Range(-1f, 1f);
         } 
         else
         {
             spawnCheck = true;
             return 0;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Contains("Rock") || other.gameObject.tag.Contains("Cylinder") || other.gameObject.tag.Contains("Panel"))
+        {
+            if (other.tag.Contains("Cylinder"))
+            {
+                var isHitable = other.GetComponent<Cylinder>().isHitAble;
+                if (isHitable)
+                {
+                    GameObject hit = Instantiate(hitEffect.gameObject, posBullet.transform.position + new Vector3(0, 0, -2f), Quaternion.identity);
+                    hit.GetComponent<ParticleSystem>().Play();
+                    Destroy(hit, 0.5f);
+                }
+            }
+            else
+            {
+                GameObject hit = Instantiate(hitEffect.gameObject, posBullet.transform.position + new Vector3(0, 0, -2f), Quaternion.identity);
+                hit.GetComponent<ParticleSystem>().Play();
+                Destroy(hit, 0.5f);
+            } 
         }
     }
 }

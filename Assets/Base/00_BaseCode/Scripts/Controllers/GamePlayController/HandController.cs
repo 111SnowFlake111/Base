@@ -23,8 +23,6 @@ public class HandController : MonoBehaviour
     public Transform leftLimit;
     public Transform rightLimit;
 
-    //public Animator gunSpeed;
-
     public Camera camera;
     public float baseRange = 1;
     public int currentGun = 0;

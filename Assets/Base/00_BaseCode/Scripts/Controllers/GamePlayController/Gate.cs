@@ -16,7 +16,7 @@ public class Gate : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     void Update()
@@ -42,14 +42,33 @@ public class Gate : MonoBehaviour
             //    var flyingMessage = notif.transform.localPosition + new Vector3(0, 5, 0);
             //    notif.transform.DOLocalMoveY(flyingMessage.y, 3f).OnComplete(() => Destroy(notif));
             //}
-            Debug.LogError("+" + (currentPoint).ToString() + " Points");
+            Debug.LogError("+" + (currentPoint).ToString() + " Points.");
+            if (gameObject.tag.Contains("Last"))
+            {
+                Debug.LogError("Last Gate! Damage bonus x3");
+            }
+
             if (currentPoint >= 10)
             {
-                GamePlayController.Instance.playerContain.bonusDamage += 10;
+                if (gameObject.tag.Contains("Last"))
+                {
+                    GamePlayController.Instance.playerContain.bonusDamage += (10 * 3);
+                }
+                else
+                {
+                    GamePlayController.Instance.playerContain.bonusDamage += 10;
+                }
             }
             else
             {
-                GamePlayController.Instance.playerContain.bonusDamage += currentPoint;
+                if (gameObject.tag.Contains("Last"))
+                {
+                    GamePlayController.Instance.playerContain.bonusDamage += (currentPoint * 3);
+                }
+                else
+                {
+                    GamePlayController.Instance.playerContain.bonusDamage += currentPoint;
+                }
             }
             limit = 1;
             currentPoint = 0;
@@ -63,7 +82,7 @@ public class Gate : MonoBehaviour
         {
             int points = collider.GetComponent<Cylinder>().hitCount;
             PointUpdate(points);
-            collider.gameObject.SetActive(false);
+            Destroy(collider.gameObject);
         }
     }
 

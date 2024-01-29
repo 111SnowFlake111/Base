@@ -18,7 +18,7 @@ public class Conveyor : MonoBehaviour
 
     public void OnTriggerEnter(UnityEngine.Collider collision)
     {
-        if (collision.gameObject.tag == "LastGate")
+        if (collision.gameObject.tag.Contains("Last"))
         {
             StartCoroutine(ConveyorDelayedDespawn());
         }

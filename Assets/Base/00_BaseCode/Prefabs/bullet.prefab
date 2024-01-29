@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1edb2a3f482a554dbb209269ec93cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inaccuracy: 0
   posBullet: {fileID: 1011640203704981892}
-  spawner: {fileID: 0}
+  hitEffect: {fileID: 0}
 --- !u!65 &-544489522053589013
 BoxCollider:
   m_ObjectHideFlags: 0

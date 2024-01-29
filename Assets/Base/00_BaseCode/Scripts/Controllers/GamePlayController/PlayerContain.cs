@@ -9,6 +9,7 @@ public class PlayerContain : MonoBehaviour
     public bool isAlive = true;
     public bool isMoving = true;
     public bool isHurt = false;
+    public bool victory = false;
 
     public float bonusFireRate = 0;
     public float bonusRange = 0;

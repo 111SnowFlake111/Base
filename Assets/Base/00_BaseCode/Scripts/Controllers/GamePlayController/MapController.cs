@@ -5,14 +5,13 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     public Material greyColorForRoad;
+    public Material goldColorForRoad;
 
     public GameObject conveyor;
     public GameObject roadSpawner;
     public GameObject conveyorSpawner;
     public GameObject spawner;
-    public GameObject bonusPanel;
     public GameObject cylinder;
-    public GameObject gateBonus;
     public GameObject onConveyorPos;
 
     //public LineRenderer conveyerLine;
@@ -32,23 +31,21 @@ public class MapController : MonoBehaviour
     //private int posCount = 0;
 
     private Road roadSpawning;
-    public Gate gate;
-    private bool gateSpawned = false;
+    private List<string> bonusName = new List<string> { "Fire Rate", "Range" };
+    private int cylinderFirstSegment = 0;
+    private int cylinderSecondSegment = 0;
+    private int cylinderThirdSegment = 0;
     private void Start()
     {
-
         SimplePool2.Preload(cylinder, 20);
-        SimplePool2.Preload(bonusPanel, 10);
         SimplePool2.Preload(conveyor, 30);
-
-        HandleSpawnConveyor();
 
         foreach (var obj in road)
         {
             SimplePool2.Preload(obj, 10);
         }
 
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i <= 205; i++)
         {
             //var obj1 = SimplePool2.Spawn(road[idLevel[i]], roadSpawner.transform.position + new Vector3(0, 0, (64.71f + 35.27198f) * i), Quaternion.identity).GetComponent<Road>();
 
@@ -56,24 +53,148 @@ public class MapController : MonoBehaviour
             {
                 //Spawn Upgrade
                 roadSpawning = SimplePool2.Spawn(road[3], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
-                roadSpawning.GetComponent<UpgradeSpawner>().left = 1;
-                roadSpawning.GetComponent<UpgradeSpawner>().right = 3;
+                roadSpawning.GetComponent<UpgradeSpawner>().left = Random.Range(0, 5);
+                roadSpawning.GetComponent<UpgradeSpawner>().right = Random.Range(0, 5);
+                Random.Range(0, 5);
+            }
+            else if (i == 45)
+            {
+                //Spawn 2 bảng bonus
+                roadSpawning = SimplePool2.Spawn(road[2], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftActive = true;
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightActive = true;
+
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftAdd = Random.Range(1, 6);
+
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightAdd = Random.Range(-5, 0);
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightTotal = 30;
+            }
+            else if (i % 2 == 0 && i < 65 && i > 25 && i != 50)
+            {
+                //FIRST SEGMENT
+                //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50, max 8 ổ
+                roadSpawning = SimplePool2.Spawn(road[1], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+
+                var minSpawn = 0;
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderFirstSegment <= 8)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().leftActive = (randomStatus == 1);
+                    cylinderFirstSegment++;
+                    minSpawn++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderFirstSegment <= 8)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().middleActive = (randomStatus == 1);
+                    cylinderFirstSegment++;
+                    minSpawn++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderFirstSegment <= 8)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                    cylinderFirstSegment++;
+                    minSpawn++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (minSpawn < 1 && cylinderFirstSegment <= 8)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                    cylinderFirstSegment++;
+                }
+            }
+            else if (i == 65)
+            {
+                //Spawn Gate
+                roadSpawning = SimplePool2.Spawn(road[4], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
             }
             else if (i == 80)
             {
                 //Spawn Upgrade
                 roadSpawning = SimplePool2.Spawn(road[3], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
-                roadSpawning.GetComponent<UpgradeSpawner>().left = 2;
-                roadSpawning.GetComponent<UpgradeSpawner>().right = 4;
+                roadSpawning.GetComponent<UpgradeSpawner>().left = Random.Range(0, 5);
+                roadSpawning.GetComponent<UpgradeSpawner>().right = Random.Range(0, 5);
             }
-            else if (i == 100)
+            else if (i % 2 == 0 && i < 105 && i > 65 && i != 80)
+            {
+                //SECOND SEGMENT
+                //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50, max 10 ổ
+                roadSpawning = SimplePool2.Spawn(road[1], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+
+                var minSpawn = 0;
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderSecondSegment <= 10)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().leftActive = (randomStatus == 1);
+                    cylinderSecondSegment++;
+                    minSpawn++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderSecondSegment <= 10)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().middleActive = (randomStatus == 1);
+                    cylinderSecondSegment++;
+                    minSpawn++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderSecondSegment <= 10)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                    cylinderSecondSegment++;
+                    minSpawn++;
+                }
+
+                //Chạy random thêm 1 lần khi không có ổ nào được spawn trên road
+                randomStatus = Random.Range(0, 2);
+                if (minSpawn < 1 && cylinderSecondSegment <= 10)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                    cylinderSecondSegment++;
+                }
+            }
+            else if (i == 105)
             {
                 //Spawn Gate
                 roadSpawning = SimplePool2.Spawn(road[4], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
             }
-            else if (i == 115)
+            else if (i == 115 || i == 45 || i == 155 || i == 135)
             {
-                roadSpawning = SimplePool2.Spawn(road[5], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+                //Spawn Spike, tỷ lệ 50:50, max 2 set
+                roadSpawning = SimplePool2.Spawn(road[6], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+
+                var spikesLimit = 0;
+
+                randomStatus = Random.Range(0, 2);
+                if (randomStatus == 1 && spikesLimit <= 2)
+                {
+                    roadSpawning.GetComponent<SetOfSpikesRoadController>().leftSet = true;
+                    spikesLimit++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (randomStatus == 1 && spikesLimit <= 2)
+                {
+                    roadSpawning.GetComponent<SetOfSpikesRoadController>().middleSet = true;
+                    spikesLimit++;
+                }
+
+                //Chạy random thêm 1 lần khi không có ổ nào được spawn trên road
+                randomStatus = Random.Range(0, 2);
+                if (randomStatus == 1 && spikesLimit <= 2)
+                {
+                    roadSpawning.GetComponent<SetOfSpikesRoadController>().rightSet = true;
+                    spikesLimit++;
+                }
             }
             else if (i == 130)
             {
@@ -82,40 +203,95 @@ public class MapController : MonoBehaviour
                 roadSpawning.GetComponent<BonusPanelSpawner>().leftActive = true;
                 roadSpawning.GetComponent<BonusPanelSpawner>().rightActive = true;
 
-                roadSpawning.GetComponent<BonusPanelSpawner>().leftBonusName = "Fire Rate";
-                roadSpawning.GetComponent<BonusPanelSpawner>().leftAdd = +2;
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftAdd = Random.Range(2, 11);
 
-                roadSpawning.GetComponent<BonusPanelSpawner>().rightBonusName = "Fire Rate";
-                roadSpawning.GetComponent<BonusPanelSpawner>().rightAdd = -5;
-                roadSpawning.GetComponent<BonusPanelSpawner>().rightTotal = 50;
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightAdd = Random.Range(-10, 0);
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightTotal = 70;
             }
-            else if (i == 160)
+            else if (i == 150)
+            {
+                //Spawn 2 bảng bonus
+                roadSpawning = SimplePool2.Spawn(road[2], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftActive = true;
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightActive = true;
+
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftAdd = Random.Range(2, 11);
+                roadSpawning.GetComponent<BonusPanelSpawner>().leftTotal = -30;
+
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightAdd = Random.Range(2, 11);
+                roadSpawning.GetComponent<BonusPanelSpawner>().rightTotal = -30;
+            }
+            else if (i == 165)
             {
                 //Spawn 1 bảng bonus
                 roadSpawning = SimplePool2.Spawn(road[2], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
                 roadSpawning.GetComponent<BonusPanelSpawner>().middleActive = true;
 
-                roadSpawning.GetComponent<BonusPanelSpawner>().middleBonusName = "Range";
-                roadSpawning.GetComponent<BonusPanelSpawner>().middleAdd = +5;
+                roadSpawning.GetComponent<BonusPanelSpawner>().middleBonusName = bonusName[Random.Range(0, 2)];
+                roadSpawning.GetComponent<BonusPanelSpawner>().middleAdd = 5;
             }
-            else if (i % 10 == 0 && i < 190 && i > 30)
+            else if (i % 2 == 0 && i < 180 && i > 105 && i != 130 && i != 150)
             {
-                //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50
+                //THIRD SEGMENT
+                //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50, max 20 ổ
                 roadSpawning = SimplePool2.Spawn(road[1], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
 
-                randomStatus = Random.Range(0, 2);
-                roadSpawning.GetComponent<CylinderSpawner>().leftActive = (randomStatus == 1);
+                var minSpawn = 0;
 
                 randomStatus = Random.Range(0, 2);
-                roadSpawning.GetComponent<CylinderSpawner>().middleActive = (randomStatus == 1);
+                if (cylinderThirdSegment <= 20)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().leftActive = (randomStatus == 1);
+                    cylinderThirdSegment++;
+                    minSpawn++;
+                }
 
                 randomStatus = Random.Range(0, 2);
-                roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                if (cylinderThirdSegment <= 20)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().middleActive = (randomStatus == 1);
+                    cylinderThirdSegment++;
+                    minSpawn++;
+                }
+
+                randomStatus = Random.Range(0, 2);
+                if (cylinderThirdSegment <= 20)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                    cylinderThirdSegment++;
+                    minSpawn++;
+                }
+
+                //Chạy random thêm 1 lần khi không có ổ nào được spawn trên road
+                randomStatus = Random.Range(0, 2);
+                if (minSpawn < 1 && cylinderThirdSegment <= 20)
+                {
+                    roadSpawning.GetComponent<CylinderSpawner>().rightActive = (randomStatus == 1);
+                    cylinderThirdSegment++;
+                }
             }
-            else if (i >= 192 && i % 2 == 0)
+            else if (i == 180)
+            {
+                //Spawn LastGate
+                roadSpawning = SimplePool2.Spawn(road[5], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+            }
+            else if (i == 205)
+            {
+                //Spawn Đích
+                roadSpawning = SimplePool2.Spawn(road[8], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+
+                Transform subObj = roadSpawning.transform.Find("road_1");
+                Renderer ren = subObj.gameObject.GetComponent<Renderer>();
+                ren.material = goldColorForRoad;
+            }
+            else if (i >= 192 && i % 2 == 0 && i <= 200)
             {
                 //Spawn rock ở cuối đường, nếu va phải thì Player sẽ die
-                roadSpawning = SimplePool2.Spawn(road[6], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
+                roadSpawning = SimplePool2.Spawn(road[7], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
                 rockCount += 5;
                 roadSpawning.GetComponent<RockSpawner>().rockHpMultipler = rockCount;
             }
@@ -166,32 +342,4 @@ public class MapController : MonoBehaviour
         }
     }
 
-    public IEnumerator HandleSpawnBonusPanel()
-    {
-        yield return new WaitForSeconds(Mathf.RoundToInt(Random.Range(1, 5)));
-        float ranXPos = Random.Range(leftLimit.position.x + 0.03f, rightLimit.position.x - 0.03f);
-        var pan = SimplePool2.Spawn(bonusPanel, new Vector3(ranXPos, spawner.transform.position.y, spawner.transform.position.z), Quaternion.identity).GetComponent<BonusPanel>();
-        StartCoroutine(pan.PanelDestroyer());
-    }
-
-    public IEnumerator HandleSpawnCylinder()
-    {
-        yield return new WaitForSeconds(Mathf.RoundToInt(Random.Range(1, 3)));
-        float ranXPos = Random.Range(leftLimit.position.x + 0.03f, rightLimit.position.x - 0.03f);
-        var cy = SimplePool2.Spawn(cylinder, new Vector3(ranXPos, spawner.transform.position.y + 0.5f, spawner.transform.position.z), Quaternion.identity).GetComponent<Cylinder>();
-        StartCoroutine(cy.CylinderDestroyer());
-    }
-
-    public void HandleSpawnConveyor()
-    {
-        var con = SimplePool2.Spawn(conveyor, conveyorSpawner.transform.position, Quaternion.identity).GetComponent<Conveyor>();
-        con.transform.localEulerAngles = new Vector3(0, 90, 0);
-        StartCoroutine(con.ConveyorDestroyer());
-    }
-
-    public void HandleSpawnGate()
-    {
-        var gat = SimplePool2.Spawn(gate,spawner.transform.position, Quaternion.identity).GetComponent<Gate>();
-        StartCoroutine(gat.GateDestroyer());
-    }
 }

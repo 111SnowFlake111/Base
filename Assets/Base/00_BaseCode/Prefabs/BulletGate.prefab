@@ -90,6 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4073259056119345025}
+  - component: {fileID: -809704759515658398}
   m_Layer: 0
   m_Name: BulletGate
   m_TagString: BulletGate
@@ -114,6 +115,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-809704759515658398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732585976192742715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a69030ee2701a498f4867a71ac4bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redColor: {fileID: 2100000, guid: fe381fbde6319a741b8aab0455313729, type: 2}
+  body: {fileID: 8788007044314393355}
+  bottom: {fileID: 8389122394054888720}
 --- !u!1 &7837131007575616694
 GameObject:
   m_ObjectHideFlags: 0

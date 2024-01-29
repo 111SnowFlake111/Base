@@ -30,7 +30,7 @@ public class Cylinder : MonoBehaviour
 
     public int hitCount = 0;
     private bool isOnConveyor = false;
-    private bool isHitAble = true;
+    public bool isHitAble = true;
     private Tween move;
 
     void Start()
