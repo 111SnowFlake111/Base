@@ -70,6 +70,8 @@ public class Gate : MonoBehaviour
                     GamePlayController.Instance.playerContain.bonusDamage += currentPoint;
                 }
             }
+
+            GamePlayController.Instance.gameScene.InitState();
             limit = 1;
             currentPoint = 0;
             foreach (GameObject obj in bulletGateObject)

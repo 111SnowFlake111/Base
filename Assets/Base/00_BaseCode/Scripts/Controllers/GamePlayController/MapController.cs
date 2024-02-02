@@ -71,7 +71,7 @@ public class MapController : MonoBehaviour
                 roadSpawning.GetComponent<BonusPanelSpawner>().rightAdd = Random.Range(-5, 0);
                 roadSpawning.GetComponent<BonusPanelSpawner>().rightTotal = 30;
             }
-            else if (i % 2 == 0 && i < 65 && i > 25 && i != 50)
+            else if (i % 4 == 0 && i < 65 && i > 25 && i != 50)
             {
                 //FIRST SEGMENT
                 //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50, max 8 ổ
@@ -122,7 +122,7 @@ public class MapController : MonoBehaviour
                 roadSpawning.GetComponent<UpgradeSpawner>().left = Random.Range(0, 5);
                 roadSpawning.GetComponent<UpgradeSpawner>().right = Random.Range(0, 5);
             }
-            else if (i % 2 == 0 && i < 105 && i > 65 && i != 80)
+            else if (i % 4 == 0 && i < 105 && i > 65 && i != 80)
             {
                 //SECOND SEGMENT
                 //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50, max 10 ổ
@@ -234,7 +234,7 @@ public class MapController : MonoBehaviour
                 roadSpawning.GetComponent<BonusPanelSpawner>().middleBonusName = bonusName[Random.Range(0, 2)];
                 roadSpawning.GetComponent<BonusPanelSpawner>().middleAdd = 5;
             }
-            else if (i % 2 == 0 && i < 180 && i > 105 && i != 130 && i != 150)
+            else if (i % 4 == 0 && i < 180 && i > 105 && i != 130 && i != 150)
             {
                 //THIRD SEGMENT
                 //Spawn ổ đạn ở 1 trong 3 vị trí với tỷ lệ xuất hiện là 50:50, max 20 ổ
@@ -292,7 +292,7 @@ public class MapController : MonoBehaviour
             {
                 //Spawn rock ở cuối đường, nếu va phải thì Player sẽ die
                 roadSpawning = SimplePool2.Spawn(road[7], roadSpawner.transform.position + new Vector3(0, 0, 3.4f * i), Quaternion.identity).GetComponent<Road>();
-                rockCount += 5;
+                rockCount += 7;
                 roadSpawning.GetComponent<RockSpawner>().rockHpMultipler = rockCount;
             }
             else

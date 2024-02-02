@@ -35,6 +35,9 @@ TagManager:
   - SetOfSpikes
   - Spike
   - Rock
+  - x3
+  - x2
+  - x1
   layers:
   - Default
   - TransparentFX
@@ -42,7 +45,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - SubUI
   - 
   - 
   - 

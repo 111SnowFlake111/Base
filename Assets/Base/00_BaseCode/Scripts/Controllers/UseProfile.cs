@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MoreMountains.NiceVibrations;
+using UnityEditor.PackageManager;
+using EventDispatcher;
 
 public class UseProfile : MonoBehaviour
 {
@@ -124,13 +126,53 @@ public class UseProfile : MonoBehaviour
     {
         get
         {
-            return PlayerPrefs.GetInt(StringHelper.COIN, 0);
+            return PlayerPrefs.GetInt(StringHelper.COIN);
         }
         set
         {
             PlayerPrefs.SetInt(StringHelper.COIN, value);
             PlayerPrefs.Save();
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_COIN);
+        }
+    }
+    public static int Money
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.MONEY);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.MONEY, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_MONEY);
+        }
+    }
+
+    public static string OwnedGuns
+    {
+        get
+        {
+            return PlayerPrefs.GetString(StringHelper.OWNEDGUNS);
+        }
+        set
+        {
+            PlayerPrefs.SetString(StringHelper.OWNEDGUNS, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.INVENTORY_UPDATE);
+        }
+    }
+    public static int EquippedGun
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.EQUIPPEDGUN);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.EQUIPPEDGUN, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.EQUIPPED_GUN);
         }
     }
     public static int Heart

@@ -15,4 +15,8 @@
     ScrollEndChange = 100,
     CHANGE_COIN = 101,
 
+    CHANGE_MONEY = 200,
+    INVENTORY_UPDATE = 201,
+    EQUIPPED_GUN = 202,
+
 }

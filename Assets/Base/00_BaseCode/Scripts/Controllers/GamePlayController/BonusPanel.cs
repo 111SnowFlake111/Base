@@ -79,6 +79,7 @@ public class BonusPanel : MonoBehaviour
                 GamePlayController.Instance.playerContain.bonusRange += (float.Parse(finalValue.text) / 100);
             }
 
+            GamePlayController.Instance.gameScene.InitState();
             Destroy(gameObject);
         }
     }

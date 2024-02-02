@@ -29,12 +29,12 @@ public class Bullet : MonoBehaviour
 
     public float RandomX()
     {
-        if (GamePlayController.Instance.playerContain.handController.currentGun == 1)
+        if (GamePlayController.Instance.playerContain.currentGun == 1)
         {
             spawnCheck = true;
             return Random.Range(-2f, 2f);
         } 
-        else if (GamePlayController.Instance.playerContain.handController.currentGun == 2)
+        else if (GamePlayController.Instance.playerContain.currentGun == 2)
         {
             spawnCheck = true;
             return Random.Range(-1f, 1f);

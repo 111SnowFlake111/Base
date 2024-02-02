@@ -28,7 +28,10 @@ public class GamePlayController : Singleton<GamePlayController>
         Init();
 
     }
-
+    private void Start()
+    {
+        
+    }
     public void Init()
     {
       

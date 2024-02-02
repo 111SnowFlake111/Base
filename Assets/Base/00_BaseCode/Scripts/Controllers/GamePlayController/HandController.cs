@@ -25,7 +25,6 @@ public class HandController : MonoBehaviour
 
     public Camera camera;
     public float baseRange = 1;
-    public int currentGun = 0;
 
     public void Start()
     {
@@ -39,42 +38,10 @@ public class HandController : MonoBehaviour
         //gun[0].SetActive(true);
         //bullet = bulletType[0];
 
-        currentGun = 0;
+        //currentGun = 0;
         //gunSpeed = GetComponent<Animator>();
 
-        switch (currentGun)
-        {
-            case 0:
-                gun[0].SetActive(true);
-                bullet = bulletType[0];
-                baseRange = 1;
-                break;
-            case 1:
-                gun[1].SetActive(true);
-                bullet = bulletType[0];
-                baseRange = 1;
-                break;
-            case 2:
-                gun[2].SetActive(true);
-                bullet = bulletType[1];
-                baseRange = 1.25f;
-                break;
-            case 3:
-                gun[3].SetActive(true);
-                bullet = bulletType[2];
-                baseRange = 0.5f;
-                break;
-            case 4:
-                gun[4].SetActive(true);
-                bullet = bulletType[3];
-                baseRange = 1.75f;
-                break;
-            default:
-                gun[0].SetActive(true);
-                bullet = bulletType[0];
-                baseRange = 1;
-                break;
-        }
+        GunUpdate(GamePlayController.Instance.playerContain.currentGun);
 
         //GunUpdate(currentGun);
         bulletScript = bullet.GetComponent<Bullet>();
@@ -83,8 +50,17 @@ public class HandController : MonoBehaviour
     public void Update()
     {
         //gunSpeed.speed = 1f;
+        //if (!GamePlayController.Instance.playerContain.start)
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        GamePlayController.Instance.playerContain.isMoving = true;
+        //        GamePlayController.Instance.playerContain.start = true;
+        //        Debug.LogError("Player is Activated");
+        //    }
+        //}
 
-        if (GamePlayController.Instance.playerContain.isAlive)
+        if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
         {
             if (Input.GetMouseButtonDown(0)) // khi bấm chuột trái vào màn hình lần đầu tiên
             {
@@ -139,37 +115,37 @@ public class HandController : MonoBehaviour
         switch (ID)
         {
             case 0:
-                currentGun = 0;
+                GamePlayController.Instance.playerContain.currentGun = 0;
                 gunID = 0;
                 bulletID = 0;
                 baseRange = 1;
                 break;
             case 1:
-                currentGun = 1;
+                GamePlayController.Instance.playerContain.currentGun = 1;
                 gunID = 1;
                 bulletID = 0;
                 baseRange = 1;
                 break;
             case 2:
-                currentGun = 2;
+                GamePlayController.Instance.playerContain.currentGun = 2;
                 gunID = 2;
                 bulletID = 1;
                 baseRange = 1.25f;
                 break;
             case 3:
-                currentGun = 3;
+                GamePlayController.Instance.playerContain.currentGun = 3;
                 gunID = 3;
                 bulletID = 2;
                 baseRange = 0.5f;
                 break;
             case 4:
-                currentGun = 4;
+                GamePlayController.Instance.playerContain.currentGun = 4;
                 gunID = 4;
                 bulletID = 3;
                 baseRange = 1.75f;
                 break;
             default:
-                currentGun = 0;
+                GamePlayController.Instance.playerContain.currentGun = 0;
                 gunID = 0;
                 bulletID = 0;
                 baseRange = 1;

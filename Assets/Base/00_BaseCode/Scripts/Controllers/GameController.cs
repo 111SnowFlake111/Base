@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
     }
     r
 #endif
-        Debug.LogError("áddsfsd");
+        //Debug.LogError("áddsfsd");
     }
 
     private void Start()

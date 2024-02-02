@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class StringHelper
 {
+    public const string EQUIPPEDGUN = "equipped_gun";
+    public const string OWNEDGUNS = "owned_guns";
+    public const string MONEY = "money";
+
     public const string LOADING_COMPLETE = "LOADING_COMPLETE";
     public const string ONOFF_SOUND = "ONOFF_SOUND";
     public const string ONOFF_MUSIC = "ONOFF_MUSIC";
@@ -65,6 +69,11 @@ public static class StringHelper
 
 public class PathPrefabs
 {
+    public const string SHOP = "UI/Popups/Shop";
+    public const string GAME_INVENTORY = "UI/Popups/Inventory";
+    public const string GAME_SETTING = "UI/Popups/Setting";
+    public const string END_GAME_BOX = "UI/Popups/EndGameBox";
+
     public const string POPUP_REWARD_BASE = "UI/Popups/PopupRewardBase";
     public const string CONFIRM_POPUP = "UI/Popups/ConfirmBox";
     public const string WAITING_BOX = "UI/Popups/WaitingBox";
