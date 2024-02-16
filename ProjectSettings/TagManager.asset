@@ -38,6 +38,12 @@ TagManager:
   - x3
   - x2
   - x1
+  - DualWield
+  - TripleWield
+  - Turret
+  - SpeedUp
+  - SpeedDown
+  - Conveyor
   layers:
   - Default
   - TransparentFX

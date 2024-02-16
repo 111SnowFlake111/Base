@@ -4,24 +4,32 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using DG.Tweening;
 
 public class HandController : MonoBehaviour
 {
-    public Bullet bulletScript;
-
     public List<GameObject> gun;
+    public List<GameObject> doubleGun;
+    public List<GameObject> tripleGun;
+
     public List<GameObject> bulletType;
 
     public GameObject bullet;
 
     public GameObject handPlayer;
+
     public GameObject bulletSpawner;
+    public List<GameObject> bulletSpawnerDual;
+    public List<GameObject> bulletSpawnerTriple;
 
     private Vector3 firstPost;
     private Vector3 secondPost;
 
     public Transform leftLimit;
     public Transform rightLimit;
+
+    public bool speedUp = false;
+    public bool speedDown = false;
 
     public Camera camera;
     public float baseRange = 1;
@@ -30,8 +38,10 @@ public class HandController : MonoBehaviour
     {
         foreach (GameObject bul in bulletType)
         {
-            SimplePool2.Preload(bul, 30);
+            SimplePool2.Preload(bul, 50);
         }
+
+        GunUpdate(GamePlayController.Instance.playerContain.currentGun);
 
         //Súng default = pistol
 
@@ -41,11 +51,8 @@ public class HandController : MonoBehaviour
         //currentGun = 0;
         //gunSpeed = GetComponent<Animator>();
 
-        GunUpdate(GamePlayController.Instance.playerContain.currentGun);
-
         //GunUpdate(currentGun);
-        bulletScript = bullet.GetComponent<Bullet>();
-        HandleSpawnBullet();
+        //HandleSpawnBullet();
     }
     public void Update()
     {
@@ -84,14 +91,60 @@ public class HandController : MonoBehaviour
                     }
                 }
             }
+
+            if (GamePlayController.Instance.playerContain.isMoving && GamePlayController.Instance.playerContain.isAlive)
+            {
+                if (speedUp)
+                {
+                    handPlayer.transform.position += new Vector3(0, 0, 13f) * Time.deltaTime;
+                }
+                else if (speedDown)
+                {
+                    handPlayer.transform.position += new Vector3(0, 0, 7f) * Time.deltaTime;
+                }
+                else
+                {
+                    handPlayer.transform.position += new Vector3(0, 0, 10f) * Time.deltaTime;
+                }
+            }
+            
+            if (GamePlayController.Instance.playerContain.isHurt)
+            {
+                handPlayer.transform.position += new Vector3(0, 0, -5f);
+                GamePlayController.Instance.playerContain.isMoving = true;
+                GamePlayController.Instance.playerContain.isHurt = false;
+            }
         }
 
     }
     public void HandleSpawnBullet()
     {
-        var temp = SimplePool2.Spawn(bullet, bulletSpawner.transform.position, Quaternion.identity).GetComponent<Bullet>();
-        temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
-        StartCoroutine(temp.HandleDestoy(baseRange));
+        if (!GamePlayController.Instance.playerContain.doubleGun && !GamePlayController.Instance.playerContain.tripleGun)
+        {
+            var temp = SimplePool2.Spawn(bullet, bulletSpawner.transform.position, Quaternion.identity).GetComponent<Bullet>();
+            temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
+            StartCoroutine(temp.HandleDestoy(baseRange));
+        }
+        
+        if (GamePlayController.Instance.playerContain.doubleGun)
+        {
+            foreach(GameObject pos in bulletSpawnerDual)
+            {
+                var temp = SimplePool2.Spawn(bullet, pos.transform.position, Quaternion.identity).GetComponent<Bullet>();
+                temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
+                StartCoroutine(temp.HandleDestoy(baseRange));
+            }
+        }
+
+        if (GamePlayController.Instance.playerContain.tripleGun)
+        {
+            foreach(GameObject pos in bulletSpawnerTriple)
+            {
+                var temp = SimplePool2.Spawn(bullet, pos.transform.position, Quaternion.identity).GetComponent<Bullet>();
+                temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
+                StartCoroutine(temp.HandleDestoy(baseRange));
+            }
+        }
     }
 
     public void GunUpdate(int ID)
@@ -108,6 +161,16 @@ public class HandController : MonoBehaviour
         int bulletID;
 
         foreach (GameObject obj in gun)
+        {
+            obj.SetActive(false);
+        }
+
+        foreach (GameObject obj in doubleGun)
+        {
+            obj.SetActive(false);
+        }
+
+        foreach (GameObject obj in tripleGun)
         {
             obj.SetActive(false);
         }
@@ -152,7 +215,19 @@ public class HandController : MonoBehaviour
                 break;
         }
 
-        gun[gunID].SetActive(true);
+        if (GamePlayController.Instance.playerContain.doubleGun)
+        {
+            doubleGun[gunID].SetActive(true);
+        }
+        else if (GamePlayController.Instance.playerContain.tripleGun)
+        {
+            tripleGun[gunID].SetActive(true);
+        }
+        else
+        {
+            gun[gunID].SetActive(true);
+        }
+        
         bullet = bulletType[bulletID];
     }
 }

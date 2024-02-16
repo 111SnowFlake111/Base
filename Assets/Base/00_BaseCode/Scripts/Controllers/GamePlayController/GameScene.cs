@@ -96,13 +96,13 @@ public class GameScene : BaseScene
 
     void RangeUpgrade()
     {
-        if (GamePlayController.Instance.playerContain.money - int.Parse(rangeCost.text) < 0)
+        if (UseProfile.Money - int.Parse(rangeCost.text) < 0)
         {
             Debug.LogError("Not enough money for RangeUpgrade");
         }
         else
         {
-            GamePlayController.Instance.playerContain.money -= int.Parse(rangeCost.text);
+            UseProfile.Money -= int.Parse(rangeCost.text);
             GamePlayController.Instance.playerContain.RangeUp();
             //GamePlayController.Instance.playerContain.rangeUpgradeCount += 1;
             //GamePlayController.Instance.playerContain.bonusRange += 0.1f;
@@ -112,13 +112,13 @@ public class GameScene : BaseScene
 
     void DamageUpgrade()
     {
-        if (GamePlayController.Instance.playerContain.money - int.Parse(damageCost.text) < 0)
+        if (UseProfile.Money - int.Parse(damageCost.text) < 0)
         {
             Debug.LogError("Not enough money for DamageUpgrade");
         }
         else
         {
-            GamePlayController.Instance.playerContain.money -= int.Parse(damageCost.text);
+            UseProfile.Money -= int.Parse(damageCost.text);
             GamePlayController.Instance.playerContain.DamageUp();
             //GamePlayController.Instance.playerContain.damageUpgradeCount += 1;
             //GamePlayController.Instance.playerContain.bonusDamage += 0.1f;
@@ -128,13 +128,13 @@ public class GameScene : BaseScene
 
     void FireRateUpgrade()
     {
-        if (GamePlayController.Instance.playerContain.money - int.Parse(fireRateCost.text) < 0)
+        if (UseProfile.Money - int.Parse(fireRateCost.text) < 0)
         {
             Debug.LogError("Not enough money for FireRateUpgrade");
         }
         else
         {
-            GamePlayController.Instance.playerContain.money -= int.Parse(fireRateCost.text);
+            UseProfile.Money -= int.Parse(fireRateCost.text);
             GamePlayController.Instance.playerContain.FireRateUp();
             //GamePlayController.Instance.playerContain.fireRateUpgradeCount += 1;
             //GamePlayController.Instance.playerContain.bonusFireRate += 0.1f;
@@ -142,12 +142,6 @@ public class GameScene : BaseScene
         }
     }
 
-    void MoneyAdd()
-    {
-        UseProfile.Money += 1000;
-        Debug.LogError("Money added, enjoy");
-        InitState();
-    }
     public override void OnEscapeWhenStackBoxEmpty()
     {
 

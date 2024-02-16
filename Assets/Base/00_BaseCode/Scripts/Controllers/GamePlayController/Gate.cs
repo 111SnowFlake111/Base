@@ -96,33 +96,32 @@ public class Gate : MonoBehaviour
 
     public void PointUpdate(int number)
     {
-        if (number >= 4 && number < 8)
+        if (number % 2 == 0)
         {
-            limit += 1;
-        } else if (number == 8)
-        {
-            limit += 2;
+            limit += number / 2;
         } else
         {
-            Debug.LogError("current point is: " + (currentPoint));
-            return;
+            limit += (number - 1) / 2;
         }
-        Debug.LogError("current point is: " + (currentPoint));
+        
         DoorUpdate();
     }
 
     public void DoorUpdate()
     {
         for (int i = currentPoint; i < limit; i++)
-        {            
+        {
+            var temp = bulletGateObject[i].transform.position;
+
             if (currentPoint >= 10)
             {
                 break;
             }
             bulletGateObject[i].SetActive(true);
+            
             bulletGateObject[i].transform.position = postPos.position;
-            var newPosForBullet = postPos.position + new Vector3(0.45f + 0.55f * i, 0, 0);
-            bulletGateObject[i].transform.DOMoveX(newPosForBullet.x, 0.25f);
+            //var newPosForBullet = postPos.position + new Vector3(0.45f + 0.55f * i, 0, 0);
+            bulletGateObject[i].transform.DOMoveX(temp.x, 0.25f);
             currentPoint++;
         }
     }

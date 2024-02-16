@@ -24,6 +24,9 @@ public class PlayerContain : MonoBehaviour
 
     public int currentGun;
 
+    public bool doubleGun = false;
+    public bool tripleGun = false;
+
     public void Start()
     {
         currentGun = UseProfile.EquippedGun;

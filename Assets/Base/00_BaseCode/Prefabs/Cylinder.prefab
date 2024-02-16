@@ -139,9 +139,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958301239454263957}
-  - component: {fileID: -8785921960607170790}
   - component: {fileID: 685188743938701317}
   - component: {fileID: 315721166686770598}
+  - component: {fileID: -8785921960607170790}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Cylinder
@@ -158,36 +158,12 @@ Transform:
   m_GameObject: {fileID: 5729911444061597743}
   m_LocalRotation: {x: -0, y: -0, z: 0.0026148246, w: 0.99999666}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 5491312057470466153}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.3}
---- !u!114 &-8785921960607170790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5729911444061597743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f824ca0c94318ff4f9f1906a14042184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gate: {fileID: 7794029310244722963, guid: 8f01bb25ed4c1b8488028b779e2c594f, type: 3}
-  bulletFilled:
-  - {fileID: 5017037104799899784}
-  - {fileID: 5693064449166208636}
-  - {fileID: 3264152260968123966}
-  - {fileID: 5402689269328833077}
-  - {fileID: 2152253326221473935}
-  - {fileID: 8363329650603435926}
-  - {fileID: 1935189948547015705}
-  - {fileID: 6660783510838972705}
-  conveyorSpawner: {fileID: 0}
-  body: {fileID: 2992342759534202163}
 --- !u!54 &685188743938701317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -217,6 +193,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8785921960607170790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5729911444061597743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f824ca0c94318ff4f9f1906a14042184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gate: {fileID: 7794029310244722963, guid: 8f01bb25ed4c1b8488028b779e2c594f, type: 3}
+  bulletFilled:
+  - {fileID: 5017037104799899784}
+  - {fileID: 5693064449166208636}
+  - {fileID: 3264152260968123966}
+  - {fileID: 5402689269328833077}
+  - {fileID: 2152253326221473935}
+  - {fileID: 8363329650603435926}
+  - {fileID: 1935189948547015705}
+  - {fileID: 6660783510838972705}
+  conveyorSpawner: {fileID: 0}
+  body: {fileID: 2992342759534202163}
+  hitCount: 0
+  isHitAble: 1
 --- !u!1 &6622416041564373356
 GameObject:
   m_ObjectHideFlags: 0

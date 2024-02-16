@@ -46,6 +46,11 @@ public class Cylinder : MonoBehaviour
         //    gameObject.transform.position += new Vector3(0, 0, -20f) * Time.deltaTime;
         //}
         
+        if (isHitAble == false &&  isOnConveyor == false)
+        {
+            gameObject.transform.position += new Vector3(-10f, 0, 0) * Time.deltaTime;
+        }
+
         if (isOnConveyor)
         {
             gameObject.transform.position += new Vector3(0, 0, 40f) * Time.deltaTime;
@@ -81,10 +86,11 @@ public class Cylinder : MonoBehaviour
                                 if (hitCount >= 8)
                                 {
                                     isHitAble = false;
-                                    move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                    {
-                                        isOnConveyor = true;
-                                    });
+                                    
+                                    //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                                    //{
+                                    //    isOnConveyor = true;
+                                    //});
                                 }
                             });
                     }
@@ -114,10 +120,11 @@ public class Cylinder : MonoBehaviour
                             {
                                 hitCount = 8;
                                 isHitAble = false;
-                                move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                {
-                                    isOnConveyor = true;
-                                });
+                                
+                                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                                //{
+                                //    isOnConveyor = true;
+                                //});
                             }
                         }
                         );
@@ -147,10 +154,11 @@ public class Cylinder : MonoBehaviour
                             {
                                 hitCount = 8;
                                 isHitAble = false;
-                                move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                {
-                                    isOnConveyor = true;
-                                });
+                                
+                                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                                //{
+                                //    isOnConveyor = true;
+                                //});
                             }
                         }
                         );
@@ -177,10 +185,11 @@ public class Cylinder : MonoBehaviour
                         (() =>
                         {
                             isHitAble = false;
-                            move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                            {
-                                isOnConveyor = true;
-                            });
+                            
+                            //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                            //{
+                            //    isOnConveyor = true;
+                            //});
                         }
                         );
                 }
@@ -190,10 +199,16 @@ public class Cylinder : MonoBehaviour
         if (collider.tag == "BehindThePlayer")
         {
             isHitAble = false;
-            move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-            {
-                isOnConveyor = true;
-            });
+
+            //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+            //{
+            //    isOnConveyor = true;
+            //});
+        }
+
+        if (collider.tag == "Conveyor")
+        {
+            isOnConveyor = true;
         }
 
         //if (collider.tag == "Gate" || collider.tag == "LastGate")

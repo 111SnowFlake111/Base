@@ -18,5 +18,6 @@
     CHANGE_MONEY = 200,
     INVENTORY_UPDATE = 201,
     EQUIPPED_GUN = 202,
+    HURT = 203,
 
 }

@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Contains("Rock") || other.gameObject.tag.Contains("Cylinder") || other.gameObject.tag.Contains("Panel"))
+        if (other.gameObject.tag.Contains("Rock") || other.gameObject.tag.Contains("Cylinder") || other.gameObject.tag.Contains("Panel") || other.gameObject.tag.Contains("Straight"))
         {
             if (other.tag.Contains("Cylinder"))
             {
