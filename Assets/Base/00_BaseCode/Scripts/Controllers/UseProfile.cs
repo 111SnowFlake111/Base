@@ -175,6 +175,19 @@ public class UseProfile : MonoBehaviour
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.EQUIPPED_GUN);
         }
     }
+    public static int GameLevel
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.CURRENTLEVEL);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.CURRENTLEVEL, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.LOADLEVEL);
+        }
+    }
     public static int Heart
     {
         get

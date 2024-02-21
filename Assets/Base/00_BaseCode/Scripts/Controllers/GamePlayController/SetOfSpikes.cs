@@ -7,16 +7,6 @@ public class SetOfSpikes : MonoBehaviour
     public List<GameObject> spikes;
 
     public int hitLimit = 1;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +14,8 @@ public class SetOfSpikes : MonoBehaviour
         {
             GamePlayController.Instance.playerContain.isHurt = true;
             GamePlayController.Instance.playerContain.isMoving = false;
+            GamePlayController.Instance.playerContain.bonusDamage -= 0.01f;
+            GamePlayController.Instance.gameScene.InitState();
             hitLimit--;
         }
     }

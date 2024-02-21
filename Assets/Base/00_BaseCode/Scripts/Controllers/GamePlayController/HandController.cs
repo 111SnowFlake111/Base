@@ -110,7 +110,7 @@ public class HandController : MonoBehaviour
             
             if (GamePlayController.Instance.playerContain.isHurt)
             {
-                handPlayer.transform.position += new Vector3(0, 0, -5f);
+                handPlayer.transform.position += new Vector3(0, 0, -6f);
                 GamePlayController.Instance.playerContain.isMoving = true;
                 GamePlayController.Instance.playerContain.isHurt = false;
             }

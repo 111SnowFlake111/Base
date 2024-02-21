@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Setting : BaseBox
@@ -16,11 +17,13 @@ public class Setting : BaseBox
             instance.Init();
         }
         instance.InitState();
+        Debug.LogError("Setting triggered");
         return instance;
     }
 
     public Button soundBtn;
     public Button vibrationBtn;
+    public Button restartLevelProgress;
     public Button closeWindow;
 
     public Image soundDisabled;
@@ -30,7 +33,8 @@ public class Setting : BaseBox
     {
         soundBtn.onClick.AddListener(delegate { SoundChange(); });
         vibrationBtn.onClick.AddListener(delegate { VibrationChange(); });
-        closeWindow.onClick.AddListener(Close);
+        restartLevelProgress.onClick.AddListener(delegate { ResetProgress(); });
+        closeWindow.onClick.AddListener(delegate { Close(); GamePlayController.Instance.playerContain.isMoving = true; });
     }
 
     private void InitState()
@@ -67,5 +71,11 @@ public class Setting : BaseBox
             vibrationDisabled.gameObject.SetActive(true);
         }
         Debug.LogError("Vibration changed");
+    }
+
+    private void ResetProgress()
+    {
+        SceneManager.LoadScene("GamePlay");
+        UseProfile.GameLevel = 0;
     }
 }

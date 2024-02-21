@@ -21,10 +21,10 @@ public class Bullet : MonoBehaviour
     }
     public IEnumerator HandleDestoy(float baseRange)
     {
-        //Sau này khi bonus panel hoàn thành thì có thể cộng thêm thời gian, nó sẽ tương đương việc tăng Range
+        //Thời gian cho đạn bay tăng lên sẽ tương đương việc tăng Range
         yield return new WaitForSecondsRealtime(baseRange + baseRange * GamePlayController.Instance.playerContain.bonusRange);
         spawnCheck = false;
-        SimplePool2.Despawn(this.gameObject);
+        SimplePool2.Despawn(gameObject);
     }
 
     public float RandomX()
@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Contains("Rock") || other.gameObject.tag.Contains("Cylinder") || other.gameObject.tag.Contains("Panel") || other.gameObject.tag.Contains("Straight"))
+        if (other.tag.Contains("Rock") || other.tag.Contains("Cylinder") || other.tag.Contains("Panel") || other.tag.Contains("Straight") || other.tag.Contains("Wall"))
         {
             if (other.tag.Contains("Cylinder"))
             {

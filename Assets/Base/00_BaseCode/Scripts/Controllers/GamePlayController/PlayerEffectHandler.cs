@@ -26,7 +26,7 @@ public class PlayerEffectHandler : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Contains("Gate") || other.tag.Contains("Panel"))
+        if (other.tag.Contains("Panel") || other.tag.Contains("Lane"))
         {
             stonk = Instantiate(powerUp.gameObject, playerPos.transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
             stonk.GetComponent<ParticleSystem>().Play();

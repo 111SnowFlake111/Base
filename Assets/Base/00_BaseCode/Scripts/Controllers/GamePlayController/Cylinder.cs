@@ -1,54 +1,100 @@
-using Org.BouncyCastle.Utilities.Collections;
+﻿using Org.BouncyCastle.Utilities.Collections;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 public class Cylinder : MonoBehaviour
 {
-    public Gate gate;
+    //public List<GameObject> bulletFilled;
 
-    public List<GameObject> bulletFilled;
-
-    public Transform conveyorSpawner;
+    public List<GameObject> bulletSmall;
+    public List<GameObject> bulletMedium;
+    public List<GameObject> bulletShotgun;
+    public List<GameObject> bulletBig;
 
     public GameObject body;
-    public GameObject bulletHole
-    {
-        get
-        {
-            foreach (GameObject bullet in bulletFilled)
-            {
-                if(!bullet.activeSelf)
-                {
-                    return bullet;
-                }
-            }
-            return null;
-        }
-        
-    }
+    public GameObject playerDetector;
+
+    public Transform leftLimit;
+    public Transform rightLimit;
+
+    public bool moveLR = false;
+    public bool moveLFReverse = false;
+    public float moveLRSpeed = 5f;
+    bool moveLFCheck = false;
+
+    public bool moveForward = false;
+    public float moveForwardSpeed = 5f;
 
     public int hitCount = 0;
     private bool isOnConveyor = false;
     public bool isHitAble = true;
-    private Tween move;
 
-    void Start()
+    public bool playerDetected = false;
+
+    private void Start()
     {
-        isOnConveyor = false;
-        conveyorSpawner = GamePlayController.Instance.playerContain.mapController.onConveyorPos.transform;
+        leftLimit = GamePlayController.Instance.playerContain.handController.leftLimit;
+        rightLimit = GamePlayController.Instance.playerContain.handController.rightLimit;
+
+        if (moveLR || moveForward)
+        {
+            playerDetector.SetActive(true);
+        }
+
+        //Phòng trường hợp nhập số âm
+        if (moveLRSpeed < 0)
+        {
+            moveLRSpeed = Mathf.Abs(moveLRSpeed);
+        }
     }
 
     void Update()
     {
-        //if (isHitAble)
-        //{
-        //    gameObject.transform.position += new Vector3(0, 0, -20f) * Time.deltaTime;
-        //}
-        
+        if(isHitAble && moveLR && playerDetected)
+        {
+            if (moveLFCheck)
+            {
+                if (moveLFReverse)
+                {
+                    gameObject.transform.position += new Vector3(-moveLRSpeed, 0, 0) * Time.deltaTime;
+                }
+                else
+                {
+                    gameObject.transform.position += new Vector3(moveLRSpeed, 0, 0) * Time.deltaTime;
+                }                
+            }
+            else
+            {
+                if (moveLFReverse)
+                {
+                    gameObject.transform.position += new Vector3(moveLRSpeed, 0, 0) * Time.deltaTime;
+                }
+                else
+                {
+                    gameObject.transform.position += new Vector3(-moveLRSpeed, 0, 0) * Time.deltaTime;
+                }
+            }
+
+            if (gameObject.transform.position.x <= leftLimit.position.x)
+            {
+                moveLFCheck = true;
+            }
+
+            if (gameObject.transform.position.x >= rightLimit.position.x)
+            {
+                moveLFCheck = false;
+            }
+        }
+
+        if(isHitAble && moveForward && playerDetected)
+        {
+            gameObject.transform.position += new Vector3(0, 0, moveForwardSpeed) * Time.deltaTime;
+        }
+
         if (isHitAble == false &&  isOnConveyor == false)
         {
-            gameObject.transform.position += new Vector3(-10f, 0, 0) * Time.deltaTime;
+            gameObject.transform.position += new Vector3(-20f, 0, 0) * Time.deltaTime;
         }
 
         if (isOnConveyor)
@@ -74,26 +120,29 @@ public class Cylinder : MonoBehaviour
                 if (hitCount < 8)
                 {
                     SimplePool2.Despawn(collider.gameObject);
-                    var temp = bulletHole;
-                    if (temp != null)
-                    {
-                        bulletHole.SetActive(true);
-                        hitCount++;
-                        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
-                        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
-                            (() =>
+                    bulletSmall[hitCount].SetActive(true);
+                    hitCount++;
+                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
+                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+                        (() =>
+                        {
+                            if (hitCount >= 8)
                             {
-                                if (hitCount >= 8)
-                                {
-                                    isHitAble = false;
-                                    
-                                    //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                    //{
-                                    //    isOnConveyor = true;
-                                    //});
-                                }
-                            });
-                    }
+                                hitCount = 8;
+                                isHitAble = false;
+
+                                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+                                //{
+                                //    isOnConveyor = true;
+                                //});
+                            }
+                        });
+                    //var temp = bulletHole;
+
+                    //if (temp != null)
+                    //{
+                        
+                    //}
                 }
             }
 
@@ -108,8 +157,9 @@ public class Cylinder : MonoBehaviour
                         {
                             break;
                         }
-                        var temp = bulletHole;
-                        bulletHole.SetActive (true);
+                        //var temp = bulletHole;
+                        //bulletHole.SetActive(true);
+                        bulletMedium[hitCount].SetActive(true);
                         hitCount++;
                     }
                     var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 80);
@@ -142,8 +192,9 @@ public class Cylinder : MonoBehaviour
                         {
                             break;
                         }
-                        var temp = bulletHole;
-                        bulletHole.SetActive(true);
+                        //var temp = bulletHole;
+                        //bulletHole.SetActive(true);
+                        bulletShotgun[hitCount].SetActive(true);
                         hitCount++;
                     }
                     var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 160);
@@ -176,8 +227,8 @@ public class Cylinder : MonoBehaviour
                         {
                             break;
                         }
-                        var temp = bulletHole;
-                        bulletHole.SetActive(true);
+                        //var temp = bulletHole;
+                        bulletBig[hitCount].SetActive(true);
                         hitCount++;
                     }
                     var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 320);

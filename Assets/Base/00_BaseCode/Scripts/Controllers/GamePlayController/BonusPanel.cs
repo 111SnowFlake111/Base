@@ -5,29 +5,56 @@ using TMPro;
 
 public class BonusPanel : MonoBehaviour
 {
+    public GameObject wall;
+
     public List<Transform> panelParts;
     public List<Material> green;
     public List<Material> red;
 
     Renderer outter;
     Renderer inner;
-
     
     public TMP_Text bonusName;    
     public TMP_Text valueAdd;
     public TMP_Text finalValue;
 
+    public bool hasWall = false;
+    public int wallHP = 5;
+    public int wallHitLimit = 1;
+
     public string name;
-    public float add;
-    public float total;
+    public float add = 1;       //Default: +1
+    public float total = 0;     //Default: 0
     
     //public Transform spawnPos;
     // Start is called before the first frame update
     void Start()
     {
+        if (hasWall)
+        {
+            wall.SetActive(true);
+        }
+
         bonusName.text = name;
-        valueAdd.text = add.ToString();
-        finalValue.text = total.ToString();
+        if (add < 0)
+        {
+            valueAdd.text = add.ToString();
+            valueAdd.color = Color.red;
+        }
+        else
+        {
+            valueAdd.text = add.ToString();
+        }
+        
+        if (total > 0)
+        {
+            finalValue.text = "+" + total.ToString();
+        }
+        else
+        {
+            finalValue.text = total.ToString();
+        }
+        
 
         outter = panelParts[0].GetComponent<Renderer>();
         inner = panelParts[1].GetComponent<Renderer>();
@@ -61,13 +88,21 @@ public class BonusPanel : MonoBehaviour
 
     public void OnTriggerEnter(UnityEngine.Collider collider)
     {
-        if (collider.tag.Contains("Bullet"))
+        if (collider.tag.Contains("Bullet") && !hasWall)
         {
             SimplePool2.Despawn(collider.gameObject);
-            finalValue.text = (float.Parse(finalValue.text) + float.Parse(valueAdd.text)).ToString();
+            if (total > 0)
+            {
+                finalValue.text = "+" + (float.Parse(finalValue.text) + float.Parse(valueAdd.text)).ToString();
+            }
+            else
+            {
+                finalValue.text = (float.Parse(finalValue.text) + float.Parse(valueAdd.text)).ToString();
+            }
+            
         }
 
-        if (collider.tag == "Player")
+        if (collider.tag == "Player" && !hasWall)
         {
             if (bonusName.text.Contains("Rate"))
             {
@@ -77,6 +112,16 @@ public class BonusPanel : MonoBehaviour
             if (bonusName.text.Contains("Range"))
             {
                 GamePlayController.Instance.playerContain.bonusRange += (float.Parse(finalValue.text) / 100);
+            }
+
+            if (bonusName.text.Contains("Power"))
+            {
+                GamePlayController.Instance.playerContain.bonusDamage += (float.Parse(finalValue.text) / 100);
+            }
+
+            if (bonusName.text.Contains("Money"))
+            {
+                UseProfile.Money += (int.Parse(finalValue.text));
             }
 
             GamePlayController.Instance.gameScene.InitState();

@@ -20,7 +20,6 @@ TagManager:
   - Gate
   - LastGate
   - BulletGate
-  - RoadWithGate
   - DespawnBox
   - Revolver
   - BulletSmall
@@ -44,6 +43,10 @@ TagManager:
   - SpeedUp
   - SpeedDown
   - Conveyor
+  - Lane1
+  - Lane2
+  - Lane3
+  - LaneSingle
   layers:
   - Default
   - TransparentFX

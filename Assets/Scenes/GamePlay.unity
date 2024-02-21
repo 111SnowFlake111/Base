@@ -2928,7 +2928,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 663110538}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3365,8 +3365,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 717931704}
-  m_Father: {fileID: 663110538}
-  m_RootOrder: 5
+  m_Father: {fileID: 1600312989}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4052,13 +4052,11 @@ RectTransform:
   - {fileID: 642215290}
   - {fileID: 44990264}
   - {fileID: 323194933}
-  - {fileID: 714175182}
   - {fileID: 2098907480}
-  - {fileID: 564933611}
   - {fileID: 463865277}
   - {fileID: 921598875}
   m_Father: {fileID: 1600312989}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4213,7 +4211,7 @@ RectTransform:
   - {fileID: 657340706}
   - {fileID: 1830122678}
   m_Father: {fileID: 1600312989}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4286,8 +4284,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1016319685}
-  m_Father: {fileID: 663110538}
-  m_RootOrder: 3
+  m_Father: {fileID: 1600312989}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5811,7 +5809,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 663110538}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9521,8 +9519,10 @@ RectTransform:
   - {fileID: 1727701720}
   - {fileID: 1129056406}
   - {fileID: 728545074}
-  - {fileID: 698194884}
   - {fileID: 663110538}
+  - {fileID: 564933611}
+  - {fileID: 698194884}
+  - {fileID: 714175182}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11132,7 +11132,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
+  - {fileID: 3600299252166942605, guid: a598593aeb35b48439bb124b90b58b94, type: 3}
+  - {fileID: 3600299252166942605, guid: c39020928b26dd54282fdd7da26cd3a7, type: 3}
   - {fileID: 3600299252166942605, guid: 0829ecd7bfec50641bd9e17f84278385, type: 3}
+  - {fileID: 3600299252166942605, guid: c8217961ac4f41343b875669a7cb6096, type: 3}
+  - {fileID: 3600299252166942605, guid: 844eefa26cdfef64c9ee3e8e532d3cb2, type: 3}
+  - {fileID: 3600299252166942605, guid: 2ce27043be95c4d4b8e122228e3b16b3, type: 3}
+  - {fileID: 3600299252166942605, guid: c8b03f92b986728479df65876b1050a0, type: 3}
+  - {fileID: 3600299252166942605, guid: 7c40077d438b1e9458789c5f3b412e13, type: 3}
+  - {fileID: 3600299252166942605, guid: f153343f670b3c8438d92f29bc599eb0, type: 3}
+  - {fileID: 3600299252166942605, guid: 33d718293a8d7dc419e171eb397595f1, type: 3}
+  - {fileID: 3600299252166942605, guid: 9d3114d46548ebb4c9a2e0df62c2e9cd, type: 3}
   greyColorForRoad: {fileID: 2100000, guid: 64921d516df783d4a9138472429ee805, type: 2}
   goldColorForRoad: {fileID: 2100000, guid: 99dc4af2280e3c744960170d5d42370b, type: 2}
   conveyor: {fileID: 1921374187514902744, guid: 1b2133653af544c459e4e89a30dead4a, type: 3}
@@ -11143,18 +11153,7 @@ MonoBehaviour:
   onConveyorPos: {fileID: 1756308081}
   leftLimit: {fileID: 973456475}
   rightLimit: {fileID: 348521180}
-  road:
-  - {fileID: 1737549776664263070, guid: 1899ae2eb27e8a64abe8cf7063067cf1, type: 3}
-  - {fileID: 1737549776664263070, guid: e39902260dded7b4099d57c42402be4d, type: 3}
-  - {fileID: 1737549776664263070, guid: f624778fab822844d858211658fae6bc, type: 3}
-  - {fileID: 1737549776664263070, guid: 394e13fa2501b194fb2572143495f64f, type: 3}
-  - {fileID: 1737549776664263070, guid: 58cd32aff1dce534686fa84e67ed23bc, type: 3}
-  - {fileID: 1737549776664263070, guid: 5a93b007661c3224ca5484823b144e40, type: 3}
-  - {fileID: 1737549776664263070, guid: 3d9b820003c20cc4980cf23e82e6d582, type: 3}
-  - {fileID: 1737549776664263070, guid: 171730ef67b501046bd33216a92d883d, type: 3}
-  - {fileID: 1737549776664263070, guid: 64fcf7c18523f094785d95239afd7603, type: 3}
-  idLevel: 070000000700000007000000070000000700000007000000070000000700000007000000070000000700000007000000
-  roadCount: 0
+  level: {fileID: 0}
 --- !u!1 &1920856445
 GameObject:
   m_ObjectHideFlags: 0
@@ -12051,7 +12050,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 663110538}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

@@ -6,102 +6,36 @@ using TMPro;
 
 public class Gate : MonoBehaviour
 {
-    //public GameObject messageBox;
-    //public TMP_Text message;
     public List<GameObject> bulletGateObject;
+    public GameObject lane;
     public Transform postPos;
 
-    public int limit = 1;
-    public int currentPoint = 0;
+    int limit = 0;
+    int currentPoint = 0;
 
-    void Start()
-    {
-        
-    }
+    public int bulletsNumberForOnePoint = 2;
+    public float pointsForLane = 10;
 
-    void Update()
-    {
-
-    }
+    bool isActive = true;
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player")
-        {
-            //if (currentPoint >= 10)
-            //{
-            //    message.text = "+10 Points";
-            //    var notif = Instantiate(messageBox, collider.transform);
-            //    var flyingMessage = notif.transform.localPosition + new Vector3(0, 5, 0);
-            //    notif.transform.DOLocalMoveY(flyingMessage.y, 3f).OnComplete(() => Destroy(notif));
-            //}
-            //else
-            //{
-            //    message.text = "+" + currentPoint.ToString() + " Points";
-            //    var notif = Instantiate(messageBox, collider.transform);
-            //    var flyingMessage = notif.transform.localPosition + new Vector3(0, 5, 0);
-            //    notif.transform.DOLocalMoveY(flyingMessage.y, 3f).OnComplete(() => Destroy(notif));
-            //}
-            Debug.LogError("+" + (currentPoint).ToString() + " Points.");
-            if (gameObject.tag.Contains("Last"))
-            {
-                Debug.LogError("Last Gate! Damage bonus x3");
-            }
-
-            if (currentPoint >= 10)
-            {
-                if (gameObject.tag.Contains("Last"))
-                {
-                    GamePlayController.Instance.playerContain.bonusDamage += (10 * 3);
-                }
-                else
-                {
-                    GamePlayController.Instance.playerContain.bonusDamage += 10;
-                }
-            }
-            else
-            {
-                if (gameObject.tag.Contains("Last"))
-                {
-                    GamePlayController.Instance.playerContain.bonusDamage += (currentPoint * 3);
-                }
-                else
-                {
-                    GamePlayController.Instance.playerContain.bonusDamage += currentPoint;
-                }
-            }
-
-            GamePlayController.Instance.gameScene.InitState();
-            limit = 1;
-            currentPoint = 0;
-            foreach (GameObject obj in bulletGateObject)
-            {
-                obj.SetActive(false);
-            }
-        }
-
         if (collider.tag == "Cylinder")
         {
             int points = collider.GetComponent<Cylinder>().hitCount;
-            PointUpdate(points);
             Destroy(collider.gameObject);
+            PointUpdate(points);
         }
-    }
-
-    public IEnumerator GateDestroyer()
-    {
-        yield return new WaitForSeconds(10);
-        SimplePool2.Despawn(gameObject);
     }
 
     public void PointUpdate(int number)
     {
-        if (number % 2 == 0)
+        if (number % bulletsNumberForOnePoint == 0)
         {
-            limit += number / 2;
+            limit += number / bulletsNumberForOnePoint;
         } else
         {
-            limit += (number - 1) / 2;
+            limit += (number - 1) / bulletsNumberForOnePoint;
         }
         
         DoorUpdate();
@@ -111,18 +45,33 @@ public class Gate : MonoBehaviour
     {
         for (int i = currentPoint; i < limit; i++)
         {
-            var temp = bulletGateObject[i].transform.position;
-
             if (currentPoint >= 10)
             {
                 break;
             }
+
+            var temp = bulletGateObject[i].transform.position;
             bulletGateObject[i].SetActive(true);
             
             bulletGateObject[i].transform.position = postPos.position;
-            //var newPosForBullet = postPos.position + new Vector3(0.45f + 0.55f * i, 0, 0);
             bulletGateObject[i].transform.DOMoveX(temp.x, 0.25f);
+
             currentPoint++;
         }
+
+        if (bulletGateObject[9].activeSelf && isActive)
+        {
+            lane.SetActive(true);
+        }
+    }
+
+    public void DespawnBulletGate()
+    {
+        lane.SetActive(false);
+        foreach (GameObject obj in bulletGateObject)
+        {
+            obj.SetActive(false);
+        }
+        isActive = false;
     }
 }

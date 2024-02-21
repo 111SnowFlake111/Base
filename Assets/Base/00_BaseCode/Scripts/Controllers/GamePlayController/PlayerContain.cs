@@ -36,18 +36,18 @@ public class PlayerContain : MonoBehaviour
     public void RangeUp()
     {
         rangeUpgradeCount++;
-        bonusRange += 0.1f;
+        bonusRange += 0.01f;
     }
 
     public void DamageUp()
     {
         damageUpgradeCount++;
-        bonusDamage += 0.1f;
+        bonusDamage += 0.01f;
     }
 
     public void FireRateUp()
     {
         fireRateUpgradeCount++;
-        bonusFireRate += 0.1f;
+        bonusFireRate += 0.01f;
     }
 }

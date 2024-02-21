@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using EventDispatcher;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
@@ -16,27 +18,29 @@ public class MapController : MonoBehaviour
     public GameObject cylinder;
     public GameObject onConveyorPos;
 
-    //public LineRenderer conveyerLine;
-
     public Transform leftLimit;
     public Transform rightLimit;
 
+    public GameObject level;
+    //public int currentLevel;
+
+    /*
     public List<GameObject> road;
     public List<int> idLevel;
-    //public List<int> gateIndex;
 
+    
     private int randomStatus;
     private float timer = 0f;
     private float timer2 = 0f;
     private int rockCount = 0;
     public int roadCount = 0;
-    //private int posCount = 0;
 
     private Road roadSpawning;
     private List<string> bonusName = new List<string> { "Fire Rate", "Range" };
     private int cylinderFirstSegment = 0;
     private int cylinderSecondSegment = 0;
     private int cylinderThirdSegment = 0;
+    */
 
     //Start() cũ, spawn đường theo script
 
@@ -325,7 +329,41 @@ public class MapController : MonoBehaviour
 
     private void Start()
     {
-        GameObject level = Instantiate(levels[0], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
+        if (level != null)
+        {
+            Destroy(level);
+        }
+
+        if (UseProfile.GameLevel >= levels.Count)
+        {
+            level = Instantiate(levels[Random.Range(0, levels.Count)], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
+        }
+        else
+        {
+            level = Instantiate(levels[UseProfile.GameLevel], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
+        }
+
+        this.RegisterListener(EventID.LOADLEVEL, LevelGenerate);
+    }
+
+    public void LevelGenerate(object param)
+    {
+        
+        if (level != null)
+        {
+            Destroy(level);
+        }
+
+        if (UseProfile.GameLevel >= levels.Count)
+        {
+            Debug.LogError("Current Level is: " + UseProfile.GameLevel.ToString() + " (Randomized)");
+            level = Instantiate(levels[Random.Range(0, levels.Count)], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Current Level is: " + UseProfile.GameLevel.ToString());
+            level = Instantiate(levels[UseProfile.GameLevel], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
+        }
     }
     //void Update()
     //{

@@ -40,5 +40,6 @@ public class PopupEndGame : BaseBox
     private void RestartGame()
     {
         SceneManager.LoadScene("GamePlay");
+        UseProfile.GameLevel++;
     }
 }
