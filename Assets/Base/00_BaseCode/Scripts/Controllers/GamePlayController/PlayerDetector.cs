@@ -14,6 +14,11 @@ public class PlayerDetector : MonoBehaviour
             {
                 obj.GetComponent<Cylinder>().playerDetected = true;
             }
+
+            if (obj.tag == "Panel")
+            {
+
+            }
         }
     }
 
@@ -24,6 +29,11 @@ public class PlayerDetector : MonoBehaviour
             if (obj.tag == "Cylinder")
             {
                 obj.GetComponent<Cylinder>().playerDetected = false;
+            }
+
+            if (obj.tag == "Panel")
+            {
+
             }
         }
     }

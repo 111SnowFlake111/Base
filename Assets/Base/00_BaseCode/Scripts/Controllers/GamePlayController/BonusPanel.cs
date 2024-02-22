@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,6 +6,7 @@ using TMPro;
 public class BonusPanel : MonoBehaviour
 {
     public GameObject wall;
+    public GameObject playerDetector;
 
     public List<Transform> panelParts;
     public List<Material> green;
@@ -13,7 +14,10 @@ public class BonusPanel : MonoBehaviour
 
     Renderer outter;
     Renderer inner;
-    
+
+    Transform leftLimit;
+    Transform rightLimit;
+
     public TMP_Text bonusName;    
     public TMP_Text valueAdd;
     public TMP_Text finalValue;
@@ -21,6 +25,26 @@ public class BonusPanel : MonoBehaviour
     public bool hasWall = false;
     public int wallHP = 5;
     public int wallHitLimit = 1;
+
+    public bool moveLR = false;
+    public bool moveLFReverse = false;
+    public float moveLRSpeed = 5f;
+    bool moveLFCheck = false;
+
+    public bool moveForward = false;
+    public float moveForwardSpeed = 5f;
+
+    public bool moveTowardPlayer = false;
+    public float moveTowardPlayerSpeed = 5f;
+
+    public bool useCustomXLimit = false;
+    public float customXLeft = -3f;
+    public float customXRight = 3f;
+
+    public bool useCustomZLimit = false;
+    public float customZForward = 100f;
+
+    public bool playerDetected = false;
 
     public string name;
     public float add = 1;       //Default: +1
@@ -54,7 +78,25 @@ public class BonusPanel : MonoBehaviour
         {
             finalValue.text = total.ToString();
         }
-        
+
+        leftLimit = GamePlayController.Instance.playerContain.handController.leftLimit;
+        rightLimit = GamePlayController.Instance.playerContain.handController.rightLimit;
+
+        if (moveLR || moveForward || moveTowardPlayer)
+        {
+            playerDetector.SetActive(true);
+        }
+
+        //Phòng trường hợp nhập số âm
+        if (moveLRSpeed < 0)
+        {
+            moveLRSpeed = Mathf.Abs(moveLRSpeed);
+        }
+
+        if (moveLFReverse)
+        {
+            moveLFCheck = true;
+        }
 
         outter = panelParts[0].GetComponent<Renderer>();
         inner = panelParts[1].GetComponent<Renderer>();
@@ -77,6 +119,61 @@ public class BonusPanel : MonoBehaviour
         {
             outter.material = green[0];
             inner.material = green[1];           
+        }
+
+        if (moveLR && playerDetected)
+        {
+            if (moveLFCheck)
+            {
+                gameObject.transform.position += new Vector3(moveLRSpeed, 0, 0) * Time.deltaTime;
+            }
+            else
+            {
+                gameObject.transform.position += new Vector3(-moveLRSpeed, 0, 0) * Time.deltaTime;
+            }
+
+            if (useCustomXLimit)
+            {
+                if (gameObject.transform.position.x <= customXLeft)
+                {
+                    moveLFCheck = true;
+                }
+
+                if (gameObject.transform.position.x >= customXRight)
+                {
+                    moveLFCheck = false;
+                }
+            }
+            else
+            {
+                if (gameObject.transform.position.x <= leftLimit.position.x)
+                {
+                    moveLFCheck = true;
+                }
+
+                if (gameObject.transform.position.x >= rightLimit.position.x)
+                {
+                    moveLFCheck = false;
+                }
+            }
+        }
+
+        if (moveForward && playerDetected)
+        {
+            gameObject.transform.position += new Vector3(0, 0, moveForwardSpeed) * Time.deltaTime;
+
+            if (useCustomZLimit)
+            {
+                if (gameObject.transform.position.z >= customZForward)
+                {
+                    moveForward = false;
+                }
+            }
+        }
+
+        if (moveTowardPlayer && playerDetected)
+        {
+            gameObject.transform.position += new Vector3(0, 0, -moveTowardPlayerSpeed) * Time.deltaTime;
         }
     }
 

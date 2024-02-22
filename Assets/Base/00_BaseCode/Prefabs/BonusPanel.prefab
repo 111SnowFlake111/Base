@@ -612,7 +612,7 @@ RectTransform:
   - {fileID: 8821685737658575877}
   - {fileID: 7134041142602751307}
   m_Father: {fileID: 8033005396823372396}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -844,7 +844,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8033005396823372396}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7284037664645106526
 MeshFilter:
@@ -935,7 +935,7 @@ Transform:
   - {fileID: 575501892822640337}
   - {fileID: 4475123362602227289}
   m_Father: {fileID: 8033005396823372396}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7140373916613057891
 BoxCollider:
@@ -1010,7 +1010,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8033005396823372396}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &53343401497332279
 MeshFilter:
@@ -1151,6 +1151,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!1 &6272073718951201128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4715731015269944477}
+  - component: {fileID: 1581171985569355092}
+  - component: {fileID: 7833481872043337389}
+  - component: {fileID: 5722291987617547570}
+  m_Layer: 0
+  m_Name: PlayerDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4715731015269944477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272073718951201128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8033005396823372396}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1581171985569355092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272073718951201128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30, y: 5, z: 40}
+  m_Center: {x: 0, y: 0, z: -20}
+--- !u!54 &7833481872043337389
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272073718951201128}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5722291987617547570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272073718951201128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d5d372142ac3e41b97a9733e588bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 7219595063779895510}
 --- !u!1 &7219595063779895510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1240,7 @@ GameObject:
   - component: {fileID: 4694118846808003297}
   m_Layer: 0
   m_Name: BonusPanel
-  m_TagString: Untagged
+  m_TagString: Panel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1181,6 +1256,7 @@ Transform:
   m_LocalPosition: {x: 0.03, y: -1.6801076, z: 10}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
+  - {fileID: 4715731015269944477}
   - {fileID: 8433927808918034118}
   - {fileID: 5549712095873412134}
   - {fileID: 2517097111035339618}
@@ -1201,6 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 5627659563952288205}
+  playerDetector: {fileID: 0}
   panelParts:
   - {fileID: 8433927808918034118}
   - {fileID: 5549712095873412134}
@@ -1216,6 +1293,19 @@ MonoBehaviour:
   hasWall: 0
   wallHP: 5
   wallHitLimit: 1
+  moveLR: 0
+  moveLFReverse: 0
+  moveLRSpeed: 5
+  moveForward: 0
+  moveForwardSpeed: 5
+  moveTowardPlayer: 0
+  moveTowardPlayerSpeed: 5
+  useCustomXLimit: 0
+  customXLeft: -3
+  customXRight: 3
+  useCustomZLimit: 0
+  customZForward: 100
+  playerDetected: 0
   name: 
   add: 1
   total: 0

@@ -608,7 +608,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40, y: 5, z: 40}
+  m_Size: {x: 30, y: 5, z: 40}
   m_Center: {x: 0, y: 0, z: -20}
 --- !u!54 &8913126421792399274
 Rigidbody:
@@ -4012,10 +4012,17 @@ MonoBehaviour:
   leftLimit: {fileID: 0}
   rightLimit: {fileID: 0}
   moveLR: 0
+  moveLFReverse: 0
   moveLRSpeed: 10
   moveForward: 0
   moveForwardSpeed: 5
-  moveForwardTime: 5
+  moveTowardPlayer: 0
+  moveTowardPlayerSpeed: 5
+  useCustomXLimit: 0
+  customXLeft: -3
+  customXRight: 3
+  useCustomZLimit: 0
+  customZForward: 100
   hitCount: 0
   isHitAble: 1
   playerDetected: 0

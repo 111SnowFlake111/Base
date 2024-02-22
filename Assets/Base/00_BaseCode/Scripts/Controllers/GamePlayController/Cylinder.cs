@@ -15,8 +15,8 @@ public class Cylinder : MonoBehaviour
     public GameObject body;
     public GameObject playerDetector;
 
-    public Transform leftLimit;
-    public Transform rightLimit;
+    Transform leftLimit;
+    Transform rightLimit;
 
     public bool moveLR = false;
     public bool moveLFReverse = false;
@@ -24,10 +24,10 @@ public class Cylinder : MonoBehaviour
     bool moveLFCheck = false;
 
     public bool moveForward = false;
-    public float moveForwardSpeed = 5f;
+    public float moveForwardSpeed = 3f;
 
     public bool moveTowardPlayer = false;
-    public float moveTowardPlayerSpeed = 5f;
+    public float moveTowardPlayerSpeed = 3f;
 
     public bool useCustomXLimit = false;
     public float customXLeft = -3f;
@@ -47,7 +47,7 @@ public class Cylinder : MonoBehaviour
         leftLimit = GamePlayController.Instance.playerContain.handController.leftLimit;
         rightLimit = GamePlayController.Instance.playerContain.handController.rightLimit;
 
-        if (moveLR || moveForward)
+        if (moveLR || moveForward || moveTowardPlayer)
         {
             playerDetector.SetActive(true);
         }
