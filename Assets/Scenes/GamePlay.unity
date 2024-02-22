@@ -11147,6 +11147,7 @@ MonoBehaviour:
   - {fileID: 3600299252166942605, guid: e24306754636bf946893986bde076cf0, type: 3}
   - {fileID: 3600299252166942605, guid: 80cd61de68818034a9bd0f01e22e8fff, type: 3}
   - {fileID: 3600299252166942605, guid: 6f29bd376bf3d7a4d9329de9275bc9b1, type: 3}
+  - {fileID: 3600299252166942605, guid: 74434eb6fdd33744cac6e2190517024d, type: 3}
   - {fileID: 3600299252166942605, guid: e8e7a07b7806e974c8484666fd1b832f, type: 3}
   greyColorForRoad: {fileID: 2100000, guid: 64921d516df783d4a9138472429ee805, type: 2}
   goldColorForRoad: {fileID: 2100000, guid: 99dc4af2280e3c744960170d5d42370b, type: 2}

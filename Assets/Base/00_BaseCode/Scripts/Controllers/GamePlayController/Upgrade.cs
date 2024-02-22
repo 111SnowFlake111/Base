@@ -6,7 +6,7 @@ public class Upgrade : MonoBehaviour
 {
     public GameObject upgrade;
     public GameObject body;
-    public GameObject shinyEffect;
+
     // Start is called before the first frame update
     void Start()
     {

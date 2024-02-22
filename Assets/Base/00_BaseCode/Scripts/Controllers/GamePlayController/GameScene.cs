@@ -40,8 +40,8 @@ public class GameScene : BaseScene
 
     public void Init() //Cho các hàm chạy 1 lần
     {
-        popupPrepage.SetActive(true);
         setting.gameObject.SetActive(true);
+        popupPrepage.SetActive(true);        
         InitState();
         rangeUpgradeBtn.onClick.AddListener(delegate { RangeUpgrade();  });
         damageUpgradeBtn.onClick.AddListener(delegate { DamageUpgrade(); });

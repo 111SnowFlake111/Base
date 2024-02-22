@@ -26,6 +26,16 @@ public class Cylinder : MonoBehaviour
     public bool moveForward = false;
     public float moveForwardSpeed = 5f;
 
+    public bool moveTowardPlayer = false;
+    public float moveTowardPlayerSpeed = 5f;
+
+    public bool useCustomXLimit = false;
+    public float customXLeft = -3f;
+    public float customXRight = 3f;
+
+    public bool useCustomZLimit = false;
+    public float customZForward = 100f;
+
     public int hitCount = 0;
     private bool isOnConveyor = false;
     public bool isHitAble = true;
@@ -47,6 +57,11 @@ public class Cylinder : MonoBehaviour
         {
             moveLRSpeed = Mathf.Abs(moveLRSpeed);
         }
+
+        if (moveLFReverse)
+        {
+            moveLFCheck = true;
+        }
     }
 
     void Update()
@@ -55,41 +70,55 @@ public class Cylinder : MonoBehaviour
         {
             if (moveLFCheck)
             {
-                if (moveLFReverse)
-                {
-                    gameObject.transform.position += new Vector3(-moveLRSpeed, 0, 0) * Time.deltaTime;
-                }
-                else
-                {
-                    gameObject.transform.position += new Vector3(moveLRSpeed, 0, 0) * Time.deltaTime;
-                }                
+                gameObject.transform.position += new Vector3(moveLRSpeed, 0, 0) * Time.deltaTime;                
             }
             else
             {
-                if (moveLFReverse)
-                {
-                    gameObject.transform.position += new Vector3(moveLRSpeed, 0, 0) * Time.deltaTime;
-                }
-                else
-                {
-                    gameObject.transform.position += new Vector3(-moveLRSpeed, 0, 0) * Time.deltaTime;
-                }
+                gameObject.transform.position += new Vector3(-moveLRSpeed, 0, 0) * Time.deltaTime;
             }
 
-            if (gameObject.transform.position.x <= leftLimit.position.x)
+            if (useCustomXLimit)
             {
-                moveLFCheck = true;
-            }
+                if (gameObject.transform.position.x <= customXLeft)
+                {
+                    moveLFCheck = true;
+                }
 
-            if (gameObject.transform.position.x >= rightLimit.position.x)
-            {
-                moveLFCheck = false;
+                if (gameObject.transform.position.x >= customXRight)
+                {
+                    moveLFCheck = false;
+                }
             }
+            else
+            {
+                if (gameObject.transform.position.x <= leftLimit.position.x)
+                {
+                    moveLFCheck = true;
+                }
+
+                if (gameObject.transform.position.x >= rightLimit.position.x)
+                {
+                    moveLFCheck = false;
+                }
+            }            
         }
 
         if(isHitAble && moveForward && playerDetected)
-        {
+        {            
             gameObject.transform.position += new Vector3(0, 0, moveForwardSpeed) * Time.deltaTime;
+
+            if (useCustomZLimit)
+            {
+                if (gameObject.transform.position.z >= customZForward)
+                {
+                    moveForward = false;
+                }
+            }
+        }
+
+        if (isHitAble && moveTowardPlayer && playerDetected)
+        {
+            gameObject.transform.position += new Vector3(0, 0, -moveTowardPlayerSpeed) * Time.deltaTime;
         }
 
         if (isHitAble == false &&  isOnConveyor == false)

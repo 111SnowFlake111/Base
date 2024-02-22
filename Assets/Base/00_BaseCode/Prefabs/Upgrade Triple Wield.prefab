@@ -1122,7 +1122,7 @@ ParticleSystem:
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5849,7 +5849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7945674074543572514
 Transform:
   m_ObjectHideFlags: 0
@@ -15411,7 +15411,7 @@ ParticleSystem:
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -20264,7 +20264,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrade: {fileID: 8442877690794353565}
   body: {fileID: 6924324657735353344}
-  shinyEffect: {fileID: 0}
 --- !u!54 &-8060660527146867353
 Rigidbody:
   m_ObjectHideFlags: 0
