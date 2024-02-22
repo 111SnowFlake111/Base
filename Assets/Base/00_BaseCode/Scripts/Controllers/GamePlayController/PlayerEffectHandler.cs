@@ -35,7 +35,7 @@ public class PlayerEffectHandler : MonoBehaviour
 
         if (other.tag.Contains("Spike"))
         {
-            if (other.GetComponent<Spike>().hitLimit > 0)
+            if (other.GetComponent<SetOfSpikes>().hitLimit > 0)
             {
                 ouchie = Instantiate(hurt.gameObject, playerPos.transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
                 ouchie.GetComponent<ParticleSystem>().Play();
