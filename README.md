@@ -21,3 +21,5 @@ Trên đường trong các màn hiện sẽ có các object sau:
 Ngoài ra các ổ đạn có thể di chuyển tiến lùi hoặc sang phải trái
 
 Có các powerup bao gồm các súng có trong shop (khi nhặt trên đường thì sẽ chỉ được dùng tạm thời), dual wield (bắn 2 súng cùng lúc), triple wield (bắn 3 súng cùng lúc); Hiện các powerup này không được đặt trong các level (trừ một vài level đầu), script thì vẫn có nên có thể đặt vào các level để nhặt
+
+***Demo: https://youtu.be/HQQeqlNfzNU
