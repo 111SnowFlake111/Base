@@ -3,7 +3,7 @@ Chạy game từ Loading Scene
 
 Unity Ver: 2020.3.38f1
 
-Game hiện có 15 màn (sẽ còn add thêm), sau khi chạy hết màn cuối thì các màn kế sẽ được chọn ngẫu nhiên từ các màn có sẵn
+Game hiện có 25 màn (sẽ còn add thêm), sau khi chạy hết màn cuối thì các màn kế sẽ được chọn ngẫu nhiên từ các màn có sẵn
 
 Game có Inventory để đổi súng
 
@@ -17,8 +17,10 @@ Trên đường trong các màn hiện sẽ có các object sau:
 - Spikes (Gai sẽ làm giảm 1% sát thương và đẩy người chơi lại)
 - Bonus Panel (Bảng thưởng chỉ số, khi bắn vào sẽ cộng dồn vào số cuối cùng, khi người chơi chạm phải sẽ nhận được bonus theo số đó)
 - Rock (Xuất hiện ở cuối mỗi màn, khi bắn vỡ sẽ rớt tiền cho người chơi nhặt, nếu va phải sẽ thua)
+- Spreader (Khi bắn trúng sẽ bắn ra 2 viên đạn đi song song, hướng đi của 2 viên đạn có thể bao gồm thẳng thẳng/trái thẳng/thẳng phải/trái phải/custom)
+- Clock (Hiện tại sẽ là bắn đủ số lần sẽ tăng Power, tiếp nhận đạn cho tới khi Player va vào hoặc đi qua)
 
-Ngoài ra các ổ đạn có thể di chuyển tiến lùi hoặc sang phải trái
+Ngoài ra các ổ đạn và Bonus Panel có thể di chuyển tiến lùi hoặc sang phải trái
 
 Có các powerup bao gồm các súng có trong shop (khi nhặt trên đường thì sẽ chỉ được dùng tạm thời), dual wield (bắn 2 súng cùng lúc), triple wield (bắn 3 súng cùng lúc); Hiện các powerup này không được đặt trong các level (trừ một vài level đầu), script thì vẫn có nên có thể đặt vào các level để nhặt
 
