@@ -9,11 +9,11 @@ public class Clock : MonoBehaviour
     public TMP_Text bonusStatus;
     public TMP_Text tips;
 
-    public int bonusPerSufficientHits = 1;
+    public float bonusPerSufficientHits = 1;
     public int numberOfHitsForBonus = 5;
 
     int hitCount = 0;
-    int bonusGained = 0;
+    float bonusGained = 0;
 
     bool isHitAble = true;
 

@@ -23,7 +23,7 @@ public class GachaBonus : MonoBehaviour
     public bool isMoving = true;
     public void Init()
     {
-        Debug.LogError("arrow has been assigned");
+
     }
     public void InitState()
     {
