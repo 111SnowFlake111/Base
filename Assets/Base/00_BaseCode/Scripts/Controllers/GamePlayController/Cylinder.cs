@@ -132,12 +132,6 @@ public class Cylinder : MonoBehaviour
         }
     }
 
-    public IEnumerator CylinderDestroyer()
-    {
-        yield return new WaitForSeconds(15);
-        SimplePool2.Despawn(gameObject);
-    }
-
     public void OnTriggerEnter(Collider collider)
     {
         var moveToConveyor = gameObject.transform.position + new Vector3(-15f, 0, 0);
@@ -170,7 +164,7 @@ public class Cylinder : MonoBehaviour
 
                     //if (temp != null)
                     //{
-                        
+
                     //}
                 }
             }
@@ -199,7 +193,7 @@ public class Cylinder : MonoBehaviour
                             {
                                 hitCount = 8;
                                 isHitAble = false;
-                                
+
                                 //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
                                 //{
                                 //    isOnConveyor = true;
@@ -234,7 +228,7 @@ public class Cylinder : MonoBehaviour
                             {
                                 hitCount = 8;
                                 isHitAble = false;
-                                
+
                                 //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
                                 //{
                                 //    isOnConveyor = true;
@@ -265,13 +259,33 @@ public class Cylinder : MonoBehaviour
                         (() =>
                         {
                             isHitAble = false;
-                            
+
                             //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
                             //{
                             //    isOnConveyor = true;
                             //});
                         }
                         );
+                }
+            }
+
+            if (collider.gameObject.tag == "Bullet")
+            {
+                if (hitCount < 8)
+                {
+                    SimplePool2.Despawn(collider.gameObject);
+                    bulletSmall[hitCount].SetActive(true);
+                    hitCount++;
+                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
+                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+                        (() =>
+                        {
+                            if (hitCount >= 8)
+                            {
+                                hitCount = 8;
+                                isHitAble = false;
+                            }
+                        });
                 }
             }
         }

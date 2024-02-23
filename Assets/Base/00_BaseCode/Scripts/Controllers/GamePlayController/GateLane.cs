@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GateLane : MonoBehaviour
@@ -7,7 +8,36 @@ public class GateLane : MonoBehaviour
     public GameObject gate3LanesMain;
     public GameObject gateMain;
 
+    public TMP_Text gateLaneGate3Lanes;
+    public TMP_Text gateLaneSingle;
+
     bool rewardReceived = false;
+
+    private void Start()
+    {
+        if (gate3LanesMain != null)
+        {
+            if (gameObject.tag == "Lane1")
+            {
+                gateLaneGate3Lanes.text = "+ " + gate3LanesMain.GetComponent<Gate3Lanes>().pointsForFirstLane.ToString();
+            }
+            
+            if (gameObject.tag == "Lane2")
+            {
+                gateLaneGate3Lanes.text = "+ " + gate3LanesMain.GetComponent<Gate3Lanes>().pointsForSecondLane.ToString();
+            }
+            
+            if (gameObject.tag == "Lane3")
+            {
+                gateLaneGate3Lanes.text = "+ " + gate3LanesMain.GetComponent<Gate3Lanes>().pointsForThirdLane.ToString();
+            }            
+        }
+
+        if (gateMain != null)
+        {
+            gateLaneSingle.text = "+ " + gateMain.GetComponent<Gate>().pointsForLane.ToString();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,7 +70,7 @@ public class GateLane : MonoBehaviour
 
             //Cho Gate có 1 cửa
             if (gateMain != null)
-            {
+            {                
                 GamePlayController.Instance.playerContain.bonusDamage += (gateMain.GetComponent<Gate>().pointsForLane / 100);
                 gateMain.GetComponent<Gate>().DespawnBulletGate();
                 rewardReceived = true;

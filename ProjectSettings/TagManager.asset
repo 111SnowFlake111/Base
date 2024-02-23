@@ -47,6 +47,8 @@ TagManager:
   - Lane2
   - Lane3
   - LaneSingle
+  - PanelWall
+  - Spreader
   layers:
   - Default
   - TransparentFX

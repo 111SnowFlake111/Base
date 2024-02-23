@@ -26,14 +26,24 @@ public class PlayerEffectHandler : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Contains("Panel") || other.tag.Contains("Lane"))
+        if (other.tag.Contains("Lane"))
         {
             stonk = Instantiate(powerUp.gameObject, playerPos.transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
             stonk.GetComponent<ParticleSystem>().Play();
             Destroy(stonk, 1f);
         }
 
-        if (other.tag.Contains("Spike"))
+        if (other.tag.Contains("Panel"))
+        {
+            if (!other.GetComponent<BonusPanel>().hasWall)
+            {
+                stonk = Instantiate(powerUp.gameObject, playerPos.transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
+                stonk.GetComponent<ParticleSystem>().Play();
+                Destroy(stonk, 1f);
+            }
+        }
+
+        if (other.tag.Contains("Spike") || other.tag.Contains("PanelWall"))
         {
             if (other.GetComponent<SetOfSpikes>().hitLimit > 0)
             {

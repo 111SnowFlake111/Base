@@ -29,6 +29,7 @@ public class GameScene : BaseScene
     public Button moneyAdd;
 
     public TMP_Text money;
+    public TMP_Text level;
     public TMP_Text rangeCost;
     public TMP_Text damageCost;
     public TMP_Text fireRateCost;
@@ -55,7 +56,15 @@ public class GameScene : BaseScene
         moneyAdd.onClick.AddListener(delegate { OpenShop(); });
         money.text = "" + UseProfile.Money + "$";
 
-        
+        if (UseProfile.GameLevel >= GamePlayController.Instance.playerContain.mapController.levels.Count)
+        {
+            level.text = "Level " + UseProfile.GameLevel.ToString() + " (Randomized)";
+        }
+        else
+        {
+            level.text = "Level " + UseProfile.GameLevel.ToString();
+        }
+
         this.RegisterListener(EventID.CHANGE_MONEY, MoneyUpdate);
         
     }
@@ -152,6 +161,17 @@ public class GameScene : BaseScene
     public void MoneyUpdate(object param)
     {
         money.text = UseProfile.Money.ToString() + "$";
-    }    
-
+    }   
+    
+    public void LevelChange(object param)
+    {
+        if (UseProfile.GameLevel >= GamePlayController.Instance.playerContain.mapController.levels.Count)
+        {
+            level.text = "Level " + UseProfile.GameLevel.ToString() + " (Randomized)";
+        }
+        else
+        {
+            level.text = "Level " + UseProfile.GameLevel.ToString();
+        }
+    }
 }
