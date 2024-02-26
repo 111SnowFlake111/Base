@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 5627659563952288205}
-  playerDetector: {fileID: 0}
+  playerDetector: {fileID: 6272073718951201128}
   panelParts:
   - {fileID: 8433927808918034118}
   - {fileID: 5549712095873412134}

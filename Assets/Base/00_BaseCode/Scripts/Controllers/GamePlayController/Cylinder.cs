@@ -318,4 +318,12 @@ public class Cylinder : MonoBehaviour
         //    SimplePool2.Despawn(gameObject);
         //}  
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag.Contains("Bullet"))
+        {
+            SimplePool2.Despawn(other.gameObject);
+        }
+    }
 }

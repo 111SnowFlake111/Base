@@ -11370,6 +11370,11 @@ MonoBehaviour:
   - {fileID: 3600299252166942605, guid: cd2640872af4b77429c2012cc70be5da, type: 3}
   - {fileID: 3600299252166942605, guid: 093bc0d4b7924224d98bea5cba640916, type: 3}
   - {fileID: 3600299252166942605, guid: 2005e6237fceb0a4ea672729f96130b8, type: 3}
+  - {fileID: 3600299252166942605, guid: dd9d3270b1867804e9cafc2511b8081a, type: 3}
+  - {fileID: 3600299252166942605, guid: 8ab223a82f5e50945a311308a4d653e9, type: 3}
+  - {fileID: 3600299252166942605, guid: 4299fdd9d5c36e34cbbccc272a3ad6bc, type: 3}
+  - {fileID: 3600299252166942605, guid: 91f2dabe15455fa4fa7a37cbcca7ae58, type: 3}
+  - {fileID: 3600299252166942605, guid: e1ca16555047b9947884a87f63d08e05, type: 3}
   greyColorForRoad: {fileID: 2100000, guid: 64921d516df783d4a9138472429ee805, type: 2}
   goldColorForRoad: {fileID: 2100000, guid: 99dc4af2280e3c744960170d5d42370b, type: 2}
   conveyor: {fileID: 1921374187514902744, guid: 1b2133653af544c459e4e89a30dead4a, type: 3}

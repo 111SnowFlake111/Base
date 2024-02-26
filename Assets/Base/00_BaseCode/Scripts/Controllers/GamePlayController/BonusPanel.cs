@@ -183,7 +183,7 @@ public class BonusPanel : MonoBehaviour
         SimplePool2.Despawn(gameObject);
     }
 
-    public void OnTriggerEnter(UnityEngine.Collider collider)
+    public void OnTriggerEnter(Collider collider)
     {
         if (collider.tag.Contains("Bullet") && !hasWall)
         {
@@ -218,12 +218,19 @@ public class BonusPanel : MonoBehaviour
 
             if (bonusName.text.Contains("Money"))
             {
-                UseProfile.Money += (int.Parse(finalValue.text));
+                UseProfile.Money += Mathf.RoundToInt(float.Parse(finalValue.text));
             }
 
             GamePlayController.Instance.gameScene.InitState();
             Destroy(gameObject);
         }
     }
-  
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag.Contains("Bullet"))
+        {
+            SimplePool2.Despawn(other.gameObject);
+        }
+    }
 }

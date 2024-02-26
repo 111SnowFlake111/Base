@@ -59,5 +59,10 @@ public class Spreader : MonoBehaviour
             var temp2 = SimplePool2.Spawn(bulletTurret, bulletSpawnPointR.transform.position, bulletSpawnPointR.transform.rotation);
             StartCoroutine(temp2.GetComponent<BulletTurret>().DespawnBullet());
         }
+
+        if (other.tag == "BehindThePlayer")
+        {
+            Destroy(gameObject);
+        }
     }
 }
