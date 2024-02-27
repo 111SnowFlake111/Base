@@ -8,7 +8,9 @@ public class Bullet : MonoBehaviour
     public float inaccuracy = 0;
     private bool spawnCheck = false;
 
-    public Transform posBullet;
+    public float damage = 1;
+    public float cylinderDamage = 1;
+
     public ParticleSystem hitEffect;
 
     void Update()
@@ -17,7 +19,7 @@ public class Bullet : MonoBehaviour
         {
             inaccuracy = RandomX();
         }       
-        posBullet.transform.position += new Vector3(inaccuracy, 0, 50f) * Time.deltaTime;
+        gameObject.transform.position += new Vector3(inaccuracy, 0, 50f) * Time.deltaTime;
     }
     public IEnumerator HandleDestoy(float baseRange)
     {
@@ -55,14 +57,14 @@ public class Bullet : MonoBehaviour
                 var isHitable = other.GetComponent<Cylinder>().isHitAble;
                 if (isHitable)
                 {
-                    GameObject hit = Instantiate(hitEffect.gameObject, posBullet.transform.position + new Vector3(0, 0, -2f), Quaternion.identity);
+                    GameObject hit = Instantiate(hitEffect.gameObject, gameObject.transform.position + new Vector3(0, 0, -2f), Quaternion.identity);
                     hit.GetComponent<ParticleSystem>().Play();
                     Destroy(hit, 0.5f);
                 }
             }
             else
             {
-                GameObject hit = Instantiate(hitEffect.gameObject, posBullet.transform.position + new Vector3(0, 0, -2f), Quaternion.identity);
+                GameObject hit = Instantiate(hitEffect.gameObject, gameObject.transform.position + new Vector3(0, 0, -2f), Quaternion.identity);
                 hit.GetComponent<ParticleSystem>().Play();
                 Destroy(hit, 0.5f);
             } 

@@ -28,32 +28,43 @@ public class Rock : MonoBehaviour
             PopupEndGame.Setup().Show();
         }
 
-        if (other.tag.Contains("Bullet"))
+        if (other.tag == "Bullet")
         {
             SimplePool2.Despawn(other.gameObject);
-            switch (GamePlayController.Instance.playerContain.currentGun)
-            {
-                case 0:
-                    rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 1 + GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
-                    break;
-                case 1:
-                    rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 1 - 1 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
-                    break;
-                case 2:
-                    rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 2 - 2 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
-                    break;
-                case 3:
-                    rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 4 - 4 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
-                    break;
-                case 4:
-                    rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 8 - 8 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
-                    break;
-            }
-            
+            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - other.GetComponent<Bullet>().damage + other.GetComponent<Bullet>().damage * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+
             if (float.Parse(rockHP.text) <= 0)
             {
                 Destroy(gameObject);
             }
         }
+
+        //if (other.tag.Contains("Bullet"))
+        //{
+        //    SimplePool2.Despawn(other.gameObject);
+        //    switch (GamePlayController.Instance.playerContain.currentGun)
+        //    {
+        //        case 0:
+        //            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 1 + GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+        //            break;
+        //        case 1:
+        //            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 1 - 1 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+        //            break;
+        //        case 2:
+        //            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 2 - 2 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+        //            break;
+        //        case 3:
+        //            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 4 - 4 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+        //            break;
+        //        case 4:
+        //            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - 8 - 8 * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+        //            break;
+        //    }
+
+        //    if (float.Parse(rockHP.text) <= 0)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 }

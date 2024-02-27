@@ -8,6 +8,16 @@ using DG.Tweening;
 
 public class HandController : MonoBehaviour
 {
+    public List<GameObject> rightHands;
+    public List<GameObject> middleHands;
+    public List<GameObject> leftHands;
+
+    public GameObject spawnPointSingle;
+    public List<GameObject> spawnPointsDual;
+    public List<GameObject> spawnPointsTriple;
+
+    public List<GameObject> bullets;
+
     public List<GameObject> gun;
     public List<GameObject> doubleGun;
     public List<GameObject> tripleGun;
@@ -17,6 +27,7 @@ public class HandController : MonoBehaviour
     public GameObject bullet;
 
     public GameObject handPlayer;
+    public GameObject handPlayerBody;
 
     public GameObject bulletSpawner;
     public List<GameObject> bulletSpawnerDual;
@@ -34,14 +45,40 @@ public class HandController : MonoBehaviour
     public Camera camera;
     public float baseRange = 1;
 
+    GameObject handR;
+    GameObject handM;
+    GameObject handL;
+
     public void Start()
     {
-        foreach (GameObject bul in bulletType)
+        foreach (GameObject bul in bullets)
         {
             SimplePool2.Preload(bul, 50);
         }
 
-        GunUpdate(GamePlayController.Instance.playerContain.currentGun);
+        if (handR != null)
+        {
+            Destroy(handR);
+        }
+
+        if (handM != null)
+        {
+            Destroy(handM);
+        }
+
+        if (handL != null)
+        {
+            Destroy(handL);
+        }
+        
+        handR = Instantiate(rightHands[0], spawnPointsDual[1].transform.position, Quaternion.identity);
+        handR.transform.parent = handPlayerBody.transform;
+
+        handL = Instantiate(leftHands[0], spawnPointsDual[0].transform.position, Quaternion.identity);
+        handL.transform.parent = handPlayerBody.transform;
+
+
+        //GunUpdate(GamePlayController.Instance.playerContain.currentGun);
 
         //Súng default = pistol
 

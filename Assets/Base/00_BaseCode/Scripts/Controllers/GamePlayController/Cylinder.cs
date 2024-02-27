@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditorInternal;
 public class Cylinder : MonoBehaviour
 {
     //public List<GameObject> bulletFilled;
@@ -138,154 +139,162 @@ public class Cylinder : MonoBehaviour
 
         if (collider.gameObject.tag.Contains("Bullet") && isHitAble == true)
         {
-            if (collider.gameObject.tag == "BulletSmall")
-            {
-                if (hitCount < 8)
-                {
-                    SimplePool2.Despawn(collider.gameObject);
-                    bulletSmall[hitCount].SetActive(true);
-                    hitCount++;
-                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
-                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
-                        (() =>
-                        {
-                            if (hitCount >= 8)
-                            {
-                                hitCount = 8;
-                                isHitAble = false;
+            //if (collider.gameObject.tag == "BulletSmall")
+            //{
+            //    if (hitCount < 8)
+            //    {
+            //        SimplePool2.Despawn(collider.gameObject);
+            //        bulletSmall[hitCount].SetActive(true);
+            //        hitCount++;
+            //        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
+            //        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+            //            (() =>
+            //            {
+            //                if (hitCount >= 8)
+            //                {
+            //                    hitCount = 8;
+            //                    isHitAble = false;
 
-                                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                //{
-                                //    isOnConveyor = true;
-                                //});
-                            }
-                        });
-                    //var temp = bulletHole;
+            //                    //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+            //                    //{
+            //                    //    isOnConveyor = true;
+            //                    //});
+            //                }
+            //            });
+            //        //var temp = bulletHole;
 
-                    //if (temp != null)
-                    //{
+            //        //if (temp != null)
+            //        //{
 
-                    //}
-                }
-            }
+            //        //}
+            //    }
+            //}
 
-            if (collider.gameObject.tag == "BulletMedium")
-            {
-                if (hitCount < 8)
-                {
-                    SimplePool2.Despawn(collider.gameObject);
-                    for (int i = 0; i < 2; i++)
-                    {
-                        if (hitCount >= 8)
-                        {
-                            break;
-                        }
-                        //var temp = bulletHole;
-                        //bulletHole.SetActive(true);
-                        bulletMedium[hitCount].SetActive(true);
-                        hitCount++;
-                    }
-                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 80);
-                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
-                        (() =>
-                        {
-                            if (hitCount >= 8)
-                            {
-                                hitCount = 8;
-                                isHitAble = false;
+            //if (collider.gameObject.tag == "BulletMedium")
+            //{
+            //    if (hitCount < 8)
+            //    {
+            //        SimplePool2.Despawn(collider.gameObject);
+            //        for (int i = 0; i < 2; i++)
+            //        {
+            //            if (hitCount >= 8)
+            //            {
+            //                break;
+            //            }
+            //            //var temp = bulletHole;
+            //            //bulletHole.SetActive(true);
+            //            bulletMedium[hitCount].SetActive(true);
+            //            hitCount++;
+            //        }
+            //        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 80);
+            //        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+            //            (() =>
+            //            {
+            //                if (hitCount >= 8)
+            //                {
+            //                    hitCount = 8;
+            //                    isHitAble = false;
 
-                                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                //{
-                                //    isOnConveyor = true;
-                                //});
-                            }
-                        }
-                        );
-                }
-            }
+            //                    //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+            //                    //{
+            //                    //    isOnConveyor = true;
+            //                    //});
+            //                }
+            //            }
+            //            );
+            //    }
+            //}
 
-            if (collider.gameObject.tag == "BulletShotgun")
-            {
-                if (hitCount < 8)
-                {
-                    SimplePool2.Despawn(collider.gameObject);
-                    for (int i = 0; i < 4; i++)
-                    {
-                        if (hitCount >= 8)
-                        {
-                            break;
-                        }
-                        //var temp = bulletHole;
-                        //bulletHole.SetActive(true);
-                        bulletShotgun[hitCount].SetActive(true);
-                        hitCount++;
-                    }
-                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 160);
-                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
-                        (() =>
-                        {
-                            if (hitCount >= 8)
-                            {
-                                hitCount = 8;
-                                isHitAble = false;
+            //if (collider.gameObject.tag == "BulletShotgun")
+            //{
+            //    if (hitCount < 8)
+            //    {
+            //        SimplePool2.Despawn(collider.gameObject);
+            //        for (int i = 0; i < 4; i++)
+            //        {
+            //            if (hitCount >= 8)
+            //            {
+            //                break;
+            //            }
+            //            //var temp = bulletHole;
+            //            //bulletHole.SetActive(true);
+            //            bulletShotgun[hitCount].SetActive(true);
+            //            hitCount++;
+            //        }
+            //        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 160);
+            //        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+            //            (() =>
+            //            {
+            //                if (hitCount >= 8)
+            //                {
+            //                    hitCount = 8;
+            //                    isHitAble = false;
 
-                                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                                //{
-                                //    isOnConveyor = true;
-                                //});
-                            }
-                        }
-                        );
-                }
-            }
+            //                    //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+            //                    //{
+            //                    //    isOnConveyor = true;
+            //                    //});
+            //                }
+            //            }
+            //            );
+            //    }
+            //}
 
-            if (collider.gameObject.tag == "BulletBig")
-            {
-                if (hitCount < 8)
-                {
-                    SimplePool2.Despawn(collider.gameObject);
-                    for (int i = 0; i < 8; i++)
-                    {
-                        if (hitCount >= 8)
-                        {
-                            break;
-                        }
-                        //var temp = bulletHole;
-                        bulletBig[hitCount].SetActive(true);
-                        hitCount++;
-                    }
-                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 320);
-                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
-                        (() =>
-                        {
-                            isHitAble = false;
+            //if (collider.gameObject.tag == "BulletBig")
+            //{
+            //    if (hitCount < 8)
+            //    {
+            //        SimplePool2.Despawn(collider.gameObject);
+            //        for (int i = 0; i < 8; i++)
+            //        {
+            //            if (hitCount >= 8)
+            //            {
+            //                break;
+            //            }
+            //            //var temp = bulletHole;
+            //            bulletBig[hitCount].SetActive(true);
+            //            hitCount++;
+            //        }
+            //        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 320);
+            //        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+            //            (() =>
+            //            {
+            //                isHitAble = false;
 
-                            //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
-                            //{
-                            //    isOnConveyor = true;
-                            //});
-                        }
-                        );
-                }
-            }
+            //                //move = body.transform.DOMove(conveyorSpawner.position, 0.3f).OnComplete(() =>
+            //                //{
+            //                //    isOnConveyor = true;
+            //                //});
+            //            }
+            //            );
+            //    }
+            //}
 
             if (collider.gameObject.tag == "Bullet")
             {
                 if (hitCount < 8)
                 {
                     SimplePool2.Despawn(collider.gameObject);
-                    bulletSmall[hitCount].SetActive(true);
-                    hitCount++;
-                    var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
-                    body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
-                        (() =>
-                        {
-                            if (hitCount >= 8)
+                    for (int i = 0; i < collider.GetComponent<Bullet>().cylinderDamage; i++)
+                    {
+                        bulletSmall[hitCount].SetActive(true);
+                        hitCount++;
+                        var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
+                        body.transform.DOLocalRotate(temp1, 0.1f).OnComplete
+                            (() =>
                             {
-                                hitCount = 8;
-                                isHitAble = false;
-                            }
-                        });
+                                if (hitCount >= 8)
+                                {
+                                    hitCount = 8;
+                                    isHitAble = false;
+                                }
+                            });
+                        if (hitCount >= 8)
+                        {
+                            break;
+                        }
+                    }                   
+                    
                 }
             }
         }

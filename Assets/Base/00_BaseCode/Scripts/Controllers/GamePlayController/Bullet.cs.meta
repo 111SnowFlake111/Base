@@ -4,8 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - posBullet: {instanceID: 0}
-  - hitEffect: {instanceID: 0}
+  - hitEffect: {fileID: 19800000, guid: 2b225ea41abc67c4b8a9683a313278de, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
