@@ -6755,12 +6755,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHands:
   - {fileID: 2519356865164798553, guid: 662364961a524d0448f706a6f68d72d3, type: 3}
-  - {fileID: 3168215700548154675, guid: 98e097ad32ae68a42b04c93055670210, type: 3}
   - {fileID: 9161601133129754937, guid: d0da631869042b145b20573ef4b01997, type: 3}
+  - {fileID: 3168215700548154675, guid: 98e097ad32ae68a42b04c93055670210, type: 3}
   - {fileID: 8360862985451673727, guid: 7761e1be21efc2e4391c4c210228c2de, type: 3}
   - {fileID: 2053954291391119022, guid: 7d67688740345bd4ea8f97dca977b0f9, type: 3}
   - {fileID: 9001030081746950615, guid: c9d76b497212d5849b225b22761d4694, type: 3}
-  - {fileID: 1262751506717471642, guid: 35048f1d327e28440bf79dec6b631418, type: 3}
   - {fileID: 8632263698223865569, guid: c497ab41aa381eb479f688fe0a54a1d5, type: 3}
   middleHands:
   - {fileID: 9137369680418230977, guid: 52b2549933523f74f94aba684f648066, type: 3}
@@ -6769,7 +6768,6 @@ MonoBehaviour:
   - {fileID: 7255175300032825738, guid: f13d6511c25f08349ac1bce326f50c00, type: 3}
   - {fileID: 6271394409073809259, guid: 8db02bc7334bfe94d9db831b619e51e5, type: 3}
   - {fileID: 4143564188339760906, guid: 2ddbf3e1ee1d11c47b21a75d9447d4d8, type: 3}
-  - {fileID: 3051147058579335784, guid: e6de350cccd1ae84d9ea23e635eec824, type: 3}
   - {fileID: 3487186959628896028, guid: 2f81486aee62c1b47b05e0ee3b79b43f, type: 3}
   leftHands:
   - {fileID: 143193755630288181, guid: 4385ce03fda6de04babd8d112785aed8, type: 3}
@@ -6778,7 +6776,6 @@ MonoBehaviour:
   - {fileID: 5353027278683459009, guid: becef4eb805e952449f7e7be0417871e, type: 3}
   - {fileID: 4014842559588437319, guid: 4a8afcd2dfc90d446a27da7b38e5811f, type: 3}
   - {fileID: 7289685537192852809, guid: 79e6c578ab76d95428814ddc22e4fe9d, type: 3}
-  - {fileID: 1252059702917578708, guid: 0f6cf0d37642256488afbcd3fecba943, type: 3}
   - {fileID: 8754604291153104476, guid: efa422821852e1c4391e8fb913fef8f4, type: 3}
   spawnPointSingle: {fileID: 843352844}
   spawnPointsDual:

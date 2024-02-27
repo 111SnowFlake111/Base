@@ -48,21 +48,21 @@ public class GateLane : MonoBehaviour
             {
                 if (gameObject.tag == "Lane1")
                 {
-                    GamePlayController.Instance.playerContain.bonusDamage += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForFirstLane / 100);
+                    GamePlayController.Instance.playerContain.currentYear += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForFirstLane);
                     gate3LanesMain.GetComponent<Gate3Lanes>().DespawnBulletGate(1);
                     rewardReceived = true;
                 }
 
                 if (gameObject.tag == "Lane2")
                 {
-                    GamePlayController.Instance.playerContain.bonusDamage += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForSecondLane / 100);
+                    GamePlayController.Instance.playerContain.currentYear += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForSecondLane);
                     gate3LanesMain.GetComponent<Gate3Lanes>().DespawnBulletGate(2);
                     rewardReceived = true;
                 }
 
                 if (gameObject.tag == "Lane3")
                 {
-                    GamePlayController.Instance.playerContain.bonusDamage += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForThirdLane / 100);
+                    GamePlayController.Instance.playerContain.currentYear += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForThirdLane);
                     gate3LanesMain.GetComponent<Gate3Lanes>().DespawnBulletGate(3);
                     rewardReceived = true;
                 }
@@ -70,8 +70,9 @@ public class GateLane : MonoBehaviour
 
             //Cho Gate có 1 cửa
             if (gateMain != null)
-            {                
-                GamePlayController.Instance.playerContain.bonusDamage += (gateMain.GetComponent<Gate>().pointsForLane / 100);
+            {
+                //GamePlayController.Instance.playerContain.bonusDamage += (gateMain.GetComponent<Gate>().pointsForLane / 100);
+                GamePlayController.Instance.playerContain.currentYear += gateMain.GetComponent<Gate>().pointsForLane;
                 gateMain.GetComponent<Gate>().DespawnBulletGate();
                 rewardReceived = true;
             }

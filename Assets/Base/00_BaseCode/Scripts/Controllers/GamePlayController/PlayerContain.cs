@@ -26,7 +26,7 @@ public class PlayerContain : MonoBehaviour
     public int currentGun;
     public float currentYear;
 
-    public bool doubleGun = false;
+    public bool doubleGun = true;
     public bool tripleGun = false;
 
     public void Start()

@@ -73,7 +73,31 @@ public class HandController : MonoBehaviour
         }
 
         currentGun = GamePlayController.Instance.playerContain.currentGun;
-        GunUpdate(GamePlayController.Instance.playerContain.currentGun);
+
+        if (GamePlayController.Instance.playerContain.doubleGun)
+        {
+            handL = Instantiate(leftHands[currentGun], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+            handL.transform.parent = handPlayerBody.transform;
+
+            handR = Instantiate(rightHands[currentGun], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
+            handR.transform.parent = handPlayerBody.transform;
+        }
+        else if (GamePlayController.Instance.playerContain.tripleGun)
+        {
+            handL = Instantiate(leftHands[currentGun], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+            handL.transform.parent = handPlayerBody.transform;
+
+            handM = Instantiate(middleHands[currentGun], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+            handM.transform.parent = handPlayerBody.transform;
+
+            handR = Instantiate(rightHands[currentGun], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
+            handR.transform.parent = handPlayerBody.transform;
+        }
+        else
+        {
+            handR = Instantiate(rightHands[currentGun], spawnPointSingle.transform.localPosition, Quaternion.identity);
+            handR.transform.parent = handPlayerBody.transform;
+        }
 
         //GunUpdate(GamePlayController.Instance.playerContain.currentGun);
 
@@ -100,7 +124,8 @@ public class HandController : MonoBehaviour
         //        Debug.LogError("Player is Activated");
         //    }
         //}
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) /10) != currentGun)
+
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun)
         {
             currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
             GunUpdate(currentGun);
@@ -308,6 +333,11 @@ public class HandController : MonoBehaviour
             handR = Instantiate(rightHands[ID], spawnPointSingle.transform.localPosition, Quaternion.identity);
             handR.transform.parent = handPlayerBody.transform;
         }
+
+        Debug.LogError("Updated, current gun is " + ID.ToString());
+
+        currentGun = ID;
+        handPlayerBody.transform.DORotate(new Vector3(0, 360f, 0), 1f);
     }
 }
 

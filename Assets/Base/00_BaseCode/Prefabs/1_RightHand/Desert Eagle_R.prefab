@@ -512,8 +512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7f7c339cc9acc4b87f8463a0bdd506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 0}
-  bullet: {fileID: 0}
+  bulletSpawnPoint: {fileID: 4535115539501830384}
+  bullet: {fileID: 1000011305497448, guid: 0a9437eece1752c4c9377882109f0b39, type: 3}
   baseRange: 1
 --- !u!114 &6141231090454396377
 MonoBehaviour:

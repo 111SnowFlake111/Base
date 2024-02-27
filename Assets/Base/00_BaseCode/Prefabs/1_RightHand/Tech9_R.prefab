@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7f7c339cc9acc4b87f8463a0bdd506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 0}
-  bullet: {fileID: 0}
+  bulletSpawnPoint: {fileID: 8336870732955737189}
+  bullet: {fileID: 1000013385702638, guid: 051836546f7c2d4458549d5bfaf1fb97, type: 3}
   baseRange: 1
 --- !u!114 &8230323103493111333
 MonoBehaviour:
@@ -252,7 +252,7 @@ Animator:
   m_GameObject: {fileID: 9161601133129754937}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf2d1a8b528bc2845a7f0fc172354cce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
