@@ -188,6 +188,19 @@ public class UseProfile : MonoBehaviour
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.LOADLEVEL);
         }
     }
+    public static float Year
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat(StringHelper.YEAR);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat(StringHelper.YEAR, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.YEARUPGRADE);
+        }
+    }
     public static int Heart
     {
         get

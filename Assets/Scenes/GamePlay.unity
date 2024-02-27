@@ -293,6 +293,7 @@ MonoBehaviour:
   damageUpgradeCount: 0
   fireRateUpgradeCount: 0
   currentGun: 0
+  currentYear: 0
   doubleGun: 0
   tripleGun: 0
 --- !u!4 &39208333
@@ -6836,7 +6837,6 @@ MonoBehaviour:
   speedUp: 0
   speedDown: 0
   camera: {fileID: 732504000}
-  baseRange: 1
 --- !u!4 &1070714555
 Transform:
   m_ObjectHideFlags: 0

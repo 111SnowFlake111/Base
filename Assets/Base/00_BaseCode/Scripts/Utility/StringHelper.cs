@@ -8,6 +8,7 @@ public static class StringHelper
     public const string OWNEDGUNS = "owned_guns";
     public const string MONEY = "money";
     public const string CURRENTLEVEL = "level";
+    public const string YEAR = "year";
 
     public const string LOADING_COMPLETE = "LOADING_COMPLETE";
     public const string ONOFF_SOUND = "ONOFF_SOUND";

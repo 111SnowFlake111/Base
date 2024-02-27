@@ -1,3 +1,4 @@
+using EventDispatcher;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,14 +24,22 @@ public class PlayerContain : MonoBehaviour
     public int fireRateUpgradeCount = 0;
 
     public int currentGun;
+    public float currentYear;
 
     public bool doubleGun = false;
     public bool tripleGun = false;
 
     public void Start()
     {
-        currentGun = UseProfile.EquippedGun;
+        if (UseProfile.Year == 0)
+        {
+            UseProfile.Year = 1900;
+        }
+        currentGun = Mathf.FloorToInt((UseProfile.Year - 1900) / 10);
+        currentYear = UseProfile.Year;
         GamePlayController.Instance.playerContain.isMoving = false;
+
+        this.RegisterListener(EventID.YEARUPGRADE, YearUpdate);
     }
 
     public void RangeUp()
@@ -49,5 +58,11 @@ public class PlayerContain : MonoBehaviour
     {
         fireRateUpgradeCount++;
         bonusFireRate += 0.01f;
+    }
+
+    public void YearUpdate(object dam)
+    {
+        currentGun = Mathf.FloorToInt((UseProfile.Year - 1900) / 10);
+        currentYear = UseProfile.Year;
     }
 }
