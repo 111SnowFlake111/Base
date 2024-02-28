@@ -201,6 +201,19 @@ public class UseProfile : MonoBehaviour
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.YEARUPGRADE);
         }
     }
+    public static string OwnedSpecialGuns
+    {
+        get
+        {
+            return PlayerPrefs.GetString(StringHelper.OWNEDSPECIALGUNS);
+        }
+        set
+        {
+            PlayerPrefs.SetString(StringHelper.OWNEDSPECIALGUNS, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.OWNEDSPECIALGUNSUPDATE);
+        }
+    }
     public static int Heart
     {
         get

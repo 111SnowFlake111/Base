@@ -22,7 +22,7 @@ public class AnimatorController : MonoBehaviour
 
         if (GamePlayController.Instance.playerContain.victory)
         {
-            animator.SetTrigger("Victory");
+            animator.SetBool("Win", true);
         }
 
         if (GamePlayController.Instance.playerContain.start)

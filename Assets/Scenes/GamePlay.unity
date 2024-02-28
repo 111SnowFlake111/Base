@@ -288,7 +288,7 @@ MonoBehaviour:
   bonusFireRate: 0
   bonusRange: 0
   bonusDamage: 0
-  money: 16000
+  cash: 0
   rangeUpgradeCount: 0
   yearUpgradeCount: 0
   fireRateUpgradeCount: 0
