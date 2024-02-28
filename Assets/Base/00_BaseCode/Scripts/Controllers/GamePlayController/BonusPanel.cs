@@ -221,6 +221,21 @@ public class BonusPanel : MonoBehaviour
                 UseProfile.Money += Mathf.RoundToInt(float.Parse(finalValue.text));
             }
 
+            if (bonusName.text.Contains("Year"))
+            {
+                GamePlayController.Instance.playerContain.currentYear += float.Parse(finalValue.text);
+            }
+
+            if (bonusName.text.Contains("Month"))
+            {
+                GamePlayController.Instance.playerContain.currentYear += float.Parse(finalValue.text) / 12;
+            }
+
+            if (bonusName.text.Contains("Day"))
+            {
+                GamePlayController.Instance.playerContain.currentYear += float.Parse(finalValue.text) / 365;
+            }
+
             GamePlayController.Instance.gameScene.InitState();
             Destroy(gameObject);
         }

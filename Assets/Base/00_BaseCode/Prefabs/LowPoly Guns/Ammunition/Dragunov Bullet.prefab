@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inaccuracy: 0
-  damage: 1
-  cylinderDamage: 1
+  damage: 5
+  cylinderDamage: 3
   hitEffect: {fileID: 19800000, guid: 2b225ea41abc67c4b8a9683a313278de, type: 3}
 --- !u!65 &-3058851113318125169
 BoxCollider:

@@ -2923,11 +2923,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: add
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
-      value: Power
+      value: Year
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total

@@ -53,4 +53,11 @@ public class PlayerEffectHandler : MonoBehaviour
             }           
         }
     }
+
+    public void PlayUpgradeEffect()
+    {
+        stonk = Instantiate(powerUp.gameObject, playerPos.transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
+        stonk.GetComponent<ParticleSystem>().Play();
+        Destroy(stonk, 1f);
+    }
 }

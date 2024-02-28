@@ -871,7 +871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
-      value: Power
+      value: Year
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total
@@ -883,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: hasWall
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name
@@ -3287,19 +3287,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: add
-      value: 0.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
-      value: Power
+      value: Day
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total
-      value: 1.5
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: wallHP
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: hasWall

@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 using DG.Tweening;
+using EventDispatcher;
 
 public class HandController : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class HandController : MonoBehaviour
     public Camera camera;
 
     int currentGun;
+    bool allowChangeGun;
 
     GameObject handR;
     GameObject handM;
@@ -99,18 +101,7 @@ public class HandController : MonoBehaviour
             handR.transform.parent = handPlayerBody.transform;
         }
 
-        //GunUpdate(GamePlayController.Instance.playerContain.currentGun);
-
-        //Súng default = pistol
-
-        //gun[0].SetActive(true);
-        //bullet = bulletType[0];
-
-        //currentGun = 0;
-        //gunSpeed = GetComponent<Animator>();
-
-        //GunUpdate(currentGun);
-        //HandleSpawnBullet();
+        //this.RegisterListener(EventID.LOCALYEARUPGRADE, GunUpgradeChecker);
     }
     public void Update()
     {
@@ -125,11 +116,31 @@ public class HandController : MonoBehaviour
         //    }
         //}
 
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun)
+        
+        //if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0)
+        //{
+        //    currentGun = 0;
+        //    GunUpdate(currentGun);
+        //}
+        //else if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= rightHands.Count)
+        //{
+        //    currentGun = rightHands.Count - 1;
+        //    GunUpdate(currentGun);
+        //}
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0 || Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= rightHands.Count)
+        {
+            allowChangeGun = false;
+        }
+        else
+        {
+            allowChangeGun = true;
+        }
+
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun && allowChangeGun)
         {
             currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
             GunUpdate(currentGun);
-        }
+        }           
 
         if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
         {
@@ -181,133 +192,27 @@ public class HandController : MonoBehaviour
         }
 
     }
-    public void HandleSpawnBullet()
-    {
-        //if (!GamePlayController.Instance.playerContain.doubleGun && !GamePlayController.Instance.playerContain.tripleGun)
-        //{
-        //    var temp = SimplePool2.Spawn(bullet, bulletSpawner.transform.position, Quaternion.identity).GetComponent<Bullet>();
-        //    temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
-        //    StartCoroutine(temp.HandleDestoy(baseRange));
-        //}
-        
-        //if (GamePlayController.Instance.playerContain.doubleGun)
-        //{
-        //    foreach(GameObject pos in bulletSpawnerDual)
-        //    {
-        //        var temp = SimplePool2.Spawn(bullet, pos.transform.position, Quaternion.identity).GetComponent<Bullet>();
-        //        temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
-        //        StartCoroutine(temp.HandleDestoy(baseRange));
-        //    }
-        //}
-
-        //if (GamePlayController.Instance.playerContain.tripleGun)
-        //{
-        //    foreach(GameObject pos in bulletSpawnerTriple)
-        //    {
-        //        var temp = SimplePool2.Spawn(bullet, pos.transform.position, Quaternion.identity).GetComponent<Bullet>();
-        //        temp.transform.localEulerAngles = new Vector3(78.6168823f, 0, 0);
-        //        StartCoroutine(temp.HandleDestoy(baseRange));
-        //    }
-        //}
-    }
 
     public void GunUpdate(int ID)
     {
-        ///*
-        // * 0: Pistol
-        // * 1: SMG
-        // * 2: Rifle
-        // * 3: Shotgun
-        // * 4: Sniper
-        // */
-
-        //int gunID;
-        //int bulletID;
-
-        //foreach (GameObject obj in gun)
+        //if (handR != null)
         //{
-        //    obj.SetActive(false);
+        //    Destroy(handR);
         //}
 
-        //foreach (GameObject obj in doubleGun)
+        //if (handM != null)
         //{
-        //    obj.SetActive(false);
+        //    Destroy(handM);
         //}
 
-        //foreach (GameObject obj in tripleGun)
+        //if (handL != null)
         //{
-        //    obj.SetActive(false);
+        //    Destroy(handL);
         //}
 
-        //switch (ID)
-        //{
-        //    case 0:
-        //        GamePlayController.Instance.playerContain.currentGun = 0;
-        //        gunID = 0;
-        //        bulletID = 0;
-        //        baseRange = 1;
-        //        break;
-        //    case 1:
-        //        GamePlayController.Instance.playerContain.currentGun = 1;
-        //        gunID = 1;
-        //        bulletID = 0;
-        //        baseRange = 1;
-        //        break;
-        //    case 2:
-        //        GamePlayController.Instance.playerContain.currentGun = 2;
-        //        gunID = 2;
-        //        bulletID = 1;
-        //        baseRange = 1.25f;
-        //        break;
-        //    case 3:
-        //        GamePlayController.Instance.playerContain.currentGun = 3;
-        //        gunID = 3;
-        //        bulletID = 2;
-        //        baseRange = 0.5f;
-        //        break;
-        //    case 4:
-        //        GamePlayController.Instance.playerContain.currentGun = 4;
-        //        gunID = 4;
-        //        bulletID = 3;
-        //        baseRange = 1.75f;
-        //        break;
-        //    default:
-        //        GamePlayController.Instance.playerContain.currentGun = 0;
-        //        gunID = 0;
-        //        bulletID = 0;
-        //        baseRange = 1;
-        //        break;
-        //}
-
-        //if (GamePlayController.Instance.playerContain.doubleGun)
-        //{
-        //    doubleGun[gunID].SetActive(true);
-        //}
-        //else if (GamePlayController.Instance.playerContain.tripleGun)
-        //{
-        //    tripleGun[gunID].SetActive(true);
-        //}
-        //else
-        //{
-        //    gun[gunID].SetActive(true);
-        //}
-
-        //bullet = bulletType[bulletID];
-
-        if (handR != null)
-        {
-            Destroy(handR);
-        }
-
-        if (handM != null)
-        {
-            Destroy(handM);
-        }
-
-        if (handL != null)
-        {
-            Destroy(handL);
-        }
+        Destroy(handR);
+        Destroy(handM);
+        Destroy(handL);
 
         if (GamePlayController.Instance.playerContain.doubleGun)
         {
@@ -316,6 +221,8 @@ public class HandController : MonoBehaviour
 
             handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
             handR.transform.parent = handPlayerBody.transform;
+
+            Debug.LogError("Dual Wielding");
         }
         else if (GamePlayController.Instance.playerContain.tripleGun)
         {
@@ -334,10 +241,17 @@ public class HandController : MonoBehaviour
             handR.transform.parent = handPlayerBody.transform;
         }
 
-        Debug.LogError("Updated, current gun is " + ID.ToString());
-
         currentGun = ID;
-        handPlayerBody.transform.DORotate(new Vector3(0, 360f, 0), 1f);
+        //handPlayer.transform.DORotate(new Vector3(0, 360f, 0), 1f);
+    }
+
+    public void GunUpgradeChecker(object dam)
+    {
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun)
+        {
+            currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
+            GunUpdate(currentGun);
+        }
     }
 }
 

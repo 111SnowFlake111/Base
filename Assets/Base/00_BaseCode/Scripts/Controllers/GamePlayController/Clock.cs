@@ -28,16 +28,18 @@ public class Clock : MonoBehaviour
         if (other.tag.Contains("Bullet") && isHitAble)
         {
             SimplePool2.Despawn(other.gameObject);
+            GamePlayController.Instance.playerContain.currentYear++;
+            GamePlayController.Instance.gameScene.InitState();
 
-            hitCount++;
-            if (hitCount % numberOfHitsForBonus == 0)
-            {
-                bonusGained += bonusPerSufficientHits;
-                GamePlayController.Instance.playerContain.bonusDamage += bonusPerSufficientHits / 100;
-                GamePlayController.Instance.gameScene.InitState();
-            }
+            //hitCount++;
+            //if (hitCount % numberOfHitsForBonus == 0)
+            //{
+            //    bonusGained += bonusPerSufficientHits;
+            //    GamePlayController.Instance.playerContain.bonusDamage += bonusPerSufficientHits / 100;
+            //    GamePlayController.Instance.gameScene.InitState();
+            //}
 
-            UpdateClock();
+            //UpdateClock();
         }
 
         if (other.tag.Contains("Player"))

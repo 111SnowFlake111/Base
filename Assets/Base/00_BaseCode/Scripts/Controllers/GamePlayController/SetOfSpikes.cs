@@ -14,7 +14,7 @@ public class SetOfSpikes : MonoBehaviour
         {
             GamePlayController.Instance.playerContain.isHurt = true;
             GamePlayController.Instance.playerContain.isMoving = false;
-            GamePlayController.Instance.playerContain.bonusDamage -= 0.01f;
+            GamePlayController.Instance.playerContain.currentYear -= 1f;
             GamePlayController.Instance.gameScene.InitState();
             hitLimit--;
         }

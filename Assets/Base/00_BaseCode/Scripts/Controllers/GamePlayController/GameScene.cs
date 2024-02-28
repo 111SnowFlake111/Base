@@ -74,7 +74,7 @@ public class GameScene : BaseScene
     {
      
         rangeCost.text = (100 * (GamePlayController.Instance.playerContain.rangeUpgradeCount + 1)).ToString();
-        damageCost.text = (100 * (GamePlayController.Instance.playerContain.damageUpgradeCount + 1)).ToString();
+      //  damageCost.text = (100 * (GamePlayController.Instance.playerContain.damageUpgradeCount + 1)).ToString();
         fireRateCost.text = (100 * (GamePlayController.Instance.playerContain.fireRateUpgradeCount + 1)).ToString();
 
         range.text = "Range: " + GamePlayController.Instance.playerContain.bonusRange.ToString();
@@ -84,6 +84,7 @@ public class GameScene : BaseScene
 
     void OpenSettingWindow()
     {
+        Time.timeScale = 0;
         SettingBox.Setup().Show();
         //Setting.Setup().Show();
         //GamePlayController.Instance.playerContain.isMoving = false;
@@ -131,7 +132,7 @@ public class GameScene : BaseScene
         else
         {
             UseProfile.Money -= int.Parse(damageCost.text);
-            GamePlayController.Instance.playerContain.DamageUp();
+          // GamePlayController.Instance.playerContain.DamageUp();
             //GamePlayController.Instance.playerContain.damageUpgradeCount += 1;
             //GamePlayController.Instance.playerContain.bonusDamage += 0.1f;
             InitState();

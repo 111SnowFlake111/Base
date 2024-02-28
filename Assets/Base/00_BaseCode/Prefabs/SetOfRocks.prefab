@@ -106,6 +106,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7752446137281226884, guid: 54996b7bb69b6fb4ebd5a2b537722ac0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ce66bace2c1ddaa4bb04fc942a93c2a8, type: 2}
+    - target: {fileID: 7752446137281226884, guid: 54996b7bb69b6fb4ebd5a2b537722ac0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2331356780760996294, guid: ce66bace2c1ddaa4bb04fc942a93c2a8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54996b7bb69b6fb4ebd5a2b537722ac0, type: 3}
 --- !u!4 &7445882192034959294 stripped

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.62495387, g: 0.6905826, b: 0.79298395, a: 1}
+  m_IndirectSpecularColor: {r: 0.6249446, g: 0.6905793, b: 0.79298246, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -409,9 +409,9 @@ MonoBehaviour:
   bonusFireRate: 0
   bonusRange: 0
   bonusDamage: 0
-  money: 16000
+  cash: 0
   rangeUpgradeCount: 0
-  damageUpgradeCount: 0
+  yearUpgradeCount: 0
   fireRateUpgradeCount: 0
   currentGun: 0
   currentYear: 0
@@ -466,6 +466,7 @@ RectTransform:
   - {fileID: 874776161}
   - {fileID: 221518661}
   - {fileID: 1954549750}
+  - {fileID: 454067626}
   m_Father: {fileID: 663110538}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3481,6 +3482,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e8e4a1333cea46b42aeb4090f1e170a7, type: 3}
   m_PrefabInstance: {fileID: 1994081312}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &454067625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 454067626}
+  - component: {fileID: 454067628}
+  - component: {fileID: 454067627}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &454067626
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454067625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 44990264}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &454067627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454067625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &454067628
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454067625}
+  m_CullTransparentMesh: 1
 --- !u!1001 &456907894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9164,14 +9244,14 @@ MonoBehaviour:
   popupPrepage: {fileID: 663110537}
   startGameBtn: {fileID: 2098907481}
   rangeUpgradeBtn: {fileID: 642215291}
-  damageUpgradeBtn: {fileID: 1174138338}
+  damageUpgradeBtn: {fileID: 44990265}
   fireRateUpgradeBtn: {fileID: 642215291}
   moneyAdd: {fileID: 17980597}
   money: {fileID: 767924844}
   level: {fileID: 413271890}
   rangeCost: {fileID: 54464456}
   damageCost: {fileID: 1876960841}
-  fireRateCost: {fileID: 795032066}
+  fireRateCost: {fileID: 454067627}
   range: {fileID: 152140555}
   damage: {fileID: 657340707}
   fireRate: {fileID: 1830122679}
@@ -13536,10 +13616,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 2
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1395710098}
+          m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
+          m_MethodName: HandleStartGameBtn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2118646391
 GameObject:
   m_ObjectHideFlags: 0

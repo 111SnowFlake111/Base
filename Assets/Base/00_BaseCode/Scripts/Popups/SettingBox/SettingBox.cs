@@ -144,6 +144,7 @@ public class SettingBox : BaseBox
 
     private void OnClickButtonClose()
     {
+        Time.timeScale = 1;
         GameController.Instance.musicManager.PlayClickSound();
         Close();
     }

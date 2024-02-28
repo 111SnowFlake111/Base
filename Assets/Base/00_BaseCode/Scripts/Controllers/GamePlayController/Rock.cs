@@ -31,7 +31,7 @@ public class Rock : MonoBehaviour
         if (other.tag == "Bullet")
         {
             SimplePool2.Despawn(other.gameObject);
-            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - other.GetComponent<Bullet>().damage + other.GetComponent<Bullet>().damage * GamePlayController.Instance.playerContain.bonusDamage) * 10)) / 10).ToString();
+            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - other.GetComponent<Bullet>().damage) * 10)) / 10).ToString();
 
             if (float.Parse(rockHP.text) <= 0)
             {

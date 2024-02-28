@@ -35,6 +35,8 @@ public class PopupEndGame : BaseBox
     private void HandleClaimRW()
     {
         gacha.ArrowStop();
+        claimRewardBtn.interactable = false;
+        noThanksBtn.interactable = false;
     }
     
     private void RestartGame()
