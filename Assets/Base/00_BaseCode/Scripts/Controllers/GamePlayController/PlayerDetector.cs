@@ -17,7 +17,7 @@ public class PlayerDetector : MonoBehaviour
 
             if (obj.tag == "Panel")
             {
-
+                obj.GetComponent<BonusPanel>().playerDetected = true;
             }
         }
     }
@@ -33,7 +33,7 @@ public class PlayerDetector : MonoBehaviour
 
             if (obj.tag == "Panel")
             {
-
+                obj.GetComponent<BonusPanel>().playerDetected = false;
             }
         }
     }

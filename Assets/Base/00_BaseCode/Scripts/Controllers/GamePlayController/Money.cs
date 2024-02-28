@@ -20,6 +20,9 @@ public class Money : MonoBehaviour
         if (other.tag == "Player")
         {
             UseProfile.Money += finalValue;
+            GamePlayController.Instance.playerContain.cash += finalValue;
+
+            Debug.LogError("Money gained: " + GamePlayController.Instance.playerContain.cash);
             Destroy(gameObject);
         }
     }

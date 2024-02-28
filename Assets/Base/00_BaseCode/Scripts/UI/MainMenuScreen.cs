@@ -35,7 +35,7 @@ public class MainMenuScreen : MonoBehaviour
     void Start()
     {
         rangeCost.text = (100 * (GamePlayController.Instance.playerContain.rangeUpgradeCount + 1)).ToString();
-        damageCost.text = (100 * (GamePlayController.Instance.playerContain.damageUpgradeCount + 1)).ToString();
+        damageCost.text = (100 * (GamePlayController.Instance.playerContain.yearUpgradeCount + 1)).ToString();
         fireRateCost.text = (100 * (GamePlayController.Instance.playerContain.fireRateUpgradeCount + 1)).ToString();
     
     }
@@ -86,7 +86,7 @@ public class MainMenuScreen : MonoBehaviour
         money.text = UseProfile.Money.ToString() + " $";
  
         range.text = "Range: " + GamePlayController.Instance.playerContain.rangeUpgradeCount.ToString();
-        damage.text = "Damage: " + GamePlayController.Instance.playerContain.damageUpgradeCount.ToString();
+        damage.text = "Damage: " + GamePlayController.Instance.playerContain.yearUpgradeCount.ToString();
         fireRate.text = "FireRate: " + GamePlayController.Instance.playerContain.fireRateUpgradeCount.ToString();
     }
 
@@ -126,7 +126,7 @@ public class MainMenuScreen : MonoBehaviour
         else
         {
             UseProfile.Money -= int.Parse(damageCost.text);
-            GamePlayController.Instance.playerContain.DamageUp();
+            GamePlayController.Instance.playerContain.YearUp();
             //GamePlayController.Instance.playerContain.damageUpgradeCount += 1;
             //GamePlayController.Instance.playerContain.bonusDamage += 0.1f;
             Start();
@@ -151,7 +151,7 @@ public class MainMenuScreen : MonoBehaviour
 
     void MoneyAdd()
     {
-        GamePlayController.Instance.playerContain.money += 1000;
+        GamePlayController.Instance.playerContain.cash += 1000;
         Debug.LogError("Money added, enjoy");
     }
 }

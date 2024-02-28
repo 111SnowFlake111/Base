@@ -29,6 +29,7 @@ public class Clock : MonoBehaviour
         {
             SimplePool2.Despawn(other.gameObject);
             GamePlayController.Instance.playerContain.currentYear++;
+            GamePlayController.Instance.gameScene.InitState();
 
             //hitCount++;
             //if (hitCount % numberOfHitsForBonus == 0)

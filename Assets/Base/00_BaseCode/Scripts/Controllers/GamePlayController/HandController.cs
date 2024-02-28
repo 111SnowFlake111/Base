@@ -46,6 +46,7 @@ public class HandController : MonoBehaviour
     public Camera camera;
 
     int currentGun;
+    bool allowChangeGun;
 
     GameObject handR;
     GameObject handM;
@@ -115,11 +116,31 @@ public class HandController : MonoBehaviour
         //    }
         //}
 
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun)
+        
+        //if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0)
+        //{
+        //    currentGun = 0;
+        //    GunUpdate(currentGun);
+        //}
+        //else if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= rightHands.Count)
+        //{
+        //    currentGun = rightHands.Count - 1;
+        //    GunUpdate(currentGun);
+        //}
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0 || Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= rightHands.Count)
+        {
+            allowChangeGun = false;
+        }
+        else
+        {
+            allowChangeGun = true;
+        }
+
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun && allowChangeGun)
         {
             currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
             GunUpdate(currentGun);
-        }
+        }           
 
         if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
         {
@@ -174,20 +195,24 @@ public class HandController : MonoBehaviour
 
     public void GunUpdate(int ID)
     {
-        if (handR != null)
-        {
-            Destroy(handR);
-        }
+        //if (handR != null)
+        //{
+        //    Destroy(handR);
+        //}
 
-        if (handM != null)
-        {
-            Destroy(handM);
-        }
+        //if (handM != null)
+        //{
+        //    Destroy(handM);
+        //}
 
-        if (handL != null)
-        {
-            Destroy(handL);
-        }
+        //if (handL != null)
+        //{
+        //    Destroy(handL);
+        //}
+
+        Destroy(handR);
+        Destroy(handM);
+        Destroy(handL);
 
         if (GamePlayController.Instance.playerContain.doubleGun)
         {
@@ -196,6 +221,8 @@ public class HandController : MonoBehaviour
 
             handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
             handR.transform.parent = handPlayerBody.transform;
+
+            Debug.LogError("Dual Wielding");
         }
         else if (GamePlayController.Instance.playerContain.tripleGun)
         {
@@ -214,10 +241,8 @@ public class HandController : MonoBehaviour
             handR.transform.parent = handPlayerBody.transform;
         }
 
-        Debug.LogError("Updated, current gun is " + ID.ToString());
-
         currentGun = ID;
-        handPlayer.transform.DORotate(new Vector3(0, 360f, 0), 1f);
+        //handPlayer.transform.DORotate(new Vector3(0, 360f, 0), 1f);
     }
 
     public void GunUpgradeChecker(object dam)

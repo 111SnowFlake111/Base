@@ -872,11 +872,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
-      value: Power
+      value: Year
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total
-      value: -20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name
@@ -1480,7 +1480,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: add
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
@@ -1488,7 +1488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total
-      value: 10
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name
@@ -2048,15 +2048,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: add
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
-      value: Power
+      value: FireRate
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name
@@ -2414,15 +2414,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: add
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: name
-      value: FireRate
+      value: Range
       objectReference: {fileID: 0}
     - target: {fileID: 4939868854626978245, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: total
-      value: 5
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7219595063779895510, guid: 86979ef9b4ca411429dfdcb5f0e743b8, type: 3}
       propertyPath: m_Name

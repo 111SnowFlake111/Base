@@ -23,7 +23,7 @@ public class GameScene : BaseScene
     public GameObject popupPrepage;
     public Button startGameBtn;
     public Button rangeUpgradeBtn;
-    public Button damageUpgradeBtn;
+    public Button yearUpgradeBtn;
     public Button fireRateUpgradeBtn;
 
     public Button moneyAdd;
@@ -31,7 +31,7 @@ public class GameScene : BaseScene
     public TMP_Text money;
     public TMP_Text level;
     public TMP_Text rangeCost;
-    public TMP_Text damageCost;
+    public TMP_Text yearCost;
     public TMP_Text fireRateCost;
 
     public Text range;
@@ -46,7 +46,7 @@ public class GameScene : BaseScene
         popupPrepage.SetActive(true);        
         InitState();
         rangeUpgradeBtn.onClick.AddListener(delegate { RangeUpgrade();  });
-        damageUpgradeBtn.onClick.AddListener(delegate { DamageUpgrade(); });
+        yearUpgradeBtn.onClick.AddListener(delegate { YearUpgrade(); });
         fireRateUpgradeBtn.onClick.AddListener(delegate { FireRateUpgrade(); });
 
         startGameBtn.onClick.AddListener(delegate { HandleStartGameBtn(); });
@@ -77,7 +77,7 @@ public class GameScene : BaseScene
     {
      
         rangeCost.text = (100 * (GamePlayController.Instance.playerContain.rangeUpgradeCount + 1)).ToString();
-        damageCost.text = (100 * (GamePlayController.Instance.playerContain.damageUpgradeCount + 1)).ToString();
+        yearCost.text = (100 * (GamePlayController.Instance.playerContain.yearUpgradeCount + 1)).ToString();
         fireRateCost.text = (100 * (GamePlayController.Instance.playerContain.fireRateUpgradeCount + 1)).ToString();
 
         range.text = "Range: " + GamePlayController.Instance.playerContain.bonusRange.ToString();
@@ -125,16 +125,16 @@ public class GameScene : BaseScene
         }
     }
 
-    void DamageUpgrade()
+    void YearUpgrade()
     {
-        if (UseProfile.Money - int.Parse(damageCost.text) < 0)
+        if (UseProfile.Money - int.Parse(yearCost.text) < 0)
         {
-            Debug.LogError("Not enough money for DamageUpgrade");
+            Debug.LogError("Not enough money for YearUpgrade");
         }
         else
         {
-            UseProfile.Money -= int.Parse(damageCost.text);
-            GamePlayController.Instance.playerContain.DamageUp();
+            UseProfile.Money -= int.Parse(yearCost.text);
+            GamePlayController.Instance.playerContain.YearUp();
             //GamePlayController.Instance.playerContain.damageUpgradeCount += 1;
             //GamePlayController.Instance.playerContain.bonusDamage += 0.1f;
             InitState();

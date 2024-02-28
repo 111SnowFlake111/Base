@@ -18,9 +18,10 @@ public class PlayerContain : MonoBehaviour
     public float bonusRange = 0;
     public float bonusDamage = 0;
 
-    public int money = 1000;
+    public int cash = 0;
+
     public int rangeUpgradeCount = 0;
-    public int damageUpgradeCount = 0;
+    public int yearUpgradeCount = 0;
     public int fireRateUpgradeCount = 0;
 
     public int currentGun;
@@ -59,10 +60,10 @@ public class PlayerContain : MonoBehaviour
         bonusRange += 0.01f;
     }
 
-    public void DamageUp()
+    public void YearUp()
     {
-        damageUpgradeCount++;
-        bonusDamage += 0.01f;
+        yearUpgradeCount++;
+        currentYear++;
     }
 
     public void FireRateUp()

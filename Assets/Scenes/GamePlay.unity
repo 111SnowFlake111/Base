@@ -290,9 +290,10 @@ MonoBehaviour:
   bonusDamage: 0
   money: 16000
   rangeUpgradeCount: 0
-  damageUpgradeCount: 0
+  yearUpgradeCount: 0
   fireRateUpgradeCount: 0
   currentGun: 0
+  currentYear: 0
   doubleGun: 0
   tripleGun: 0
 --- !u!4 &39208333
@@ -324,7 +325,7 @@ GameObject:
   - component: {fileID: 44990266}
   - component: {fileID: 44990265}
   m_Layer: 5
-  m_Name: DamageUpgradeBtn
+  m_Name: YearUpgradeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2027,7 +2028,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &269318930
 MonoBehaviour:
@@ -5530,7 +5531,7 @@ GameObject:
   - component: {fileID: 874776163}
   - component: {fileID: 874776162}
   m_Layer: 5
-  m_Name: PriceD
+  m_Name: PriceY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8831,13 +8832,13 @@ MonoBehaviour:
   popupPrepage: {fileID: 663110537}
   startGameBtn: {fileID: 2098907481}
   rangeUpgradeBtn: {fileID: 642215291}
-  damageUpgradeBtn: {fileID: 44990265}
+  yearUpgradeBtn: {fileID: 44990265}
   fireRateUpgradeBtn: {fileID: 323194934}
   moneyAdd: {fileID: 463865278}
   money: {fileID: 714175183}
   level: {fileID: 1305100557}
   rangeCost: {fileID: 1190595666}
-  damageCost: {fileID: 874776162}
+  yearCost: {fileID: 874776162}
   fireRateCost: {fileID: 1107945406}
   range: {fileID: 152140555}
   year: {fileID: 1422265635}
@@ -9901,7 +9902,7 @@ RectTransform:
   - {fileID: 714175182}
   - {fileID: 1305100556}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10654,7 +10655,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1764228027
 PrefabInstance:
@@ -11915,7 +11916,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Damage
+  m_text: Year
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11942,12 +11943,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 50
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -12566,67 +12567,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098907479}
   m_CullTransparentMesh: 1
---- !u!1 &2118646391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2118646394}
-  - component: {fileID: 2118646393}
-  - component: {fileID: 2118646392}
-  m_Layer: 0
-  m_Name: DespawnBox
-  m_TagString: DespawnBox
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!54 &2118646392
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118646391}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &2118646393
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118646391}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.863903, y: 8.016411, z: 1}
-  m_Center: {x: 0.21334648, y: 0.5206673, z: 0}
---- !u!4 &2118646394
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118646391}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.575, y: -1.6801076, z: -104.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123593772
 GameObject:
   m_ObjectHideFlags: 0
