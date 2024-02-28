@@ -25,6 +25,17 @@ public class PlayerContain : MonoBehaviour
 
     public int currentGun;
     public float currentYear;
+    //{
+    //    get
+    //    {
+    //        return currentYear;
+    //    }
+    //    set
+    //    {
+    //        currentYear = value;
+    //        EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.LOCALYEARUPGRADE);
+    //    }
+    //}
 
     public bool doubleGun = true;
     public bool tripleGun = false;

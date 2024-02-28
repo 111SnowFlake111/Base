@@ -35,6 +35,7 @@ public class GameScene : BaseScene
     public TMP_Text fireRateCost;
 
     public Text range;
+    public Text year;
     public Text damage;
     public Text fireRate;
 
@@ -65,6 +66,8 @@ public class GameScene : BaseScene
             level.text = "Level " + UseProfile.GameLevel.ToString();
         }
 
+        year.text = UseProfile.Year.ToString();
+
         this.RegisterListener(EventID.CHANGE_MONEY, MoneyUpdate);
         
     }
@@ -78,6 +81,7 @@ public class GameScene : BaseScene
         fireRateCost.text = (100 * (GamePlayController.Instance.playerContain.fireRateUpgradeCount + 1)).ToString();
 
         range.text = "Range: " + GamePlayController.Instance.playerContain.bonusRange.ToString();
+        year.text = GamePlayController.Instance.playerContain.currentYear.ToString();
         damage.text = "Damage: " + GamePlayController.Instance.playerContain.bonusDamage.ToString();
         fireRate.text = "FireRate: " + GamePlayController.Instance.playerContain.bonusFireRate.ToString();
     }
