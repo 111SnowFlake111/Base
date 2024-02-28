@@ -28,11 +28,11 @@ public class GameScene : BaseScene
 
     public Button moneyAdd;
 
-    public TMP_Text money;
-    public TMP_Text level;
-    public TMP_Text rangeCost;
-    public TMP_Text damageCost;
-    public TMP_Text fireRateCost;
+    public Text money;
+    public Text level;
+    public Text rangeCost;
+    public Text damageCost;
+    public Text fireRateCost;
 
     public Text range;
     public Text damage;
@@ -48,7 +48,7 @@ public class GameScene : BaseScene
         damageUpgradeBtn.onClick.AddListener(delegate { DamageUpgrade(); });
         fireRateUpgradeBtn.onClick.AddListener(delegate { FireRateUpgrade(); });
 
-        startGameBtn.onClick.AddListener(delegate { HandleStartGameBtn(); });
+    //    startGameBtn.onClick.AddListener(delegate { HandleStartGameBtn(); });
 
         setting.onClick.AddListener(delegate { OpenSettingWindow(); });
         inventory.onClick.AddListener(delegate { OpenInventory(); });
@@ -83,8 +83,9 @@ public class GameScene : BaseScene
     }
 
     void OpenSettingWindow()
-    {        
-        Setting.Setup().Show();
+    {
+        SettingBox.Setup().Show();
+        //Setting.Setup().Show();
         //GamePlayController.Instance.playerContain.isMoving = false;
     }
 
