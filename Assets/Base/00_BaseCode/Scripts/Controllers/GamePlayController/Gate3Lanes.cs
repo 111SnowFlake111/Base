@@ -18,6 +18,8 @@ public class Gate3Lanes : MonoBehaviour
     public float pointsForSecondLane = 8;
     public float pointsForThirdLane = 12;
 
+    public bool allowTriggerSpecialUpgradeButtons = false;
+
     bool isActive = true;
 
     public void OnTriggerEnter(Collider collider)
@@ -27,6 +29,15 @@ public class Gate3Lanes : MonoBehaviour
             int points = collider.GetComponent<Cylinder>().hitCount;
             Destroy(collider.gameObject);
             PointUpdate(points);           
+        }
+
+        if (collider.tag == "Player")
+        {
+            if (allowTriggerSpecialUpgradeButtons)
+            {
+                GamePlayController.Instance.gameScene.firstGatePassed = true;
+                GamePlayController.Instance.gameScene.InitState();
+            }
         }
     }
 

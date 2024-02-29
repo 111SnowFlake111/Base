@@ -9,7 +9,11 @@ public static class StringHelper
     public const string MONEY = "money";
     public const string CURRENTLEVEL = "level";
     public const string YEAR = "year";
+    public const string FIRERATE = "firerate";
+    public const string RANGE = "range";
+    public const string DAMAGE = "damage";
     public const string OWNEDSPECIALGUNS = "owned_special_guns";
+    public const string SOUND = "sound";
 
     public const string LOADING_COMPLETE = "LOADING_COMPLETE";
     public const string ONOFF_SOUND = "ONOFF_SOUND";

@@ -49,6 +49,8 @@ TagManager:
   - LaneSingle
   - PanelWall
   - Spreader
+  - Clock
+  - x4
   layers:
   - Default
   - TransparentFX

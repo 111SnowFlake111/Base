@@ -1,4 +1,4 @@
-using EventDispatcher;
+﻿using EventDispatcher;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,11 +34,16 @@ public class Shop : BaseBox
     public Button buyShotgunBtn;
     public Button buySniperBtn;
 
+    public Button resetFireRate;
+    public Button resetRange;
+    public Button resetDamage;
+    public Button resetYear;
+
     public Button add1000Btn;
     public Button resetMoneyBtn;
     public Button remove1000Btn;
 
-    public Button resetGuns;
+    public Button resetSpecialGunsBtn;
 
     private void Init()
     {
@@ -54,11 +59,16 @@ public class Shop : BaseBox
         buyShotgunBtn.onClick.AddListener(delegate { PurchaseGun("Shotgun"); });
         buySniperBtn.onClick.AddListener(delegate { PurchaseGun("Sniper"); });
 
+        resetFireRate.onClick.AddListener(delegate { ResetStat(0); });
+        resetRange.onClick.AddListener(delegate { ResetStat(1); });
+        resetDamage.onClick.AddListener(delegate { ResetStat(2); });
+        resetYear.onClick.AddListener(delegate { ResetStat(3); });
+
         add1000Btn.onClick.AddListener(delegate { ChangeMoney(1000); });
         resetMoneyBtn.onClick.AddListener(delegate { ChangeMoney(0); });
         remove1000Btn.onClick.AddListener(delegate { ChangeMoney(-1000); });
 
-        resetGuns.onClick.AddListener(delegate { ResetGuns(); });
+        resetSpecialGunsBtn.onClick.AddListener(delegate { ResetGuns(); });
 
         InitState();
 
@@ -68,6 +78,7 @@ public class Shop : BaseBox
 
     private void InitState()
     {
+        //Inventory cũ
         string inv = UseProfile.OwnedGuns;
         if (inv.Contains("SMG"))
         {
@@ -105,11 +116,59 @@ public class Shop : BaseBox
             buySniperBtn.interactable = true;
         }
 
+        //Reset Súng nhặt được ở cuối đường
+        if (UseProfile.OwnedSpecialGuns.Length <= 0)
+        {
+            resetSpecialGunsBtn.interactable = false;
+        }
+        else
+        {
+            resetSpecialGunsBtn.interactable= true;
+        }
+
+        //Reset Stats
+        if (UseProfile.FireRateUpgradeCount <= 0)
+        {
+            resetFireRate.interactable = false;
+        }
+        else
+        {
+            resetFireRate.interactable = true;
+        }
+
+        if (UseProfile.RangeUpgradeCount <= 0)
+        {
+            resetRange.interactable = false;
+        }
+        else
+        { 
+            resetRange.interactable= true;
+        }
+
+        if (UseProfile.DamageUpgradeCount <= 0)
+        {
+            resetDamage.interactable = false;
+        }
+        else
+        { 
+            resetDamage.interactable= true;
+        }
+
+        if (UseProfile.Year != 1900)
+        {
+            resetYear.interactable = true;
+        }
+        else
+        {
+            resetYear.interactable = false;
+        }
+
         money.text = UseProfile.Money.ToString() + "$";
     }
 
     private void OwnedGunsStatus(object param)
     {
+        //Inventory cũ
         string inv = UseProfile.OwnedGuns;
         if (inv.Contains("SMG"))
         {
@@ -157,6 +216,7 @@ public class Shop : BaseBox
     {
         UseProfile.Money += money;
         Debug.LogError("Money added: " + money.ToString());
+        GamePlayController.Instance.gameScene.InitState();
     }
 
     private void PurchaseGun(string gun)
@@ -226,12 +286,38 @@ public class Shop : BaseBox
         }
     }
 
+    private void ResetStat(int ID)
+    {
+        switch (ID)
+        {
+            case 0:
+                UseProfile.FireRateUpgradeCount = 0;
+                InitState();
+                break;
+            case 1:
+                UseProfile.RangeUpgradeCount = 0;
+                InitState();
+                break;
+            case 2:
+                UseProfile.DamageUpgradeCount = 0;
+                InitState();
+                break;
+            case 3:
+                UseProfile.Year = 1900;
+                InitState();
+                break;
+        }
+
+        GamePlayController.Instance.gameScene.InitState();
+    }
+
     private void ResetGuns()
     {
-        UseProfile.OwnedGuns = "";
-        UseProfile.EquippedGun = 0;
-        GamePlayController.Instance.playerContain.currentGun = 0;
-        GamePlayController.Instance.playerContain.handController.GunUpdate(0);
-        Debug.LogError("Guns reset");
+        UseProfile.OwnedSpecialGuns = "";
+        InitState();
+        //UseProfile.EquippedGun = 0;
+        //GamePlayController.Instance.playerContain.currentGun = 0;
+        //GamePlayController.Instance.playerContain.handController.GunUpdate(0);
+        //Debug.LogError("Guns reset");
     }
 }

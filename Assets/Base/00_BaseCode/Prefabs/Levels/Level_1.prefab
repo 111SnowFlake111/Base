@@ -1723,7 +1723,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 337922019960111435, guid: d7c3c6d82a7c508418ff29b192f5025f, type: 3}
       propertyPath: m_Name
-      value: Gate_1
+      value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 1151614073397386225, guid: d7c3c6d82a7c508418ff29b192f5025f, type: 3}
       propertyPath: m_RootOrder
@@ -1768,6 +1768,10 @@ PrefabInstance:
     - target: {fileID: 1151614073397386225, guid: d7c3c6d82a7c508418ff29b192f5025f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119297836015791747, guid: d7c3c6d82a7c508418ff29b192f5025f, type: 3}
+      propertyPath: allowTriggerSpecialUpgradeButtons
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7c3c6d82a7c508418ff29b192f5025f, type: 3}

@@ -5,7 +5,9 @@ using UnityEngine;
 public class EndOfRoadReward : MonoBehaviour
 {
     public List<GameObject> rewards;
-    public GameObject pileOfCash;
+    public GameObject moneyBag;
+
+    public Transform moneyBagPos;
 
     GameObject reward;
     int count;
@@ -17,7 +19,7 @@ public class EndOfRoadReward : MonoBehaviour
             if (UseProfile.OwnedSpecialGuns.Contains("M79"))
             {
                 count++;
-                reward = Instantiate(pileOfCash, gameObject.transform.position + new Vector3(0, 0, -0.3f), Quaternion.identity);
+                reward = Instantiate(moneyBag, moneyBagPos.position, Quaternion.identity);
             }
             else
             {
@@ -33,10 +35,7 @@ public class EndOfRoadReward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (count < rewards.Count)
-        {
-            reward.transform.Rotate(0, 2f, 0);
-        }       
+        reward.transform.Rotate(0, 2f, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,6 +61,8 @@ public class EndOfRoadReward : MonoBehaviour
             }
 
             GamePlayController.Instance.playerContain.victory = true;
+            GamePlayController.Instance.playerContain.isMoving = false;
+            GamePlayController.Instance.playerContain.start = false;
             PopupEndGame.Setup().Show();
             Destroy(gameObject);
         }

@@ -34,9 +34,9 @@ public class MainMenuScreen : MonoBehaviour
 
     void Start()
     {
-        rangeCost.text = (100 * (GamePlayController.Instance.playerContain.rangeUpgradeCount + 1)).ToString();
-        damageCost.text = (100 * (GamePlayController.Instance.playerContain.yearUpgradeCount + 1)).ToString();
-        fireRateCost.text = (100 * (GamePlayController.Instance.playerContain.fireRateUpgradeCount + 1)).ToString();
+        //rangeCost.text = (100 * (GamePlayController.Instance.playerContain.rangeUpgradeCount + 1)).ToString();
+        //damageCost.text = (100 * (GamePlayController.Instance.playerContain.yearUpgradeCount + 1)).ToString();
+        //fireRateCost.text = (100 * (GamePlayController.Instance.playerContain.fireRateUpgradeCount + 1)).ToString();
     
     }
 
@@ -85,9 +85,9 @@ public class MainMenuScreen : MonoBehaviour
  
         money.text = UseProfile.Money.ToString() + " $";
  
-        range.text = "Range: " + GamePlayController.Instance.playerContain.rangeUpgradeCount.ToString();
-        damage.text = "Damage: " + GamePlayController.Instance.playerContain.yearUpgradeCount.ToString();
-        fireRate.text = "FireRate: " + GamePlayController.Instance.playerContain.fireRateUpgradeCount.ToString();
+        //range.text = "Range: " + GamePlayController.Instance.playerContain.rangeUpgradeCount.ToString();
+        //damage.text = "Damage: " + GamePlayController.Instance.playerContain.yearUpgradeCount.ToString();
+        //fireRate.text = "FireRate: " + GamePlayController.Instance.playerContain.fireRateUpgradeCount.ToString();
     }
 
     void OpenSettingWindow()

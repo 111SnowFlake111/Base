@@ -46,6 +46,7 @@ public class GateLane : MonoBehaviour
             //Cho Gate có 3 cửa
             if (gate3LanesMain != null)
             {
+
                 if (gameObject.tag == "Lane1")
                 {
                     GamePlayController.Instance.playerContain.currentYear += (gate3LanesMain.GetComponent<Gate3Lanes>().pointsForFirstLane);

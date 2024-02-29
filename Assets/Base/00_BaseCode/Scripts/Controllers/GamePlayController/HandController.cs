@@ -13,6 +13,9 @@ public class HandController : MonoBehaviour
     public List<GameObject> middleHands;
     public List<GameObject> leftHands;
 
+    public List<GameObject> specialLeftHands;
+    public List<GameObject> specialMiddleHands;
+
     public GameObject spawnPointSingle;
     public List<GameObject> spawnPointsDual;
     public List<GameObject> spawnPointsTriple;
@@ -45,7 +48,7 @@ public class HandController : MonoBehaviour
 
     public Camera camera;
 
-    int currentGun;
+    public int currentGun;
     bool allowChangeGun;
 
     GameObject handR;
@@ -216,24 +219,62 @@ public class HandController : MonoBehaviour
 
         if (GamePlayController.Instance.playerContain.doubleGun)
         {
-            handL = Instantiate(leftHands[ID], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
-            handL.transform.parent = handPlayerBody.transform;
+            if (UseProfile.OwnedSpecialGuns.Contains("Dragunov"))
+            {
+                handL = Instantiate(specialLeftHands[0], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                handL.transform.parent = handPlayerBody.transform;
 
-            handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
-            handR.transform.parent = handPlayerBody.transform;
+                handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
+                handR.transform.parent = handPlayerBody.transform;
+            }
+            else
+            {
+                handL = Instantiate(leftHands[ID], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                handL.transform.parent = handPlayerBody.transform;
 
-            Debug.LogError("Dual Wielding");
+                handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
+                handR.transform.parent = handPlayerBody.transform;
+            }
+            
         }
         else if (GamePlayController.Instance.playerContain.tripleGun)
         {
-            handL = Instantiate(leftHands[ID], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
-            handL.transform.parent = handPlayerBody.transform;
+            if (UseProfile.OwnedSpecialGuns.Contains("Dragunov"))
+            {
+                if (UseProfile.OwnedSpecialGuns.Contains("M79"))
+                {
+                    handL = Instantiate(specialLeftHands[0], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
 
-            handM = Instantiate(middleHands[ID], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
-            handM.transform.parent = handPlayerBody.transform;
+                    handM = Instantiate(specialMiddleHands[0], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
 
-            handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
-            handR.transform.parent = handPlayerBody.transform;
+                    handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
+                    handR.transform.parent = handPlayerBody.transform;
+                }
+                else
+                {
+                    handL = Instantiate(specialLeftHands[0], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+
+                    handM = Instantiate(middleHands[ID], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
+
+                    handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
+                    handR.transform.parent = handPlayerBody.transform;
+                }
+            }
+            else
+            {
+                handL = Instantiate(leftHands[ID], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                handL.transform.parent = handPlayerBody.transform;
+
+                handM = Instantiate(middleHands[ID], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                handM.transform.parent = handPlayerBody.transform;
+
+                handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
+                handR.transform.parent = handPlayerBody.transform;
+            }            
         }
         else
         {

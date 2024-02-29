@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UI.Extensions.ColorPicker;
 
 public class GachaBonus : MonoBehaviour
 {
@@ -11,8 +13,8 @@ public class GachaBonus : MonoBehaviour
     public Transform maxLeft;
     public Transform maxRight;
 
-    public GameObject moneyBonus;
-    public TMP_Text moneyBonusText;
+    public Text moneyBonusText;
+    public Text multipler;
 
     public Transform x3RangeLeft;
     public Transform x3RangeRight;
@@ -61,6 +63,11 @@ public class GachaBonus : MonoBehaviour
         {
             check = true;
         }
+       
+        multiply = arrow.GetComponent<Arrow>().multipler;
+        multipler.text = "x" + multiply.ToString();
+
+        moneyBonusText.text = "+" + (GamePlayController.Instance.playerContain.cash * (multiply - 1)).ToString();
     }
 
     public void ArrowStop()
@@ -68,26 +75,42 @@ public class GachaBonus : MonoBehaviour
         isMoving = false;
         movement.Kill();
 
-        if (arrow.position.x >= x3RangeLeft.position.x && arrow.position.x <= x3RangeRight.position.x)
-        {
-            multiply = 3;
-            UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
-            Debug.LogError("Multi = 3");
-        }
-        else if (arrow.position.x >= x2RangeLeft.position.x && arrow.position.x <= x2RangeRight.position.x)
-        {
-            multiply = 2;
-            UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
-            Debug.LogError("Multi = 2");
-        }
-        else
-        {
-            multiply = 1;
-            Debug.LogError("Multi = 1");
-        }
+        
+        UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
 
-        moneyBonusText.text = "+" + (GamePlayController.Instance.playerContain.cash * (multiply - 1)).ToString();
-        moneyBonus.SetActive(true);
+        //if (arrow.position.x >= x3RangeLeft.position.x && arrow.position.x <= x3RangeRight.position.x)
+        //{
+        //    multiply = 3;
+        //    UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
+        //    Debug.LogError("Multi = 3");
+        //}
+        //else if (arrow.position.x >= x2RangeLeft.position.x && arrow.position.x <= x2RangeRight.position.x)
+        //{
+        //    multiply = 2;
+        //    UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
+        //    Debug.LogError("Multi = 2");
+        //}
+        //else
+        //{
+        //    multiply = 1;
+        //    Debug.LogError("Multi = 1");
+        //}
+        
+        switch (multiply)
+        {
+            case 1:
+                multipler.color = Color.white;
+                break;
+            case 2:
+                multipler.color = Color.yellow;
+                break;
+            case 3:
+                multipler.color = Color.green;
+                break;
+            case 4:
+                multipler.color = Color.cyan;
+                break;
+        }
 
         StartCoroutine(WaitForSceneRestart());
     }

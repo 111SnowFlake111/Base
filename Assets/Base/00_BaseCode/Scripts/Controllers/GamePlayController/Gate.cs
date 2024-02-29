@@ -16,6 +16,8 @@ public class Gate : MonoBehaviour
     public int bulletsNumberForOnePoint = 2;
     public float pointsForLane = 10;
 
+    public bool allowTriggerSpecialUpgradeButtons = false;
+
     bool isActive = true;
 
     public void OnTriggerEnter(Collider collider)
@@ -25,6 +27,15 @@ public class Gate : MonoBehaviour
             int points = collider.GetComponent<Cylinder>().hitCount;
             Destroy(collider.gameObject);
             PointUpdate(points);
+        }
+
+        if (collider.tag == "Player")
+        {
+            if (allowTriggerSpecialUpgradeButtons)
+            {
+                GamePlayController.Instance.gameScene.firstGatePassed = true;
+                GamePlayController.Instance.gameScene.InitState();
+            }           
         }
     }
 

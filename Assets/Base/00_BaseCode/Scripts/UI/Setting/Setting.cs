@@ -35,6 +35,15 @@ public class Setting : BaseBox
         vibrationBtn.onClick.AddListener(delegate { VibrationChange(); });
         restartLevelProgress.onClick.AddListener(delegate { ResetProgress(); });
         closeWindow.onClick.AddListener(delegate { Close(); GamePlayController.Instance.playerContain.isMoving = true; });
+
+        if (UseProfile.SoundSetting == 0)
+        {
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
     }
 
     private void InitState()

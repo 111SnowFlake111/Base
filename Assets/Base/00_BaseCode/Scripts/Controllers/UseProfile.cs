@@ -16,7 +16,7 @@ public class UseProfile : MonoBehaviour
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.LOADING_COMPLETE, value ? 1 : 0);    
+            PlayerPrefs.SetInt(StringHelper.LOADING_COMPLETE, value ? 1 : 0);
             PlayerPrefs.Save();
         }
     }
@@ -201,6 +201,45 @@ public class UseProfile : MonoBehaviour
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.YEARUPGRADE);
         }
     }
+    public static int FireRateUpgradeCount
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.FIRERATE);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.FIRERATE, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.STATSUPGRADE);
+        }
+    }
+    public static int RangeUpgradeCount
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.RANGE);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.RANGE, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.STATSUPGRADE);
+        }
+    }
+    public static int DamageUpgradeCount
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.DAMAGE);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.DAMAGE, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.STATSUPGRADE);
+        }
+    }
     public static string OwnedSpecialGuns
     {
         get
@@ -212,6 +251,18 @@ public class UseProfile : MonoBehaviour
             PlayerPrefs.SetString(StringHelper.OWNEDSPECIALGUNS, value);
             PlayerPrefs.Save();
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.OWNEDSPECIALGUNSUPDATE);
+        }
+    }
+    public static int SoundSetting
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.SOUND);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.SOUND, value);
+            PlayerPrefs.Save();
         }
     }
     public static int Heart

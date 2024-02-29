@@ -15,10 +15,10 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if (!spawnCheck)
-        {
-            inaccuracy = RandomX();
-        }       
+        //if (!spawnCheck)
+        //{
+        //    inaccuracy = RandomX();
+        //}       
         gameObject.transform.position += new Vector3(inaccuracy, 0, 50f) * Time.deltaTime;
     }
     public IEnumerator HandleDestoy(float baseRange)

@@ -27,7 +27,11 @@ public class AnimatorController : MonoBehaviour
 
         if (GamePlayController.Instance.playerContain.start)
         {
-            animator.SetTrigger("GameStart");
+            animator.SetBool("Start", true);
+        }
+        else
+        {
+            animator.SetBool("Start", false);
         }
     }
 }

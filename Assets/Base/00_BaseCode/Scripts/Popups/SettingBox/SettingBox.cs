@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 public class SettingBox : BaseBox
 {
     #region instance
@@ -27,7 +28,8 @@ public class SettingBox : BaseBox
     [SerializeField] private Button btnVibration;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnSound;
-  
+    [SerializeField] private Button btnResetLevel;
+
 
     [SerializeField] private Image imageVibration;
     [SerializeField] private Image imageMusic;
@@ -52,6 +54,7 @@ public class SettingBox : BaseBox
         btnMusic.onClick.AddListener(delegate { OnClickBtnMusic(); });
         btnSound.onClick.AddListener(delegate { OnClickBtnSound(); });
 
+        btnResetLevel.onClick.AddListener(delegate { ResetLevel(); });
 
 
 
@@ -139,6 +142,13 @@ public class SettingBox : BaseBox
             GameController.Instance.useProfile.OnSound = true;
         }
         SetUpBtn();
+    }
+    private void ResetLevel()
+    {
+        if (!GamePlayController.Instance.playerContain.start)
+        {
+            UseProfile.GameLevel = 0;
+        }        
     }
 
 
