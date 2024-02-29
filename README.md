@@ -25,3 +25,5 @@ Ngoài ra các ổ đạn và Bonus Panel có thể di chuyển tiến lùi ho�
 Có các powerup bao gồm các súng có trong shop (khi nhặt trên đường thì sẽ chỉ được dùng tạm thời), dual wield (bắn 2 súng cùng lúc), triple wield (bắn 3 súng cùng lúc); Hiện các powerup này không được đặt trong các level (trừ một vài level đầu), script thì vẫn có nên có thể đặt vào các level để nhặt
 
 ***Demo: https://youtu.be/HQQeqlNfzNU
+
+*NOTE: Bản ở nhánh main hiện tại là bản stable, một bản overhaul lại game đang được thực hiện trong nhánh khác
