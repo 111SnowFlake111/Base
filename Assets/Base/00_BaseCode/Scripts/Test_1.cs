@@ -12,6 +12,6 @@ public class Test_1 : MonoBehaviour
     }
     public void HandleMethod()
     {
-        Debug.LogError("HandleMethod");
+        //Debug.LogError("HandleMethod");
     }    
 }

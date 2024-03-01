@@ -157,7 +157,7 @@ public class HandController : MonoBehaviour
                 secondPost = camera.ScreenToWorldPoint(Input.mousePosition);
                 if (firstPost != secondPost)
                 {
-                    handPlayer.transform.position += new Vector3(secondPost.x - firstPost.x, 0, 0);
+                    handPlayer.transform.position += new Vector3((secondPost.x - firstPost.x) * 1.5f, 0, 0);
                     firstPost = secondPost;
                     if (handPlayer.transform.position.x <= leftLimit.position.x)
                     {

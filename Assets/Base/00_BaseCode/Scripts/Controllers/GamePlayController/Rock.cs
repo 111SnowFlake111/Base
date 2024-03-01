@@ -15,8 +15,10 @@ public class Rock : MonoBehaviour
     {
         if (baseHP <= 0)
         {
+            baseHP = 2;
             rockHP.text = 2.ToString();
         }
+        baseHP *= hpMultiplier;
         rockHP.text = (float.Parse(rockHP.text) * hpMultiplier).ToString();
     }
 
@@ -31,12 +33,20 @@ public class Rock : MonoBehaviour
         if (other.tag == "Bullet")
         {
             SimplePool2.Despawn(other.gameObject);
-            rockHP.text = ((Mathf.Round((float.Parse(rockHP.text) - other.GetComponent<Bullet>().damage) * 10)) / 10).ToString();
+            baseHP -= other.GetComponent<Bullet>().damage;
+            rockHP.text = Mathf.Round(baseHP).ToString();
 
-            if (float.Parse(rockHP.text) <= 0)
+            if (baseHP <= 0)
             {
                 Destroy(gameObject);
             }
+
+            //rockHP.text = (Mathf.Round((float.Parse(rockHP.text) - other.GetComponent<Bullet>().damage) * 10) / 10 ).ToString();
+
+            //if (float.Parse(rockHP.text) <= 0)
+            //{
+            //    Destroy(gameObject);
+            //}
         }
 
         //if (other.tag.Contains("Bullet"))

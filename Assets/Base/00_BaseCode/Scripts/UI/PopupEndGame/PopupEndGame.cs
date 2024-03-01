@@ -1,3 +1,4 @@
+using Sirenix.Serialization.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ public class PopupEndGame : BaseBox
 
     private void Init()
     {
-        noThanksBtn.onClick.AddListener(delegate { RestartGame(); });
+        noThanksBtn.onClick.AddListener(delegate { ToEndGameUpgradeScreen(); });
         claimRewardBtn.onClick.AddListener(delegate { HandleClaimRW(); });
         gacha.Init();
     }
@@ -37,8 +38,27 @@ public class PopupEndGame : BaseBox
         gacha.ArrowStop();
         claimRewardBtn.interactable = false;
         noThanksBtn.interactable = false;
+        StartCoroutine(WaitForScreenChange());
     }
-    
+
+    private void ToEndGameUpgradeScreen()
+    {
+        gacha.canRun = false;
+        Close();
+        PopupEndGame_UpgradeScreen.Setup().Show();
+    }
+
+    public IEnumerator WaitForScreenChange()
+    {
+        gacha.canRun = false;
+        yield return new WaitForSeconds(1);
+     
+        Close();
+        PopupEndGame_UpgradeScreen.Setup().Show();
+        //SceneManager.LoadScene("GamePlay");
+        //UseProfile.GameLevel++;
+    }
+
     private void RestartGame()
     {
         SceneManager.LoadScene("GamePlay");

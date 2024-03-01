@@ -120,7 +120,7 @@ public class GameScene : BaseScene
         }
 
         //Phần tiến độ Year
-        yearValue.text = (Mathf.Round(GamePlayController.Instance.playerContain.currentYear * 10) / 10).ToString();
+        yearValue.text = Mathf.Round(GamePlayController.Instance.playerContain.currentYear).ToString();
 
         if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0)
         {
@@ -166,7 +166,7 @@ public class GameScene : BaseScene
             }          
         }
 
-        Debug.LogError(1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10);
+        //Debug.LogError(1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10);
 
         //Kiểm tra đã chạy qua cổng đầu
         if (firstGatePassed)

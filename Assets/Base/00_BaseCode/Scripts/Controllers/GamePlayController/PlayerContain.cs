@@ -79,6 +79,14 @@ public class PlayerContain : MonoBehaviour
         bonusFireRate += 0.01f;
     }
 
+    public void DamageUp()
+    {
+        UseProfile.DamageUpgradeCount++;
+        bonusDamage += 0.01f;
+    }
+
+
+    //Event Listener Section
     public void YearUpdate(object dam)
     {
         currentGun = Mathf.FloorToInt((UseProfile.Year - 1900) / 10);

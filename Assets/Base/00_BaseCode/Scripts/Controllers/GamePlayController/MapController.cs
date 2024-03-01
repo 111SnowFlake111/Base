@@ -356,12 +356,12 @@ public class MapController : MonoBehaviour
 
         if (UseProfile.GameLevel >= levels.Count)
         {
-            Debug.LogError("Current Level is: " + UseProfile.GameLevel.ToString() + " (Randomized)");
+            //Debug.LogError("Current Level is: " + UseProfile.GameLevel.ToString() + " (Randomized)");
             level = Instantiate(levels[Random.Range(0, levels.Count)], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
         }
         else
         {
-            Debug.LogError("Current Level is: " + UseProfile.GameLevel.ToString());
+            //Debug.LogError("Current Level is: " + UseProfile.GameLevel.ToString());
             level = Instantiate(levels[UseProfile.GameLevel], roadSpawner.transform.position + new Vector3(0, 0, 60f), Quaternion.identity);
         }
     }

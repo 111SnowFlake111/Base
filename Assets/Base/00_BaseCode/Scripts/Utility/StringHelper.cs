@@ -80,6 +80,7 @@ public class PathPrefabs
     public const string GAME_INVENTORY = "UI/Popups/Inventory";
     public const string GAME_SETTING = "UI/Popups/Setting";
     public const string END_GAME_BOX = "UI/Popups/EndGameBox";
+    public const string END_GAME_BOX_UPGRADE_SECTION = "UI/Popups/EndGameBox_UpgradeScreen";
 
     public const string POPUP_REWARD_BASE = "UI/Popups/PopupRewardBase";
     public const string CONFIRM_POPUP = "UI/Popups/ConfirmBox";
