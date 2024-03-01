@@ -40,4 +40,6 @@ Có các powerup bao gồm Dual Wield (bắn 2 súng cùng lúc), Triple Wield (
 
 ***Demo bản cũ: https://youtu.be/HQQeqlNfzNU
 
+***Demo bản mới: https://youtu.be/VThk3b5V0a0
+
 *NOTE: Bản ở nhánh main hiện tại là bản stable, một bản overhaul lại game đang được thực hiện trong nhánh khác
