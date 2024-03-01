@@ -542,7 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 3038780352553507222}
   bullet: {fileID: 1000012718789232, guid: 530e23ee033136b46b40ff058e0174aa, type: 3}
-  baseRange: 1
+  baseRange: 1.5
 --- !u!114 &4882419144680679370
 MonoBehaviour:
   m_ObjectHideFlags: 0
