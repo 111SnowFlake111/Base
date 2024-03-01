@@ -6,21 +6,15 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
-    public TMP_Text bonusStatus;
-    public TMP_Text tips;
-
-    public float bonusPerSufficientHits = 1;
-    public int numberOfHitsForBonus = 5;
+    public TMP_Text bonusGained;
 
     int hitCount = 0;
-    float bonusGained = 0;
 
     bool isHitAble = true;
 
     private void Start()
     {
-        bonusStatus.text = hitCount.ToString() + " = Gained " + bonusGained.ToString();
-        tips.text = numberOfHitsForBonus.ToString() + " -> " + bonusPerSufficientHits.ToString();
+        bonusGained.text = "+" + hitCount + " Year";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +24,9 @@ public class Clock : MonoBehaviour
             SimplePool2.Despawn(other.gameObject);
             GamePlayController.Instance.playerContain.currentYear++;
             GamePlayController.Instance.gameScene.InitState();
+
+            hitCount++;
+            UpdateClock();
 
             //hitCount++;
             //if (hitCount % numberOfHitsForBonus == 0)
@@ -51,6 +48,6 @@ public class Clock : MonoBehaviour
 
     private void UpdateClock()
     {
-        bonusStatus.text = hitCount.ToString() + " = Gained " + bonusGained.ToString();
+        bonusGained.text = "+" + hitCount + " Year";
     }
 }

@@ -178,11 +178,11 @@ public class HandController : MonoBehaviour
                 }
                 else if (speedDown)
                 {
-                    handPlayer.transform.position += new Vector3(0, 0, 7f) * Time.deltaTime;
+                    handPlayer.transform.position += new Vector3(0, 0, 5f) * Time.deltaTime;
                 }
                 else
                 {
-                    handPlayer.transform.position += new Vector3(0, 0, 10f) * Time.deltaTime;
+                    handPlayer.transform.position += new Vector3(0, 0, 9f) * Time.deltaTime;
                 }
             }
             

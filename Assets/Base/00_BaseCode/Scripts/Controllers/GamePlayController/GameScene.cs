@@ -141,13 +141,32 @@ public class GameScene : BaseScene
 
             if ((1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) >= 1)
             {
-                progressBar.fillAmount = (1 - 0.01f - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) - 1;
+                var temp = 1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
+                while (temp >= 1)
+                {
+                    temp -= 1;
+                }
+
+                progressBar.fillAmount = temp;
+                //progressBar.fillAmount = (1 - 0.01f - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) - 1;
+            }
+            else if ((1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) < 0)
+            {
+                var temp = 1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
+                while (temp < 0)
+                {
+                    temp++;
+                }
+
+                progressBar.fillAmount = temp;
             }
             else
             {
                 progressBar.fillAmount = 1 - 0.01f - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
             }          
         }
+
+        Debug.LogError(1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10);
 
         //Kiểm tra đã chạy qua cổng đầu
         if (firstGatePassed)

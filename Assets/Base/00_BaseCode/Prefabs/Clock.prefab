@@ -75,10 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86db992e9f1d1db478ba41668f0009d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusStatus: {fileID: 0}
-  tips: {fileID: 0}
-  bonusPerSufficientHits: 1
-  numberOfHitsForBonus: 5
+  bonusGained: {fileID: 0}
 --- !u!1 &8868147075298831580
 GameObject:
   m_ObjectHideFlags: 0
