@@ -24,7 +24,7 @@ public class BonusPanelWall : MonoBehaviour
 
             if(int.Parse(wallHP.text) <= 0)
             {
-                Debug.LogError("Wall destroyed");
+                //Debug.LogError("Wall destroyed");
                 bonusPanel.GetComponent<BonusPanel>().hasWall = false;
                 Destroy(gameObject);
             }

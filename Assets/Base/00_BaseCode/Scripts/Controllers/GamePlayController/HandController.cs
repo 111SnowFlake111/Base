@@ -37,9 +37,6 @@ public class HandController : MonoBehaviour
     public List<GameObject> bulletSpawnerDual;
     public List<GameObject> bulletSpawnerTriple;
 
-    private Vector3 firstPost;
-    private Vector3 secondPost;
-
     public Transform leftLimit;
     public Transform rightLimit;
 
@@ -50,6 +47,11 @@ public class HandController : MonoBehaviour
 
     public int currentGun;
     bool allowChangeGun;
+
+    Vector3 firstPost;
+    Vector3 secondPost;
+
+    bool mousePosReceived = false;
 
     GameObject handR;
     GameObject handM;
@@ -106,6 +108,48 @@ public class HandController : MonoBehaviour
 
         //this.RegisterListener(EventID.LOCALYEARUPGRADE, GunUpgradeChecker);
     }
+
+    private void FixedUpdate()
+    {
+        if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
+        {
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    firstPost = camera.ScreenToWorldPoint(Input.mousePosition);
+            //    //firstPost = handPlayer.transform.position;
+            //}
+            if (!mousePosReceived)
+            {
+                firstPost = camera.ScreenToWorldPoint(Input.mousePosition);               
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                mousePosReceived = true;
+
+                secondPost = camera.ScreenToWorldPoint(Input.mousePosition);
+                if (firstPost != secondPost)
+                {
+                    handPlayer.transform.position = Vector3.Lerp(handPlayer.transform.position, new Vector3(handPlayer.transform.position.x + (secondPost.x - firstPost.x) * 7f, handPlayer.transform.position.y, handPlayer.transform.position.z), 0.25f);
+                    firstPost = secondPost;
+                    if (handPlayer.transform.position.x <= leftLimit.position.x)
+                    {
+                        handPlayer.transform.position = new Vector3(leftLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
+                    }
+                    if (handPlayer.transform.position.x >= rightLimit.position.x)
+                    {
+                        handPlayer.transform.position = new Vector3(rightLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                mousePosReceived = false;              
+            }
+        }           
+    }
+
     public void Update()
     {
         //gunSpeed.speed = 1f;
@@ -147,28 +191,28 @@ public class HandController : MonoBehaviour
 
         if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
         {
-            if (Input.GetMouseButtonDown(0)) // khi bấm chuột trái vào màn hình lần đầu tiên
-            {
-                firstPost = camera.ScreenToWorldPoint(Input.mousePosition);
-            }
+            //if (Input.GetMouseButtonDown(0)) // khi bấm chuột trái vào màn hình lần đầu tiên
+            //{
+            //    firstPost = camera.ScreenToWorldPoint(Input.mousePosition);
+            //}
 
-            if (Input.GetMouseButton(0))// khi giữ chuột trái
-            {
-                secondPost = camera.ScreenToWorldPoint(Input.mousePosition);
-                if (firstPost != secondPost)
-                {
-                    handPlayer.transform.position += new Vector3((secondPost.x - firstPost.x) * 2f, 0, 0);
-                    firstPost = secondPost;
-                    if (handPlayer.transform.position.x <= leftLimit.position.x)
-                    {
-                        handPlayer.transform.position = new Vector3(leftLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
-                    }
-                    if (handPlayer.transform.position.x >= rightLimit.position.x)
-                    {
-                        handPlayer.transform.position = new Vector3(rightLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
-                    }
-                }
-            }
+            //if (Input.GetMouseButton(0))// khi giữ chuột trái
+            //{
+            //    secondPost = camera.ScreenToWorldPoint(Input.mousePosition);
+            //    if (firstPost != secondPost)
+            //    {
+            //        handPlayer.transform.position += Vector3.Lerp(firstPost, secondPost, 1f); //new Vector3((secondPost.x - firstPost.x) * 2f, 0, 0);
+            //        firstPost = secondPost;
+            //        if (handPlayer.transform.position.x <= leftLimit.position.x)
+            //        {
+            //            handPlayer.transform.position = new Vector3(leftLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
+            //        }
+            //        if (handPlayer.transform.position.x >= rightLimit.position.x)
+            //        {
+            //            handPlayer.transform.position = new Vector3(rightLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
+            //        }
+            //    }
+            //}
 
             if (GamePlayController.Instance.playerContain.isMoving && GamePlayController.Instance.playerContain.isAlive)
             {

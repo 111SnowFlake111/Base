@@ -80,7 +80,7 @@ public class GameScene : BaseScene
 
         if (UseProfile.GameLevel >= GamePlayController.Instance.playerContain.mapController.levels.Count)
         {
-            level.text = "Level " + UseProfile.GameLevel.ToString() + " (Randomized)";
+            level.text = "Level " + UseProfile.GameLevel.ToString() + "\n (Randomized)";
         }
         else
         {

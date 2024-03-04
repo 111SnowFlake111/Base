@@ -21,7 +21,7 @@ public class BagOfMoney : MonoBehaviour
             UseProfile.Money += finalValue;
             GamePlayController.Instance.playerContain.cash += finalValue;
 
-            Debug.LogError("Money gained: " + GamePlayController.Instance.playerContain.cash);
+            //Debug.LogError("Money gained: " + GamePlayController.Instance.playerContain.cash);
             gameObject.SetActive(false);
         }
     }

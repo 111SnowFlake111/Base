@@ -14,7 +14,7 @@ public class Clock : MonoBehaviour
 
     private void Start()
     {
-        bonusGained.text = "+" + hitCount + " Year";
+        bonusGained.text = "+" + hitCount + "\n" + "Year";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,6 +48,6 @@ public class Clock : MonoBehaviour
 
     private void UpdateClock()
     {
-        bonusGained.text = "+" + hitCount + " Year";
+        bonusGained.text = "+" + hitCount + "\n" + "Year";
     }
 }
