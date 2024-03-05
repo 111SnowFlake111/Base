@@ -8,10 +8,8 @@ public class Cylinder : MonoBehaviour
 {
     //public List<GameObject> bulletFilled;
 
-    public List<GameObject> bulletSmall;
-    public List<GameObject> bulletMedium;
-    public List<GameObject> bulletShotgun;
-    public List<GameObject> bulletBig;
+    public List<GameObject> filledBullet;
+    public List<GameObject> filledBulletBody;
 
     public GameObject body;
     public GameObject playerDetector;
@@ -277,7 +275,8 @@ public class Cylinder : MonoBehaviour
                     SimplePool2.Despawn(collider.gameObject);
                     for (int i = 0; i < collider.GetComponent<Bullet>().cylinderDamage; i++)
                     {
-                        bulletSmall[hitCount].SetActive(true);
+                        filledBullet[hitCount].SetActive(true);
+                        filledBulletBody[hitCount].GetComponent<Renderer>().material = collider.GetComponent<Renderer>().material;
                         hitCount++;
                         var temp1 = body.transform.localEulerAngles + new Vector3(0, 0, 40);
                         body.transform.DOLocalRotate(temp1, 0.1f).OnComplete

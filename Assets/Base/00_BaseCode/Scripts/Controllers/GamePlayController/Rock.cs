@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,6 +12,8 @@ public class Rock : MonoBehaviour
     public float baseHP;
     public float hpMultiplier = 1;
 
+    Vector3 ogScale;
+
     void Start()
     {
         if (baseHP <= 0)
@@ -20,6 +23,8 @@ public class Rock : MonoBehaviour
         }
         baseHP *= hpMultiplier;
         rockHP.text = (float.Parse(rockHP.text) * hpMultiplier).ToString();
+
+        ogScale = transform.localScale;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -36,7 +41,13 @@ public class Rock : MonoBehaviour
             baseHP -= other.GetComponent<Bullet>().damage;
             rockHP.text = Mathf.Round(baseHP).ToString();
 
-            if (baseHP <= 0)
+            transform.DOScale(new Vector3(ogScale.x * 1.1f, ogScale.y * 1.1f, ogScale.z), 0.1f)
+                .OnComplete(() =>
+                {
+                    transform.DOScale(ogScale, 0.1f);
+                });
+
+            if (baseHP <= 0 || Mathf.FloorToInt(float.Parse(rockHP.text)) <= 0)
             {
                 Destroy(gameObject);
             }

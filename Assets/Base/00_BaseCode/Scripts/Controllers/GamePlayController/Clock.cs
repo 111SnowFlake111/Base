@@ -12,9 +12,13 @@ public class Clock : MonoBehaviour
 
     bool isHitAble = true;
 
+    Vector3 ogScale;
+
     private void Start()
     {
         bonusGained.text = "+" + hitCount + "\n" + "Year";
+
+        ogScale = transform.localScale;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +28,12 @@ public class Clock : MonoBehaviour
             SimplePool2.Despawn(other.gameObject);
             GamePlayController.Instance.playerContain.currentYear++;
             GamePlayController.Instance.gameScene.InitState();
+
+            transform.DOScale(new Vector3(ogScale.x * 1.1f, ogScale.y * 1.1f, ogScale.z), 0.1f)
+                .OnComplete(() =>
+                {
+                    transform.DOScale(ogScale, 0.1f);
+                });
 
             hitCount++;
             UpdateClock();

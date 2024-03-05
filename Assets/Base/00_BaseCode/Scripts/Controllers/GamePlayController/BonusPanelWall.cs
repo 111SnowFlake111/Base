@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BonusPanelWall : MonoBehaviour
 {
     public GameObject bonusPanel;
 
     public TMP_Text wallHP;
+    public Image hpBar;
 
     int hitLimit;
+
+    float num;
 
     private void Start()
     {
         wallHP.text = bonusPanel.GetComponent<BonusPanel>().wallHP.ToString();
         hitLimit = bonusPanel.GetComponent<BonusPanel>().wallHitLimit;
+
+        num = (1 / float.Parse(wallHP.text));
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -28,6 +34,10 @@ public class BonusPanelWall : MonoBehaviour
                 bonusPanel.GetComponent<BonusPanel>().hasWall = false;
                 Destroy(gameObject);
             }
+            else
+            {     
+                hpBar.fillAmount -= num;
+            }           
         }
 
         if (other.tag == "Player" && hitLimit > 0)

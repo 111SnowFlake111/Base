@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class Spreader : MonoBehaviour
     public bool customFiringAngle = false;
     public float rotationAngleL = 0;
     public float rotationAngleR = 0;
+
+    Vector3 ogScale;
 
     private void Start()
     {
@@ -44,7 +47,9 @@ public class Spreader : MonoBehaviour
                 bulletSpawnPointR.transform.rotation = Quaternion.Euler(0, 5f, 0);
                 bulletSpawnPointL.transform.rotation = Quaternion.Euler(0, -5f, 0);
             }
-        }        
+        }
+        
+        ogScale = transform.localScale;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,6 +63,12 @@ public class Spreader : MonoBehaviour
 
             var temp2 = SimplePool2.Spawn(bulletTurret, bulletSpawnPointR.transform.position, bulletSpawnPointR.transform.rotation);
             StartCoroutine(temp2.GetComponent<BulletTurret>().DespawnBullet());
+
+            transform.DOScale(new Vector3(ogScale.x * 1.1f, ogScale.y * 1.1f, ogScale.z), 0.1f)
+                .OnComplete(() =>
+                {
+                    transform.DOScale(ogScale, 0.1f);
+                });
         }
 
         if (other.tag == "BehindThePlayer")

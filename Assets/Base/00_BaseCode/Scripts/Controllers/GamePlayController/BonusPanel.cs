@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class BonusPanel : MonoBehaviour
 {
@@ -49,7 +50,9 @@ public class BonusPanel : MonoBehaviour
     public string name;
     public float add = 1;       //Default: +1
     public float total = 0;     //Default: 0
-    
+
+    Vector3 ogScale;
+
     //public Transform spawnPos;
     // Start is called before the first frame update
     void Start()
@@ -97,6 +100,8 @@ public class BonusPanel : MonoBehaviour
         {
             moveLFCheck = true;
         }
+
+        ogScale = gameObject.transform.localScale;
 
         outter = panelParts[0].GetComponent<Renderer>();
         inner = panelParts[1].GetComponent<Renderer>();
@@ -197,6 +202,11 @@ public class BonusPanel : MonoBehaviour
                 finalValue.text = (float.Parse(finalValue.text) + float.Parse(valueAdd.text)).ToString();
             }
             
+            transform.DOScale(new Vector3(ogScale.x * 1.1f, ogScale.y * 1.1f, ogScale.z), 0.1f)
+                .OnComplete(() =>
+                {
+                    transform.DOScale(ogScale, 0.1f);
+                });
         }
 
         if (collider.tag == "Player" && !hasWall)
