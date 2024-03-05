@@ -1,11 +1,9 @@
 ﻿using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 using DG.Tweening;
 using EventDispatcher;
+using UnityEditor.Experimental.GraphView;
 
 public class HandController : MonoBehaviour
 {
@@ -41,11 +39,14 @@ public class HandController : MonoBehaviour
     Vector3 firstPost;
     Vector3 secondPost;
 
-    bool mousePosReceived = false;
+    bool mousePosReceived = true;
 
     GameObject handR;
     GameObject handM;
     GameObject handL;
+
+    int count1 = 0;
+    int count2 = 0;
 
     public void Start()
     {
@@ -101,33 +102,48 @@ public class HandController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Điều khiển
+        //Logic: Khi bấm sẽ ghi vị trí chuột vào firstPost. Khi giữ sẽ ghi vào secondPost.
+            // Khi kéo thì sẽ cộng dồn vào vị trí ban đầu * offSet (để đẩy đi nhanh hơn) và gán firstPost = secondPost để tránh việc chạy cộng dồn liên tục. Nếu không gán bằng nhau thì việc điều khiển sẽ giống như FloatStick
+            // Note: Nên đặt giá trị cộng dồn là tĩnh
         if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
         {
-            if (Input.GetMouseButtonDown(0)) // khi bấm chuột trái vào màn hình lần đầu tiên
+            if (Input.GetMouseButtonDown(0))
             {
                 firstPost = camera.ScreenToWorldPoint(Input.mousePosition);
-                //Debug.LogError(firstPost.ToString());
             }
-
-            if (Input.GetMouseButton(0))// khi giữ chuột trái
+            else if (Input.GetMouseButton(0))// khi giữ chuột trái
             {
                 secondPost = camera.ScreenToWorldPoint(Input.mousePosition);
-                if (firstPost != secondPost)
+                if(secondPost.x == firstPost.x)
                 {
-                    handPlayer.transform.position = Vector3.Lerp(handPlayer.transform.position, new Vector3(handPlayer.transform.position.x + (secondPost.x - firstPost.x) * 5f, handPlayer.transform.position.y, handPlayer.transform.position.z), 0.25f); //new Vector3((secondPost.x - firstPost.x) * 2f, 0, 0);                   
-                    //handPlayer.transform.position += new Vector3(secondPost.x - firstPost.x, 0, 0) * 5f;
-
-                    firstPost = secondPost;
-
-                    if (handPlayer.transform.position.x <= leftLimit.position.x)
-                    {
-                        handPlayer.transform.position = new Vector3(leftLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
-                    }
-                    if (handPlayer.transform.position.x >= rightLimit.position.x)
-                    {
-                        handPlayer.transform.position = new Vector3(rightLimit.position.x, handPlayer.transform.position.y, handPlayer.transform.position.z);
-                    }
+                    return;
                 }
+
+                float _move = 0;
+                if(secondPost.x - firstPost.x > 0)
+                {
+                    _move = .1f;
+                }
+                else
+                {
+                    _move = -.1f;
+                }
+
+                handPlayer.transform.localPosition = Vector3.Lerp(handPlayer.transform.localPosition, new Vector3(handPlayer.transform.localPosition.x + _move * 12f, 
+                    handPlayer.transform.localPosition.y, handPlayer.transform.localPosition.z), 0.25f); //new Vector3((secondPost.x - firstPost.x) * 2f, 0, 0);                   
+                //handPlayer.transform.position = new Vector3(handPlayer.transform.position.x + (secondPost.x - firstPost.x) * 5f, handPlayer.transform.position.y, handPlayer.transform.position.z);
+
+                if (handPlayer.transform.localPosition.x <= leftLimit.localPosition.x)
+                {
+                    handPlayer.transform.localPosition = new Vector3(leftLimit.localPosition.x, handPlayer.transform.localPosition.y, handPlayer.transform.localPosition.z);
+                }
+                if (handPlayer.transform.localPosition.x >= rightLimit.localPosition.x)
+                {
+                    handPlayer.transform.localPosition = new Vector3(rightLimit.localPosition.x, handPlayer.transform.localPosition.y, handPlayer.transform.localPosition.z);
+                }
+
+                firstPost = secondPost;
             }
         }
     }
@@ -156,6 +172,8 @@ public class HandController : MonoBehaviour
         //    currentGun = rightHands.Count - 1;
         //    GunUpdate(currentGun);
         //}
+
+        //Kiểm tra Year để thay súng
         if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0 || Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= rightHands.Count)
         {
             allowChangeGun = false;
@@ -169,8 +187,12 @@ public class HandController : MonoBehaviour
         {
             currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
             GunUpdate(currentGun);
-        }           
+        }
 
+        //Điều khiển
+        
+
+        // Di chuyển khi chạm các object thay đổi tốc độ
         if (GamePlayController.Instance.playerContain.isAlive && GamePlayController.Instance.playerContain.start)
         {
 
