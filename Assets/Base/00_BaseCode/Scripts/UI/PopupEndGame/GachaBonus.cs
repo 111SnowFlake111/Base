@@ -13,6 +13,10 @@ public class GachaBonus : MonoBehaviour
     public Transform maxLeft;
     public Transform maxRight;
 
+    public GameObject moneyEarnedBox;
+    public GameObject moneyBonusBox;
+
+    public Text moneyEarned;
     public Text moneyBonusText;
     public Text multipler;
 
@@ -25,6 +29,8 @@ public class GachaBonus : MonoBehaviour
     public void Init()
     {
         canRun = true;
+
+        moneyEarned.text = GamePlayController.Instance.playerContain.cash.ToString() + "$";
     }
     public void InitState()
     {
@@ -65,8 +71,6 @@ public class GachaBonus : MonoBehaviour
     {
         isMoving = false;
         
-        UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
-        
         switch (multiply)
         {
             case 1:
@@ -84,6 +88,25 @@ public class GachaBonus : MonoBehaviour
         }
 
         //StartCoroutine(WaitForSceneRestart());
+    }
+
+    public void ArrowResume()
+    {
+        isMoving = true;
+
+        multipler.color = Color.white;
+    }
+
+    public void ReceiveMoneyReward()
+    {
+        moneyBonusBox.transform.DOMove(moneyEarnedBox.transform.position, 2f).OnComplete(() =>
+        {
+            UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
+            moneyBonusBox.SetActive(false);
+            moneyEarned.text = (GamePlayController.Instance.playerContain.cash * multiply).ToString() + "$";
+            StartCoroutine(PopupEndGame.instance.WaitForScreenChange());
+        });
+        
     }
 
     public IEnumerator WaitForSceneRestart()

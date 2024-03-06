@@ -270,25 +270,64 @@ public class GameScene : BaseScene
 
     void SpecialUpgrade(int ID)
     {
-        switch (ID)
+        Time.timeScale = 0;
+        GameController.Instance.admobAds.ShowVideoReward(delegate { GetReward(ID); ResumeGame(); }, delegate { AdNotAvailable(); ResumeGame(); }, delegate { ResumeGame(); }, ActionWatchVideoValue(ID), UseProfile.GameLevel.ToString());
+
+        void GetReward(int ID)
         {
-            case 2:
-                GamePlayController.Instance.playerContain.doubleGun = true;
-                GamePlayController.Instance.playerContain.tripleGun = false;
-                dualWieldPressed = true;
-                dualWield.gameObject.SetActive(false);
-                GamePlayController.Instance.playerContain.handController.GunUpdate(GamePlayController.Instance.playerContain.handController.currentGun);
-                InitState();
-                break;
-            case 3:
-                GamePlayController.Instance.playerContain.doubleGun = false;
-                GamePlayController.Instance.playerContain.tripleGun = true;
-                dualWieldPressed = true;
-                tripleWieldPressed = true;
-                tripleWield.gameObject.SetActive(false);
-                GamePlayController.Instance.playerContain.handController.GunUpdate(GamePlayController.Instance.playerContain.handController.currentGun);
-                InitState();
-                break;
+            switch (ID)
+            {
+                case 2:
+                    GamePlayController.Instance.playerContain.doubleGun = true;
+                    GamePlayController.Instance.playerContain.tripleGun = false;
+                    dualWieldPressed = true;
+                    dualWield.gameObject.SetActive(false);
+                    GamePlayController.Instance.playerContain.handController.GunUpdate(GamePlayController.Instance.playerContain.handController.currentGun);
+                    InitState();
+                    break;
+                case 3:
+                    GamePlayController.Instance.playerContain.doubleGun = false;
+                    GamePlayController.Instance.playerContain.tripleGun = true;
+                    dualWieldPressed = true;
+                    tripleWieldPressed = true;
+                    tripleWield.gameObject.SetActive(false);
+                    GamePlayController.Instance.playerContain.handController.GunUpdate(GamePlayController.Instance.playerContain.handController.currentGun);
+                    InitState();
+                    break;
+            }
+        }
+
+        ActionWatchVideo ActionWatchVideoValue(int ID)
+        {
+            switch (ID)
+            {
+                case 2:
+                    return ActionWatchVideo.GetDualWield;
+                case 3:
+                    return ActionWatchVideo.GetTripleWield;
+                default:
+                    return ActionWatchVideo.None;
+            }
+        } 
+
+        void AdNotAvailable()
+        {
+            GameController.Instance.moneyEffectController.SpawnEffectText_FlyUp
+                    (
+                    GamePlayController.Instance.playerContain.handController.handPlayer.transform.position,
+                    "No video at the moment!",
+                    Color.white,
+                    isSpawnItemPlayer: true,
+                    false,
+                    null
+                    );
+        }
+
+        
+
+        void ResumeGame()
+        {
+            Time.timeScale = 1;
         }
     }
 

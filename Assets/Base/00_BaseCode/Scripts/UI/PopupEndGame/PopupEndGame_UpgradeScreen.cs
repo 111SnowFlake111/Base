@@ -81,7 +81,13 @@ public class PopupEndGame_UpgradeScreen : BaseBox
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene("GamePlay");
-        UseProfile.GameLevel++;
+        NextLevel();
+        
+        //GameController.Instance.admobAds.ShowInterstitial(false, "NoThankEndGame", delegate { NextLevel(); } , UseProfile.GameLevel.ToString());
+        void NextLevel()
+        {
+            SceneManager.LoadScene("GamePlay");
+            UseProfile.GameLevel++;
+        } 
     }
 }

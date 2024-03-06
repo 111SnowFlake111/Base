@@ -35,17 +35,53 @@ public class PopupEndGame : BaseBox
     }
     private void HandleClaimRW()
     {
+        bool rewardClaimed = false;
+
         gacha.ArrowStop();
-        claimRewardBtn.interactable = false;
-        noThanksBtn.interactable = false;
-        StartCoroutine(WaitForScreenChange());
+
+        GameController.Instance.admobAds.ShowVideoReward(delegate { ClaimRW(); }, delegate { NotLoadVideo(); gacha.ArrowResume(); }, delegate { RewardIsClaimed(); }, ActionWatchVideo.ClaimMoneyMultiplier, UseProfile.GameLevel.ToString());
+
+        void ClaimRW()
+        {
+            rewardClaimed = true;
+            gacha.ReceiveMoneyReward();
+            claimRewardBtn.interactable = false;
+            noThanksBtn.interactable = false;
+            //StartCoroutine(WaitForScreenChange());
+        }
+
+        void NotLoadVideo()
+        {
+            GameController.Instance.moneyEffectController.SpawnEffectText_FlyUp
+                    (             
+                    claimRewardBtn.transform.position,
+                    "No video at the moment!",
+                    Color.white,
+                    isSpawnItemPlayer: true,
+                    false,
+                    null
+                    );
+        }
+
+        void RewardIsClaimed()
+        {
+            if (!rewardClaimed)
+            {
+                gacha.ArrowResume();
+            }
+            else
+            {
+                gacha.ArrowStop();
+            }
+        }
+     
     }
 
     private void ToEndGameUpgradeScreen()
-    {
+    {     
         gacha.canRun = false;
         Close();
-        PopupEndGame_UpgradeScreen.Setup().Show();
+        PopupEndGame_UpgradeScreen.Setup().Show();     
     }
 
     public IEnumerator WaitForScreenChange()

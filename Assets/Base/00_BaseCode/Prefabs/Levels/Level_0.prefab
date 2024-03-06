@@ -1779,7 +1779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700578719447437741, guid: 008b1d44aea66d947874695c45c94f84, type: 3}
       propertyPath: allowTriggerSpecialUpgradeButtons
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8427408068231002470, guid: 008b1d44aea66d947874695c45c94f84, type: 3}
       propertyPath: m_RootOrder

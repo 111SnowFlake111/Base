@@ -35,8 +35,11 @@ public class Gate3Lanes : MonoBehaviour
         {
             if (allowTriggerSpecialUpgradeButtons)
             {
-                GamePlayController.Instance.gameScene.firstGatePassed = true;
-                GamePlayController.Instance.gameScene.InitState();
+                if(UseProfile.GameLevel >= RemoteConfigController.GetIntConfig(FirebaseConfig.LEVEL_START_SHOW_SPECIAL_BUTTONS, 5))
+                {
+                    GamePlayController.Instance.gameScene.firstGatePassed = true;
+                    GamePlayController.Instance.gameScene.InitState();
+                }      
             }
         }
     }

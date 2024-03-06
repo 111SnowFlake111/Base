@@ -568,7 +568,10 @@ public enum ActionWatchVideo
     RewardEndGame = 10,
     DrillBooster,
     DestroyScewBooster,
-    HoldAds
+    HoldAds,
+    ClaimMoneyMultiplier,
+    GetDualWield,
+    GetTripleWield
 }
 
 public enum ActionShowInter

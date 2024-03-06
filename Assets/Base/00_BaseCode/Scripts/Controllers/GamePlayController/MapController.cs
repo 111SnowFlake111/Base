@@ -8,8 +8,8 @@ public class MapController : MonoBehaviour
 {
     public List<GameObject> levels;
 
-    public Material greyColorForRoad;
-    public Material goldColorForRoad;
+    //public Material greyColorForRoad;
+    //public Material goldColorForRoad;
 
     public GameObject conveyor;
     public GameObject roadSpawner;
