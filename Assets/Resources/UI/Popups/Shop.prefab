@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 8528460719902775805}
   - component: {fileID: 6476672570485980874}
   - component: {fileID: 9029608177310449710}
+  - component: {fileID: 2935392158617403142}
   m_Layer: 5
   m_Name: Purchase3000Btn
   m_TagString: Untagged
@@ -357,6 +358,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2935392158617403142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301352611385745472}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: 
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &443510763769837938
 GameObject:
   m_ObjectHideFlags: 0
@@ -4497,6 +4522,7 @@ GameObject:
   - component: {fileID: 6205215291147142170}
   - component: {fileID: 2533402005642792249}
   - component: {fileID: 2876456619724484605}
+  - component: {fileID: 3487810690157509604}
   m_Layer: 5
   m_Name: Purchase35000Btn
   m_TagString: Untagged
@@ -4606,6 +4632,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3487810690157509604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5081836742168729074}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: 
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &5090386974901081775
 GameObject:
   m_ObjectHideFlags: 0
@@ -6062,6 +6112,7 @@ GameObject:
   - component: {fileID: 860958986480364112}
   - component: {fileID: 9014457786273127122}
   - component: {fileID: 1121953689982125159}
+  - component: {fileID: 8159431566668308593}
   m_Layer: 5
   m_Name: Purchase15000Btn
   m_TagString: Untagged
@@ -6171,6 +6222,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8159431566668308593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622527018718931807}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: 
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &7689738118258256454
 GameObject:
   m_ObjectHideFlags: 0
@@ -6623,6 +6698,7 @@ GameObject:
   - component: {fileID: 3471178190423868271}
   - component: {fileID: 134086019050573164}
   - component: {fileID: 5653857983752563835}
+  - component: {fileID: 4386802493474973807}
   m_Layer: 5
   m_Name: Purchase8000Btn
   m_TagString: Untagged
@@ -6732,6 +6808,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4386802493474973807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795034929713420057}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: 
+  buttonType: 0
+  consumePurchase: 1
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  titleText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  priceText: {fileID: 0}
 --- !u!1 &8798602665451724097
 GameObject:
   m_ObjectHideFlags: 0

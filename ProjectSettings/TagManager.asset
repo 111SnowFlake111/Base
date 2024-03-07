@@ -51,6 +51,7 @@ TagManager:
   - Spreader
   - Clock
   - x4
+  - End
   layers:
   - Default
   - TransparentFX

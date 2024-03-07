@@ -6,13 +6,16 @@ using UnityEngine;
 public class Gate3Lanes : MonoBehaviour
 {
     public List<GameObject> bulletGateObject;
+    public List<GameObject> posts;
     public List<GameObject> lanes;
     public Transform postPos;
+    public Material activatedPostColor;
 
     int limit = 0;
     int currentPoint = 0;
 
     public int bulletsNumberForOnePoint = 2;
+    public int bulletsHitForOnePoint = 10;
 
     public float pointsForFirstLane = 4;
     public float pointsForSecondLane = 8;
@@ -21,9 +24,22 @@ public class Gate3Lanes : MonoBehaviour
     public bool allowTriggerSpecialUpgradeButtons = false;
 
     bool isActive = true;
+    int bulletReceived = 0;
 
     public void OnTriggerEnter(Collider collider)
     {
+        if (collider.tag == "Bullet")
+        {
+            SimplePool2.Despawn(collider.gameObject);
+            bulletReceived++;
+
+            if (bulletReceived >= bulletsHitForOnePoint)
+            {
+                bulletReceived -= bulletsHitForOnePoint;
+                limit++;
+                DoorUpdate();
+            }
+        }
         if (collider.tag == "Cylinder")
         {
             int points = collider.GetComponent<Cylinder>().hitCount;
@@ -81,16 +97,19 @@ public class Gate3Lanes : MonoBehaviour
             if (bulletGateObject[3].activeSelf)
             {
                 lanes[0].gameObject.SetActive(true);
+                posts[0].GetComponent<Renderer>().material = activatedPostColor;
             }
 
             if (bulletGateObject[7].activeSelf)
             {
                 lanes[1].gameObject.SetActive(true);
+                posts[1].GetComponent<Renderer>().material = activatedPostColor;
             }
 
             if (bulletGateObject[11].activeSelf)
             {
                 lanes[2].gameObject.SetActive(true);
+                posts[2].GetComponent<Renderer>().material = activatedPostColor;
             }
         }       
     }

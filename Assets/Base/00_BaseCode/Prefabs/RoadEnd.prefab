@@ -77,6 +77,10 @@ MonoBehaviour:
   rewards:
   - {fileID: 8572534983655980216, guid: 61191023f99d08240b9b4e3687f32dcb, type: 3}
   - {fileID: 7692783669998851263, guid: 2ad2747d840c6a14998b9a63fe768eb2, type: 3}
+  - {fileID: 6416018563544329858, guid: a1ec3a9096741c148aac4730cc72db8d, type: 3}
+  - {fileID: 7804449676818805633, guid: 2db9bf9220f1a2e419bb16f2775f3d4c, type: 3}
+  - {fileID: 5657498031824564256, guid: 13e63fb13c8a5fa4bad8bce1eff09ade, type: 3}
+  - {fileID: 5120391991415908818, guid: ab226bf28603de44282087cb59c6a27d, type: 3}
   moneyBag: {fileID: 6964938806794178088, guid: 0606ab04d054d0f4c9dc767ac2686e5c, type: 3}
   moneyBagPos: {fileID: 4453453446011283501}
 --- !u!1 &6485413530337386468
@@ -236,9 +240,10 @@ GameObject:
   - component: {fileID: 2294452291128310518}
   - component: {fileID: 640765569073315290}
   - component: {fileID: 4890882690011888227}
+  - component: {fileID: 897974618058703310}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: End
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,8 +319,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8773406335413303240}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &897974618058703310
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8773406335413303240}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -26,7 +26,7 @@ public class BonusPanelWall : MonoBehaviour
     {
         if (other.tag.Contains("Bullet"))
         {
-            wallHP.text = (int.Parse(wallHP.text) - 1).ToString();
+            wallHP.text = (int.Parse(wallHP.text) - other.GetComponent<Bullet>().wallDamage).ToString();
 
             if(int.Parse(wallHP.text) <= 0)
             {

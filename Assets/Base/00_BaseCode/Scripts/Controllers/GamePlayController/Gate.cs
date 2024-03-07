@@ -7,21 +7,39 @@ using TMPro;
 public class Gate : MonoBehaviour
 {
     public List<GameObject> bulletGateObject;
+    public GameObject post;
     public GameObject lane;
     public Transform postPos;
+    public Material activatedPostColor;
 
     int limit = 0;
     int currentPoint = 0;
 
     public int bulletsNumberForOnePoint = 2;
+    public int bulletsHitForOnePoint = 10;
+
     public float pointsForLane = 10;
 
     public bool allowTriggerSpecialUpgradeButtons = false;
 
     bool isActive = true;
+    int bulletReceived = 0;
 
     public void OnTriggerEnter(Collider collider)
     {
+        if (collider.tag == "Bullet")
+        {
+            SimplePool2.Despawn(collider.gameObject);
+            bulletReceived++;
+
+            if (bulletReceived >= bulletsHitForOnePoint)
+            {
+                bulletReceived -= bulletsHitForOnePoint;
+                limit++;
+                DoorUpdate();
+            }
+        }
+
         if (collider.tag == "Cylinder")
         {
             int points = collider.GetComponent<Cylinder>().hitCount;
@@ -76,6 +94,7 @@ public class Gate : MonoBehaviour
         if (bulletGateObject[9].activeSelf && isActive)
         {
             lane.SetActive(true);
+            post.GetComponent<Renderer>().material= activatedPostColor;
         }
     }
 

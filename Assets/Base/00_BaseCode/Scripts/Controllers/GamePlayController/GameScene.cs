@@ -55,6 +55,7 @@ public class GameScene : BaseScene
     public Text damage;
     public Text fireRate;
 
+    float startingYear;
 
     public void Init() //Cho các hàm chạy 1 lần
     {
@@ -87,6 +88,8 @@ public class GameScene : BaseScene
             level.text = "Level " + UseProfile.GameLevel.ToString();
         }
 
+        startingYear = GamePlayController.Instance.playerContain.startingYear;
+
         this.RegisterListener(EventID.CHANGE_MONEY, MoneyUpdate);
         this.RegisterListener(EventID.LOADLEVEL, LevelChange);
     }
@@ -94,11 +97,11 @@ public class GameScene : BaseScene
 
     public void InitState() //Cho các hàm tái sử dụng hoặc để update manually
     {  
-        yearCost.text = (100 * (UseProfile.Year - 1900 + 1)).ToString();       
+        yearCost.text = (100 * (Mathf.FloorToInt(GamePlayController.Instance.playerContain.currentYear) - GamePlayController.Instance.playerContain.startingYear + 1)).ToString();       
         fireRateCost.text = (100 * (UseProfile.FireRateUpgradeCount + 1)).ToString();
 
         //Phần nút nâng cấp
-        yearLevel.text = "Level " + (UseProfile.Year - 1900 + 1).ToString();
+        yearLevel.text = "Level " + (Mathf.FloorToInt(GamePlayController.Instance.playerContain.currentYear) - GamePlayController.Instance.playerContain.startingYear + 1).ToString();
         fireRateLevel.text = "Level " + (UseProfile.FireRateUpgradeCount + 1).ToString();
 
         if (UseProfile.Money < int.Parse(yearCost.text))
@@ -122,13 +125,13 @@ public class GameScene : BaseScene
         //Phần tiến độ Year
         yearValue.text = Mathf.Round(GamePlayController.Instance.playerContain.currentYear).ToString();
 
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0)
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) < 0)
         {
             currentGunLv.text = "Lv0";
             nextGunLv.text = "Lv1";
             progressBar.fillAmount = 0;
         }
-        else if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= GamePlayController.Instance.playerContain.handController.rightHands.Count - 1)
+        else if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) >= GamePlayController.Instance.playerContain.handController.rightHands.Count - 1)
         {
             currentGunLv.text = "Lv" + (GamePlayController.Instance.playerContain.handController.rightHands.Count - 1);
             nextGunLv.text = "";
@@ -136,12 +139,12 @@ public class GameScene : BaseScene
         }
         else
         {
-            currentGunLv.text = "Lv" + Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
-            nextGunLv.text = "Lv" + (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) + 1);
+            currentGunLv.text = "Lv" + Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10);
+            nextGunLv.text = "Lv" + (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) + 1);
 
-            if ((1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) >= 1)
+            if ((1 - (GamePlayController.Instance.playerContain.startingYear + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) >= 1)
             {
-                var temp = 1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
+                var temp = 1 - (GamePlayController.Instance.playerContain.startingYear + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
                 while (temp >= 1)
                 {
                     temp -= 1;
@@ -150,9 +153,9 @@ public class GameScene : BaseScene
                 progressBar.fillAmount = temp;
                 //progressBar.fillAmount = (1 - 0.01f - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) - 1;
             }
-            else if ((1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) < 0)
+            else if ((1 - (GamePlayController.Instance.playerContain.startingYear + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10) < 0)
             {
-                var temp = 1 - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
+                var temp = 1 - (GamePlayController.Instance.playerContain.startingYear + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
                 while (temp < 0)
                 {
                     temp++;
@@ -162,7 +165,7 @@ public class GameScene : BaseScene
             }
             else
             {
-                progressBar.fillAmount = 1 - 0.01f - (1900 + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
+                progressBar.fillAmount = 1 - 0.01f - (GamePlayController.Instance.playerContain.startingYear + 10 * (GamePlayController.Instance.playerContain.handController.currentGun + 1) - GamePlayController.Instance.playerContain.currentYear) / 10;
             }          
         }
 
@@ -217,7 +220,7 @@ public class GameScene : BaseScene
         GamePlayController.Instance.playerContain.isMoving = true;
         GamePlayController.Instance.playerContain.start = true;
 
-        shop.interactable = false;
+        shop.gameObject.SetActive(false);
     }
 
     //void RangeUpgrade()

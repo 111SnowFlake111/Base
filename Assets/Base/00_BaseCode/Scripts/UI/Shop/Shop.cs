@@ -29,11 +29,6 @@ public class Shop : BaseBox
     public Button buy15000Btn;
     public Button buy35000Btn;
 
-    public Button buySMGBtn;
-    public Button buyRifleBtn;
-    public Button buyShotgunBtn;
-    public Button buySniperBtn;
-
     public Button resetFireRate;
     public Button resetRange;
     public Button resetDamage;
@@ -54,11 +49,6 @@ public class Shop : BaseBox
         buy15000Btn.onClick.AddListener(delegate { PurchaseMoney(15000); });
         buy35000Btn.onClick.AddListener(delegate { PurchaseMoney(35000); });
 
-        buySMGBtn.onClick.AddListener(delegate { PurchaseGun("SMG"); });
-        buyRifleBtn.onClick.AddListener(delegate { PurchaseGun("Rifle"); });
-        buyShotgunBtn.onClick.AddListener(delegate { PurchaseGun("Shotgun"); });
-        buySniperBtn.onClick.AddListener(delegate { PurchaseGun("Sniper"); });
-
         resetFireRate.onClick.AddListener(delegate { ResetStat(0); });
         resetRange.onClick.AddListener(delegate { ResetStat(1); });
         resetDamage.onClick.AddListener(delegate { ResetStat(2); });
@@ -72,50 +62,11 @@ public class Shop : BaseBox
 
         InitState();
 
-        this.RegisterListener(EventID.INVENTORY_UPDATE, OwnedGunsStatus);
         this.RegisterListener(EventID.CHANGE_MONEY, MoneyUpdate);
     }
 
     private void InitState()
-    {
-        //Inventory cũ
-        string inv = UseProfile.OwnedGuns;
-        if (inv.Contains("SMG"))
-        {
-            buySMGBtn.interactable = false;
-        }
-        else
-        {
-            buySMGBtn.interactable = true;
-        }
-
-        if (inv.Contains("Rifle"))
-        {
-            buyRifleBtn.interactable = false;
-        }
-        else
-        {
-            buyRifleBtn.interactable = true;
-        }
-
-        if (inv.Contains("Shotgun"))
-        {
-            buyShotgunBtn.interactable = false;
-        }
-        else
-        {
-            buyShotgunBtn.interactable = true;
-        }
-
-        if (inv.Contains("Sniper"))
-        {
-            buySniperBtn.interactable = false;
-        }
-        else
-        {
-            buySniperBtn.interactable = true;
-        }
-
+    { 
         //Reset Súng nhặt được ở cuối đường
         if (UseProfile.OwnedSpecialGuns.Length <= 0)
         {
@@ -154,7 +105,7 @@ public class Shop : BaseBox
             resetDamage.interactable= true;
         }
 
-        if (UseProfile.Year != 1900)
+        if (GamePlayController.Instance.playerContain.currentYear != GamePlayController.Instance.playerContain.startingYear)
         {
             resetYear.interactable = true;
         }
@@ -164,47 +115,6 @@ public class Shop : BaseBox
         }
 
         money.text = UseProfile.Money.ToString() + "$";
-    }
-
-    private void OwnedGunsStatus(object param)
-    {
-        //Inventory cũ
-        string inv = UseProfile.OwnedGuns;
-        if (inv.Contains("SMG"))
-        {
-            buySMGBtn.interactable = false;
-        }
-        else
-        {
-            buySMGBtn.interactable = true;
-        }
-
-        if (inv.Contains("Rifle"))
-        {
-            buyRifleBtn.interactable = false;
-        }
-        else
-        {
-            buyRifleBtn.interactable = true;
-        }
-
-        if (inv.Contains("Shotgun"))
-        {
-            buyShotgunBtn.interactable = false;
-        }
-        else
-        {
-            buyShotgunBtn.interactable = true;
-        }
-
-        if (inv.Contains("Sniper"))
-        {
-            buySniperBtn.interactable = false;
-        }
-        else
-        {
-            buySniperBtn.interactable = true;
-        }
     }
 
     private void MoneyUpdate(object param)
@@ -217,61 +127,6 @@ public class Shop : BaseBox
         UseProfile.Money += money;
         Debug.LogError("Money added: " + money.ToString());
         GamePlayController.Instance.gameScene.InitState();
-    }
-
-    private void PurchaseGun(string gun)
-    {
-        switch (gun)
-        {
-            case "SMG":
-                if (UseProfile.Money >= 500)
-                {
-                    UseProfile.Money -= 500;
-                    UseProfile.OwnedGuns += gun + ",";
-                    Debug.LogError("Gun purchased: " + gun);
-                }
-                else
-                {
-                    Debug.LogError("Not enough money");
-                }
-                break;
-            case "Rifle":
-                if (UseProfile.Money >= 10000)
-                {
-                    UseProfile.Money -= 10000;
-                    UseProfile.OwnedGuns += gun + ",";
-                    Debug.LogError("Gun purchased: " + gun);
-                }
-                else
-                {
-                    Debug.LogError("Not enough money");
-                }
-                break;
-            case "Shotgun":
-                if (UseProfile.Money >= 12000)
-                {
-                    UseProfile.Money -= 12000;
-                    UseProfile.OwnedGuns += gun + ",";
-                    Debug.LogError("Gun purchased: " + gun);
-                }
-                else
-                {
-                    Debug.LogError("Not enough money");
-                }
-                break;
-            case "Sniper":
-                if (UseProfile.Money >= 20000)
-                {
-                    UseProfile.Money -= 20000;
-                    UseProfile.OwnedGuns += gun + ",";
-                    Debug.LogError("Gun purchased: " + gun);
-                }
-                else
-                {
-                    Debug.LogError("Not enough money");
-                }
-                break;
-        }
     }
 
     private void ChangeMoney(int money)
@@ -303,7 +158,7 @@ public class Shop : BaseBox
                 InitState();
                 break;
             case 3:
-                UseProfile.Year = 1900;
+                UseProfile.YearUpgradeCount = 0;
                 InitState();
                 break;
         }
@@ -314,7 +169,10 @@ public class Shop : BaseBox
     private void ResetGuns()
     {
         UseProfile.OwnedSpecialGuns = "";
+        UseProfile.SpecialGunLeftHand = "";
+        UseProfile.SpecialGunMiddleHand = "";
         InitState();
+        Inventory.instance.InitState();
         //UseProfile.EquippedGun = 0;
         //GamePlayController.Instance.playerContain.currentGun = 0;
         //GamePlayController.Instance.playerContain.handController.GunUpdate(0);

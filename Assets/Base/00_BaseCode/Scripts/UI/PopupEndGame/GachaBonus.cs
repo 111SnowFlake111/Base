@@ -99,7 +99,7 @@ public class GachaBonus : MonoBehaviour
 
     public void ReceiveMoneyReward()
     {
-        moneyBonusBox.transform.DOMove(moneyEarnedBox.transform.position, 2f).OnComplete(() =>
+        moneyBonusBox.transform.DOMove(moneyEarnedBox.transform.position, 1.5f).OnComplete(() =>
         {
             UseProfile.Money += GamePlayController.Instance.playerContain.cash * (multiply - 1);
             moneyBonusBox.SetActive(false);

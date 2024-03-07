@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using EventDispatcher;
 using UnityEditor.Experimental.GraphView;
+using System;
 
 public class HandController : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class HandController : MonoBehaviour
 
     public List<GameObject> bullets;
 
-    public GameObject bullet;
+    //public GameObject bullet;
 
     public GameObject handPlayer;
     public GameObject handPlayerBody;
@@ -28,12 +29,12 @@ public class HandController : MonoBehaviour
     public Transform leftLimit;
     public Transform rightLimit;
 
-    public bool speedUp = false;
-    public bool speedDown = false;
+    [NonSerialized] public bool speedUp = false;
+    [NonSerialized] public bool speedDown = false;
 
     public Camera camera;
 
-    public int currentGun;
+    [NonSerialized] public int currentGun;
     bool allowChangeGun;
 
     Vector3 firstPost;
@@ -44,9 +45,6 @@ public class HandController : MonoBehaviour
     GameObject handR;
     GameObject handM;
     GameObject handL;
-
-    int count1 = 0;
-    int count2 = 0;
 
     public void Start()
     {
@@ -96,7 +94,6 @@ public class HandController : MonoBehaviour
             handR = Instantiate(rightHands[currentGun], spawnPointSingle.transform.localPosition, Quaternion.identity);
             handR.transform.parent = handPlayerBody.transform;
         }
-
         //this.RegisterListener(EventID.LOCALYEARUPGRADE, GunUpgradeChecker);
     }
 
@@ -174,7 +171,7 @@ public class HandController : MonoBehaviour
         //}
 
         //Kiểm tra Year để thay súng
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) < 0 || Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) >= rightHands.Count)
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) < 0 || Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) >= rightHands.Count)
         {
             allowChangeGun = false;
         }
@@ -183,9 +180,9 @@ public class HandController : MonoBehaviour
             allowChangeGun = true;
         }
 
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun && allowChangeGun)
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) != currentGun && allowChangeGun)
         {
-            currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
+            currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10);
             GunUpdate(currentGun);
         }
 
@@ -249,62 +246,109 @@ public class HandController : MonoBehaviour
 
         if (GamePlayController.Instance.playerContain.doubleGun)
         {
-            if (UseProfile.OwnedSpecialGuns.Contains("Dragunov"))
-            {
-                handL = Instantiate(specialLeftHands[0], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
-                handL.transform.parent = handPlayerBody.transform;
+            handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
+            handR.transform.parent = handPlayerBody.transform;
 
-                handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
-                handR.transform.parent = handPlayerBody.transform;
-            }
-            else
+            switch (UseProfile.SpecialGunLeftHand)
             {
-                handL = Instantiate(leftHands[ID], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
-                handL.transform.parent = handPlayerBody.transform;
-
-                handR = Instantiate(rightHands[ID], spawnPointsDual[1].transform.localPosition, Quaternion.identity);
-                handR.transform.parent = handPlayerBody.transform;
-            }
-            
+                case StringHelper.DRAGUNOV:
+                    handL = Instantiate(specialLeftHands[0], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M79:
+                    handL = Instantiate(specialLeftHands[1], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.PKM:
+                    handL = Instantiate(specialLeftHands[2], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.RPG7:
+                    handL = Instantiate(specialLeftHands[3], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M240:
+                    handL = Instantiate(specialLeftHands[4], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M72:
+                    handL = Instantiate(specialLeftHands[5], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                default:
+                    handL = Instantiate(leftHands[ID], spawnPointsDual[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+            }          
         }
         else if (GamePlayController.Instance.playerContain.tripleGun)
         {
-            if (UseProfile.OwnedSpecialGuns.Contains("Dragunov"))
+            handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
+            handR.transform.parent = handPlayerBody.transform;
+
+            switch (UseProfile.SpecialGunLeftHand)
             {
-                if (UseProfile.OwnedSpecialGuns.Contains("M79"))
-                {
+                case StringHelper.DRAGUNOV:
                     handL = Instantiate(specialLeftHands[0], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
                     handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M79:
+                    handL = Instantiate(specialLeftHands[1], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.PKM:
+                    handL = Instantiate(specialLeftHands[2], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.RPG7:
+                    handL = Instantiate(specialLeftHands[3], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M240:
+                    handL = Instantiate(specialLeftHands[4], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M72:
+                    handL = Instantiate(specialLeftHands[5], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+                default:
+                    handL = Instantiate(leftHands[ID], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
+                    handL.transform.parent = handPlayerBody.transform;
+                    break;
+            }
 
+            switch (UseProfile.SpecialGunMiddleHand)
+            {
+                case StringHelper.DRAGUNOV:
                     handM = Instantiate(specialMiddleHands[0], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
                     handM.transform.parent = handPlayerBody.transform;
-
-                    handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
-                    handR.transform.parent = handPlayerBody.transform;
-                }
-                else
-                {
-                    handL = Instantiate(specialLeftHands[0], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
-                    handL.transform.parent = handPlayerBody.transform;
-
+                    break;
+                case StringHelper.M79:
+                    handM = Instantiate(specialMiddleHands[1], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.PKM:
+                    handM = Instantiate(specialMiddleHands[2], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.RPG7:
+                    handM = Instantiate(specialMiddleHands[3], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M240:
+                    handM = Instantiate(specialMiddleHands[4], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
+                    break;
+                case StringHelper.M72:
+                    handM = Instantiate(specialMiddleHands[5], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
+                    handM.transform.parent = handPlayerBody.transform;
+                    break;
+                default:
                     handM = Instantiate(middleHands[ID], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
                     handM.transform.parent = handPlayerBody.transform;
-
-                    handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
-                    handR.transform.parent = handPlayerBody.transform;
-                }
-            }
-            else
-            {
-                handL = Instantiate(leftHands[ID], spawnPointsTriple[0].transform.localPosition, Quaternion.identity);
-                handL.transform.parent = handPlayerBody.transform;
-
-                handM = Instantiate(middleHands[ID], spawnPointsTriple[1].transform.localPosition, Quaternion.identity);
-                handM.transform.parent = handPlayerBody.transform;
-
-                handR = Instantiate(rightHands[ID], spawnPointsTriple[2].transform.localPosition, Quaternion.identity);
-                handR.transform.parent = handPlayerBody.transform;
-            }            
+                    break;
+            }                   
         }
         else
         {
@@ -312,7 +356,10 @@ public class HandController : MonoBehaviour
             handR.transform.parent = handPlayerBody.transform;
         }
 
-        handPlayer.transform.DOLocalRotate(new Vector3(0, 360f, 0), 1.5f);
+        handPlayerBody.transform.DORotate(new Vector3(0, 360f, 0), 0.5f, RotateMode.FastBeyond360).OnComplete(() =>
+        {
+            handPlayer.transform.eulerAngles = Vector3.zero;
+        });
         currentGun = ID;
 
         //Debug.LogError("Gun Updated");
@@ -321,9 +368,9 @@ public class HandController : MonoBehaviour
 
     public void GunUpgradeChecker(object dam)
     {
-        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10) != currentGun)
+        if (Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10) != currentGun)
         {
-            currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - 1900) / 10);
+            currentGun = Mathf.FloorToInt((GamePlayController.Instance.playerContain.currentYear - GamePlayController.Instance.playerContain.startingYear) / 10);
             GunUpdate(currentGun);
         }
     }

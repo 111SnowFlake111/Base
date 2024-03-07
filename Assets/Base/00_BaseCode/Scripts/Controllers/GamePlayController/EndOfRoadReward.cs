@@ -9,26 +9,27 @@ public class EndOfRoadReward : MonoBehaviour
 
     public Transform moneyBagPos;
 
+    List<string> specialGunNames = new List<string> {"Dragunov", "M79", "PKM", "RPG7", "M240", "M72"};
     GameObject reward;
     int count;
     void Start()
     {
-        if (UseProfile.OwnedSpecialGuns.Contains("Dragunov"))
+        for (int i = 0; i < specialGunNames.Count; i++)
         {
-            count++;
-            if (UseProfile.OwnedSpecialGuns.Contains("M79"))
+            if (UseProfile.OwnedSpecialGuns.Contains(specialGunNames[i]))
             {
                 count++;
-                reward = Instantiate(moneyBag, moneyBagPos.position, Quaternion.identity);
             }
             else
             {
                 reward = Instantiate(rewards[count], gameObject.transform.position, Quaternion.identity);
+                break;
             }
         }
-        else
+
+        if (count >= specialGunNames.Count)
         {
-            reward = Instantiate(rewards[count], gameObject.transform.position, Quaternion.identity);
+            reward = Instantiate(moneyBag, moneyBagPos.position, Quaternion.identity);
         }
     }
 
@@ -46,12 +47,32 @@ public class EndOfRoadReward : MonoBehaviour
             {
                 case 0:
                     {
-                        UseProfile.OwnedSpecialGuns += "Dragunov";
+                        UseProfile.OwnedSpecialGuns += specialGunNames[count];
                         break;
                     }
                 case 1:
                     {
-                        UseProfile.OwnedSpecialGuns += "M79";
+                        UseProfile.OwnedSpecialGuns += specialGunNames[count];
+                        break;
+                    }
+                case 2:
+                    {
+                        UseProfile.OwnedSpecialGuns += specialGunNames[count];
+                        break;
+                    }
+                case 3:
+                    {
+                        UseProfile.OwnedSpecialGuns += specialGunNames[count];
+                        break;
+                    }
+                case 4:
+                    {
+                        UseProfile.OwnedSpecialGuns += specialGunNames[count];
+                        break;
+                    }
+                case 5:
+                    {
+                        UseProfile.OwnedSpecialGuns += specialGunNames[count];
                         break;
                     }
                 default:

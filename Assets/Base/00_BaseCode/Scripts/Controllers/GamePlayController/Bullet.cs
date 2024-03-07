@@ -9,17 +9,21 @@ public class Bullet : MonoBehaviour
     private bool spawnCheck = false;
 
     public float damage = 1;
-    public float cylinderDamage = 1;
+    public int cylinderDamage = 1;
+    public int wallDamage = 1;
 
     public ParticleSystem hitEffect;
 
+    float inaccuracyRange;
+
     void Update()
     {
-        //if (!spawnCheck)
-        //{
-        //    inaccuracy = RandomX();
-        //}       
-        gameObject.transform.position += new Vector3(inaccuracy, 0, 50f) * Time.deltaTime;
+        
+        if (!spawnCheck && inaccuracy != 0)
+        {
+            inaccuracyRange = RandomX();
+        }
+        gameObject.transform.position += new Vector3(inaccuracyRange, 0, 50f) * Time.deltaTime;
     }
     public IEnumerator HandleDestoy(float baseRange)
     {
@@ -31,25 +35,17 @@ public class Bullet : MonoBehaviour
 
     public float RandomX()
     {
-        if (GamePlayController.Instance.playerContain.currentGun == 1)
-        {
-            spawnCheck = true;
-            return Random.Range(-2f, 2f);
-        } 
-        else if (GamePlayController.Instance.playerContain.currentGun == 2)
-        {
-            spawnCheck = true;
-            return Random.Range(-1f, 1f);
-        } 
-        else
-        {
-            spawnCheck = true;
-            return 0;
-        }
+        spawnCheck = true;
+        return Random.Range(-inaccuracy, inaccuracy);
     }
 
     public void OnTriggerEnter(Collider other)
     {
+        if (other.tag.Contains("End"))
+        {
+            SimplePool2.Despawn(gameObject);
+        }
+
         if (other.tag.Contains("Rock") || other.tag.Contains("Cylinder") || other.tag.Contains("Panel") || other.tag.Contains("Straight") || other.tag.Contains("Wall") || other.tag.Contains("Spreader"))
         {
             if (other.tag.Contains("Cylinder"))

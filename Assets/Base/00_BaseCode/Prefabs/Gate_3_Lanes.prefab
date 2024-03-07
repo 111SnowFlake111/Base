@@ -106,12 +106,18 @@ MonoBehaviour:
   - {fileID: 579797277964211455}
   - {fileID: 7288931576730009325}
   - {fileID: 5738699468246581906}
+  posts:
+  - {fileID: 3517566289582140366}
+  - {fileID: 8566147587716915220}
+  - {fileID: 3657395742987251661}
   lanes:
   - {fileID: 1448828231384965181}
   - {fileID: 3732367649002594797}
   - {fileID: 7632251927610788479}
   postPos: {fileID: 8368205191884673024}
+  activatedPostColor: {fileID: 2100000, guid: fedddf468c4f8884f88a089504395a1a, type: 2}
   bulletsNumberForOnePoint: 2
+  bulletsHitForOnePoint: 10
   pointsForFirstLane: 4
   pointsForSecondLane: 8
   pointsForThirdLane: 12
@@ -1597,7 +1603,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3922815047977581462, guid: f283989fd01d2c243bfb661349d45344, type: 3}
+  - {fileID: 2100000, guid: fedddf468c4f8884f88a089504395a1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public static class StringHelper
 {
+    //Special Gun Names Only
+    public const string DRAGUNOV = "Dragunov";
+    public const string M79 = "M79";
+    public const string PKM = "PKM";
+    public const string RPG7 = "RPG7";
+    public const string M240 = "M240";
+    public const string M72 = "M72";
+    //End Of Special Gun Names
+
     public const string EQUIPPEDGUN = "equipped_gun";
     public const string OWNEDGUNS = "owned_guns";
     public const string MONEY = "money";
@@ -13,6 +22,8 @@ public static class StringHelper
     public const string RANGE = "range";
     public const string DAMAGE = "damage";
     public const string OWNEDSPECIALGUNS = "owned_special_guns";
+    public const string SPECIALGUNLEFTHAND = "special_gun_left_hand";
+    public const string SPECIALGUNMIDDLEHAND = "special_gun_middle_hand";
     public const string SOUND = "sound";
 
     public const string LOADING_COMPLETE = "LOADING_COMPLETE";

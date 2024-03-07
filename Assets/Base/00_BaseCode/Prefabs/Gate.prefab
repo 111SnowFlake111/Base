@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3922815047977581462, guid: f283989fd01d2c243bfb661349d45344, type: 3}
+  - {fileID: 2100000, guid: fedddf468c4f8884f88a089504395a1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -773,10 +773,14 @@ MonoBehaviour:
   - {fileID: 7382288472706555934}
   - {fileID: 6865715670616921974}
   - {fileID: 8287936768071825000}
+  post: {fileID: 5467255591497156953}
   lane: {fileID: 4503500713200360963}
   postPos: {fileID: 1093994622608732823}
+  activatedPostColor: {fileID: 2100000, guid: fedddf468c4f8884f88a089504395a1a, type: 2}
   bulletsNumberForOnePoint: 2
+  bulletsHitForOnePoint: 10
   pointsForLane: 10
+  allowTriggerSpecialUpgradeButtons: 0
 --- !u!1001 &357616585098129046
 PrefabInstance:
   m_ObjectHideFlags: 0

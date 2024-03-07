@@ -19,167 +19,215 @@ public class Inventory : BaseBox
         return instance;
     }
 
+    public RawImage selectedItemImage;
+    public List<Texture> specialGunsImages;
+
+    public Text range, speed, damage, cylinderDamage, wallDamage, inaccuracy;
+
+    public List<Button> itemBoxes;
     public List<Button> equipButtons;
-    public List<Button> goToShopButtons;
+    public List<Button> unequipButtons;
+
+    public Text currentlyEquippedLeftHand;
+    public Text currentlyEquippedMiddleHand;
+
     public Button close;
+
+    int currentlySelectedItem_id;
+    string currentlySelectedItem_name;
 
     private void Init()
     {
         close.onClick.AddListener(Close);
 
-        equipButtons[0].onClick.AddListener(delegate { EquipItem(0); });
-        equipButtons[1].onClick.AddListener(delegate { EquipItem(1); });
-        equipButtons[2].onClick.AddListener(delegate { EquipItem(2); });
-        equipButtons[3].onClick.AddListener(delegate { EquipItem(3); });
-        equipButtons[4].onClick.AddListener(delegate { EquipItem(4); });
+        itemBoxes[0].onClick.AddListener(delegate { ShowcaseUpdate(0, "Dragunov"); EquipItemStatus(currentlySelectedItem_name); UnequipItemStatus(); });
+        itemBoxes[1].onClick.AddListener(delegate { ShowcaseUpdate(1, "M79"); EquipItemStatus(currentlySelectedItem_name); UnequipItemStatus(); });
+        itemBoxes[2].onClick.AddListener(delegate { ShowcaseUpdate(2, "PKM"); EquipItemStatus(currentlySelectedItem_name); UnequipItemStatus(); });
+        itemBoxes[3].onClick.AddListener(delegate { ShowcaseUpdate(3, "RPG7"); EquipItemStatus(currentlySelectedItem_name); UnequipItemStatus(); });
+        itemBoxes[4].onClick.AddListener(delegate { ShowcaseUpdate(4, "M240"); EquipItemStatus(currentlySelectedItem_name); UnequipItemStatus(); });
+        itemBoxes[5].onClick.AddListener(delegate { ShowcaseUpdate(5, "M72"); EquipItemStatus(currentlySelectedItem_name); UnequipItemStatus(); });
 
-        foreach(Button button in goToShopButtons)
-        {
-            button.onClick.AddListener(GoToShop);
-        }
+        equipButtons[0].onClick.AddListener(delegate { Equip(0); });
+        equipButtons[1].onClick.AddListener(delegate { Equip(1); });
+
+        unequipButtons[0].onClick.AddListener(delegate { Unequip(0); });
+        unequipButtons[1].onClick.AddListener (delegate { Unequip(1); });
 
         InitState();
 
-        this.RegisterListener(EventID.EQUIPPED_GUN, EquippedGunStatus);
-        this.RegisterListener(EventID.INVENTORY_UPDATE, OwnedGunsStatus);
+        this.RegisterListener(EventID.OWNEDSPECIALGUNSUPDATE, OwnedGunsStatus);
     }
 
-    private void InitState()
+    public void InitState()
     {
-        int currentGun = UseProfile.EquippedGun;
+        OwnedGunsStatus(currentlySelectedItem_id);
 
-        foreach (Button button in equipButtons)
-        {
-            button.interactable = true;
-        }
+        //ShowcaseUpdate(currentlySelectedItem_id, currentlySelectedItem_name);
+        //EquipItemStatus(currentlySelectedItem_name);
+        UnequipItemStatus();
 
-        switch (currentGun)
+        currentlyEquippedLeftHand.text = UseProfile.SpecialGunLeftHand;
+        currentlyEquippedMiddleHand.text = UseProfile.SpecialGunMiddleHand;
+    }
+
+    private void Equip(int id)
+    {
+        switch (id)
         {
             case 0:
-                equipButtons[0].interactable = false; break;
+                UseProfile.SpecialGunLeftHand = currentlySelectedItem_name;
+                break;
             case 1:
-                equipButtons[1].interactable = false; break;
-            case 2:
-                equipButtons[2].interactable = false; break;
-            case 3:
-                equipButtons[3].interactable = false; break;
-            case 4:
-                equipButtons[4].interactable = false; break;
+                UseProfile.SpecialGunMiddleHand = currentlySelectedItem_name;
+                break;
         }
 
-        string inv = UseProfile.OwnedGuns;
-        if (inv.Contains("SMG"))
-        {
-            goToShopButtons[0].gameObject.SetActive(false);
-        }
-        else
-        {
-            goToShopButtons[0].gameObject.SetActive(true);
-        }
-
-        if (inv.Contains("Rifle"))
-        {
-            goToShopButtons[1].gameObject.SetActive(false);
-        }
-        else
-        {
-            goToShopButtons[1].gameObject.SetActive(true);
-        }
-
-        if (inv.Contains("Shotgun"))
-        {
-            goToShopButtons[2].gameObject.SetActive(false);
-        }
-        else
-        {
-            goToShopButtons[2].gameObject.SetActive(true);
-        }
-
-        if (inv.Contains("Sniper"))
-        {
-            goToShopButtons[3].gameObject.SetActive(false);
-        }
-        else
-        {
-            goToShopButtons[3].gameObject.SetActive(true);
-        }
+        EquipItemStatus(currentlySelectedItem_name);
+        InitState();
     }
 
-    private void EquippedGunStatus(object param)
+    private void Unequip(int id)
     {
-        int currentGun = UseProfile.EquippedGun;
-
-        foreach(Button button in equipButtons)
-        {
-            button.interactable = true;
-        }
-
-        switch (currentGun)
+        switch (id)
         {
             case 0:
-                equipButtons[0].interactable = false; break;
+                UseProfile.SpecialGunLeftHand = "";
+                break;
             case 1:
-                equipButtons[1].interactable = false; break;
-            case 2:
-                equipButtons[2].interactable = false; break;
-            case 3:
-                equipButtons[3].interactable = false; break;
-            case 4:
-                equipButtons[4].interactable = false; break;
+                UseProfile.SpecialGunMiddleHand = "";
+                break;
+        }
+
+        InitState();
+    }
+
+    private void ShowcaseUpdate(int id, string gunName)
+    {
+        currentlySelectedItem_id = id;
+        currentlySelectedItem_name = gunName;
+
+        selectedItemImage.GetComponent<RawImage>().texture = specialGunsImages[currentlySelectedItem_id];
+
+        range.text = "Range:\n" + GamePlayController.Instance.playerContain.handController.specialLeftHands[currentlySelectedItem_id].GetComponent<BulletSpawnTiming>().baseRange.ToString();
+
+        speed.text = "Speed:\n" + GamePlayController.Instance.playerContain.handController.specialLeftHands[currentlySelectedItem_id].GetComponent<GunSpeed>().speed.ToString();
+
+        damage.text = "Damage:\n" + GamePlayController.Instance.playerContain.handController.specialLeftHands[currentlySelectedItem_id].GetComponent<BulletSpawnTiming>().bullet.GetComponent<Bullet>().damage.ToString();
+
+        cylinderDamage.text = "Cylinder Damage:\n" + GamePlayController.Instance.playerContain.handController.specialLeftHands[currentlySelectedItem_id].GetComponent<BulletSpawnTiming>().bullet.GetComponent<Bullet>().cylinderDamage.ToString();
+
+        wallDamage.text = "Wall Damage:\n" + GamePlayController.Instance.playerContain.handController.specialLeftHands[currentlySelectedItem_id].GetComponent<BulletSpawnTiming>().bullet.GetComponent<Bullet>().wallDamage.ToString();
+
+        inaccuracy.text = "Inaccuracy:\n" + GamePlayController.Instance.playerContain.handController.specialLeftHands[currentlySelectedItem_id].GetComponent<BulletSpawnTiming>().bullet.GetComponent<Bullet>().inaccuracy.ToString();
+    }
+
+    private void EquipItemStatus(string gunName)
+    {
+        string inv = UseProfile.OwnedSpecialGuns;
+        string leftHand = UseProfile.SpecialGunLeftHand;
+        string middleHand = UseProfile.SpecialGunMiddleHand;
+
+        if (inv.Contains(gunName))
+        {
+            if (leftHand.Contains(gunName))
+            {
+                equipButtons[0].interactable = false;
+            }
+            else
+            {
+                equipButtons[0].interactable = true;
+            }
+
+            if (middleHand.Contains(gunName))
+            {
+                equipButtons[1].interactable = false;
+            }
+            else
+            {
+                equipButtons[1].interactable = true;
+            }
         }
     }
 
+    private void UnequipItemStatus()
+    {
+        if (UseProfile.SpecialGunLeftHand.Length <= 0)
+        {
+            unequipButtons[0].gameObject.SetActive(false);
+        }
+        else
+        {
+            unequipButtons[0].gameObject.SetActive(true);
+        }
+
+        if (UseProfile.SpecialGunMiddleHand.Length <= 0)
+        {
+            unequipButtons[1].gameObject.SetActive(false);
+        }
+        else
+        {
+            unequipButtons[1].gameObject.SetActive(true);
+        }
+    }
+
+    //Event Listener Section
     private void OwnedGunsStatus(object param)
     {
-        string inv = UseProfile.OwnedGuns;
-        if (inv.Contains("SMG"))
+        string inv = UseProfile.OwnedSpecialGuns;
+
+        if (inv.Contains("Dragunov"))
         {
-            goToShopButtons[0].gameObject.SetActive(false);
+            itemBoxes[0].interactable = true;
         }
         else
         {
-            goToShopButtons[0].gameObject.SetActive(true);
+            itemBoxes[0].interactable = false;
         }
 
-        if (inv.Contains("Rifle"))
+        if (inv.Contains("M79"))
         {
-            goToShopButtons[1].gameObject.SetActive(false);
+            itemBoxes[1].interactable = true;
         }
         else
         {
-            goToShopButtons[1].gameObject.SetActive(true);
+            itemBoxes[1].interactable = false;
         }
 
-        if (inv.Contains("Shotgun"))
+        if (inv.Contains("PKM"))
         {
-            goToShopButtons[2].gameObject.SetActive(false);
+            itemBoxes[2].interactable = true;
         }
         else
         {
-            goToShopButtons[2].gameObject.SetActive(true);
+            itemBoxes[2].interactable = false;
         }
 
-        if (inv.Contains("Sniper"))
+        if (inv.Contains("RPG7"))
         {
-            goToShopButtons[3].gameObject.SetActive(false);
+            itemBoxes[3].interactable = true;
         }
         else
         {
-            goToShopButtons[3].gameObject.SetActive(true);
+            itemBoxes[3].interactable = false;
         }
-    }
 
-    private void GoToShop()
-    {
-        Shop.Setup().Show();
-    }
+        if (inv.Contains("M240"))
+        {
+            itemBoxes[4].interactable = true;
+        }
+        else
+        {
+            itemBoxes[4].interactable = false;
+        }
 
-    private void EquipItem(int id)
-    {
-        UseProfile.EquippedGun = id;
-        GamePlayController.Instance.playerContain.currentGun = id;
-        GamePlayController.Instance.playerContain.handController.GunUpdate(id);
-        InitState();
+        if (inv.Contains("M72"))
+        {
+            itemBoxes[5].interactable = true;
+        }
+        else
+        {
+            itemBoxes[5].interactable = false;
+        }
     }
 
     //public void BuyGun_1()

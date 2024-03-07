@@ -187,15 +187,15 @@ public class UseProfile : MonoBehaviour
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.LOADLEVEL);
         }
     }
-    public static float Year
+    public static int YearUpgradeCount
     {
         get
         {
-            return PlayerPrefs.GetFloat(StringHelper.YEAR);
+            return PlayerPrefs.GetInt(StringHelper.YEAR);
         }
         set
         {
-            PlayerPrefs.SetFloat(StringHelper.YEAR, value);
+            PlayerPrefs.SetInt(StringHelper.YEAR, value);
             PlayerPrefs.Save();
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.YEARUPGRADE);
         }
@@ -250,6 +250,32 @@ public class UseProfile : MonoBehaviour
             PlayerPrefs.SetString(StringHelper.OWNEDSPECIALGUNS, value);
             PlayerPrefs.Save();
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.OWNEDSPECIALGUNSUPDATE);
+        }
+    }
+    public static string SpecialGunLeftHand
+    {
+        get
+        {
+            return PlayerPrefs.GetString(StringHelper.SPECIALGUNLEFTHAND);
+        }
+        set
+        {
+            PlayerPrefs.SetString(StringHelper.SPECIALGUNLEFTHAND, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SPECIALGUNEQUIPUPDATE);
+        }
+    }
+    public static string SpecialGunMiddleHand
+    {
+        get
+        {
+            return PlayerPrefs.GetString(StringHelper.SPECIALGUNMIDDLEHAND);
+        }
+        set
+        {
+            PlayerPrefs.SetString(StringHelper.SPECIALGUNMIDDLEHAND, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SPECIALGUNEQUIPUPDATE);
         }
     }
     public static int SoundSetting
