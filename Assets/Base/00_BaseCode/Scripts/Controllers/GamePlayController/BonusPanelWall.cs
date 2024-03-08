@@ -36,7 +36,7 @@ public class BonusPanelWall : MonoBehaviour
             }
             else
             {     
-                hpBar.fillAmount -= num;
+                hpBar.fillAmount = num * int.Parse(wallHP.text);
             }           
         }
 

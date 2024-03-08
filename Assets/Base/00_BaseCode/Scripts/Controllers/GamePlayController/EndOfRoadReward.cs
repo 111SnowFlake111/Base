@@ -1,5 +1,7 @@
+using EventDispatcher;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class EndOfRoadReward : MonoBehaviour
@@ -31,6 +33,8 @@ public class EndOfRoadReward : MonoBehaviour
         {
             reward = Instantiate(moneyBag, moneyBagPos.position, Quaternion.identity);
         }
+
+        this.RegisterListener(EventID.OWNEDSPECIALGUNSUPDATE, UpdateReward);
     }
 
     // Update is called once per frame
@@ -86,6 +90,31 @@ public class EndOfRoadReward : MonoBehaviour
             GamePlayController.Instance.playerContain.start = false;
             PopupEndGame.Setup().Show();
             Destroy(gameObject);
+        }
+    }
+
+    //Event Listener Section
+    private void UpdateReward(object dam)
+    {
+        count = 0;
+        Destroy(reward);
+
+        for (int i = 0; i < specialGunNames.Count; i++)
+        {
+            if (UseProfile.OwnedSpecialGuns.Contains(specialGunNames[i]))
+            {
+                count++;
+            }
+            else
+            {
+                reward = Instantiate(rewards[count], gameObject.transform.position, Quaternion.identity);
+                break;
+            }
+        }
+
+        if (count >= specialGunNames.Count)
+        {
+            reward = Instantiate(moneyBag, moneyBagPos.position, Quaternion.identity);
         }
     }
 }

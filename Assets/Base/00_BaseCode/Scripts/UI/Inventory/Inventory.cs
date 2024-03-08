@@ -98,6 +98,7 @@ public class Inventory : BaseBox
                 break;
         }
 
+        EquipItemStatus(currentlySelectedItem_name);
         InitState();
     }
 

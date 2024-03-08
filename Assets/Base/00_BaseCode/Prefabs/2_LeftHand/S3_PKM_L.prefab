@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunSpeed: {fileID: 0}
-  speed: 2.5
+  speed: 2
 --- !u!114 &178387880845349737
 MonoBehaviour:
   m_ObjectHideFlags: 0
