@@ -9,6 +9,8 @@ Trước khi bắt đầu chơi Player có thể tiêu tiền để nâng FireRa
 
 Game có Shop để mua tiền in-game, hiện tại có các option cộng/trừ hoặc sửa tiền về 0 và reset tiến độ lấy súng đặc biệt, reset stats (mục đích để test tính năng game, sau này sẽ xóa)
 
+Game có Inventory để đổi súng cho tay trái và tay giữa
+
 Cứ mỗi 10 Year thì súng sẽ được nâng cấp, súng mới sẽ có sát thương, tốc độ bắn và cự ly đạn bay xa hơn súng trước, nếu qua số lượng súng đang có thì súng sẽ không thay đổi nhưng Year vẫn sẽ tăng
 
 Cuối đường sẽ có súng đặc biệt, các khẩu súng này sẽ có stats vượt trội hơn so với các súng lấy được thông qua Year
@@ -42,4 +44,6 @@ Có các powerup bao gồm Dual Wield (bắn 2 súng cùng lúc), Triple Wield (
 
 ***Demo bản mới: https://youtu.be/VThk3b5V0a0
 
-*NOTE: Bản ở nhánh main hiện tại là bản stable, một bản overhaul lại game đang được thực hiện trong nhánh khác
+***Demo bản overhaul: https://youtu.be/ZJnqYSACRP8
+
+*NOTE: Bản ở nhánh main hiện tại là bản stable, bản overhaul lại ở nhánh khác đang sắp xong
